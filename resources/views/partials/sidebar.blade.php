@@ -2,15 +2,15 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
  	<!-- Brand Logo -->
  	@if($thongtinshop == null)
- 	<a href="" class="brand-link">
+ 	<a href="{{route('capnhatthongtinshop')}}" class="brand-link">
  		<img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
  		<span class="brand-text font-weight-light">UNKNOWN</span>
  	</a>
  	@endif
  	@if($thongtinshop != null)
- 	<a href="" class="brand-link">
- 		<!-- <img src="{{$thongtinshop->logoshop}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
- 		<img src="https://baokhuyennong.com/wp-content/uploads/2020/06/ca-canh-5.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+ 	<a href="{{route('suathongtinshop')}}" class="brand-link">
+ 		<!-- <img src="{{$thongtinshop->logoshop}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"><br> -->
+ 		<img src="{{$thongtinshop->logoshop}}" width="200px" height="100px"><br>
  		<span class="brand-text font-weight-light">{{$thongtinshop->tenshop}}</span>
  	</a>
  	@endif
@@ -30,29 +30,36 @@
  		<!-- Sidebar Menu -->
  		<nav class="mt-2">
  			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
  				<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
- 				@if($thongtinshop == null)
  				<li class="nav-item">
- 					<a href="" class="nav-link">
+ 					<a href="#" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
- 							Cap Nhat Thong Tin
+ 							Chức năng 1
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>
  				</li>
- 				@endif
- 				@if($thongtinshop != null)
  				<li class="nav-item">
- 					<a href="" class="nav-link">
+ 					<a href="#" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
- 							Quản lý thành viên
+ 							Chức năng 2
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>
  				</li>
- 				@endif
+ 				<li class="nav-item">
+ 					<form method="POST" action="{{ route('logout') }}">
+ 						@csrf
+ 						<x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+											this.closest('form').submit();" class="nav-link">
+ 							<h5>Đăng Xuất</h5>
+ 						</x-dropdown-link>
+ 					</form>
+ 				</li>
+
  			</ul>
  		</nav>
  		<!-- /.sidebar-menu -->

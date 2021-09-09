@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -43,13 +42,28 @@ Route::get('/', [
 // QUAN LY SHOP
 Route::prefix('/')->group(function () {
     Route::get('/firstpage', [
-        'as' => 'admin.shop.firstpage',
+        'as' => 'firstpage',
         'uses' => 'App\Http\Controllers\admin\shop\firstpageController@thongtinshop',
         'middleware' => (['auth', 'verified'])
     ]);
     Route::get('/capnhatthongtinshop', [
-        'as' => 'admin.shop.capnhatthongtinshop',
+        'as' => 'capnhatthongtinshop',
         'uses' => 'App\Http\Controllers\admin\shop\firstpageController@capnhatthongtinshop',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/capnhat2thongtinshop', [
+        'as' => 'capnhat2thongtinshop',
+        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@capnhat2thongtinshop',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/suathongtinshop', [
+        'as' => 'suathongtinshop',
+        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@suathongtinshop',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/sua2thongtinshop', [
+        'as' => 'sua2thongtinshop',
+        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@sua2thongtinshop',
         'middleware' => (['auth', 'verified'])
     ]);
 });
