@@ -33,17 +33,17 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 // Xac Thuc Email
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// Route::get('/', [
-//         'as' => 'login',
-//         'uses' => 'App\Http\Controllers\Auth\AuthenticatedSessionController@create',
-//         // 'middleware' => (['auth','verified'])
-//     ]);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [
+    'as' => 'login',
+    'uses' => 'App\Http\Controllers\Auth\AuthenticatedSessionController@create',
+    // 'middleware' => (['auth','verified'])
+]);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth','verified'])->name('dashboard');
+Route::get('/admin', function () {
+    return view('admin.admin');
+})->middleware(['auth', 'verified'])->name('admin');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
