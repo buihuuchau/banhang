@@ -5,5 +5,5 @@
       By: Bùi Hữu Châu - Version 1.0
     </div>
     <!-- Default to the left -->
-    <strong>Luận văn tốt nghiệp 2021. Khóa K43 2017-2021</a>.</strong>
+    <strong>Luận văn tốt nghiệp 2021. Khóa K43 2017-2021. Shop Cá Cảnh Phú Quốc</a>.</strong>
   </footer>

@@ -15,7 +15,10 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Xac Thuc Email
+
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -33,17 +36,22 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 // Xac Thuc Email
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', [
     'as' => 'login',
     'uses' => 'App\Http\Controllers\Auth\AuthenticatedSessionController@create',
-    // 'middleware' => (['auth','verified'])
 ]);
-
-Route::get('/admin', function () {
-    return view('admin.admin');
-})->middleware(['auth', 'verified'])->name('admin');
-
+// QUAN LY SHOP
+Route::prefix('/')->group(function () {
+    Route::get('/firstpage', [
+        'as' => 'admin.shop.firstpage',
+        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@thongtinshop',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/capnhatthongtinshop', [
+        'as' => 'admin.shop.capnhatthongtinshop',
+        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@capnhatthongtinshop',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY SHOP
 require __DIR__ . '/auth.php';
