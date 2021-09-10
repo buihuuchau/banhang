@@ -55,7 +55,7 @@
                         <form action="{{ route('capnhat2thongtinshop')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             @if($errors->any())
-                            <h3>{{$errors->first()}}</h3>
+                            <h3 style="color:red">{{$errors->first()}}</h3>
                             @endif
                             <div class="form-group">
                                 <label>TÊN SHOP:</label>

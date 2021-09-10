@@ -46,24 +46,14 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\shop\firstpageController@thongtinshop',
         'middleware' => (['auth', 'verified'])
     ]);
-    Route::get('/capnhatthongtinshop', [
+    Route::post('/capnhatthongtinshop', [
         'as' => 'capnhatthongtinshop',
         'uses' => 'App\Http\Controllers\admin\shop\firstpageController@capnhatthongtinshop',
         'middleware' => (['auth', 'verified'])
     ]);
-    Route::post('/capnhat2thongtinshop', [
-        'as' => 'capnhat2thongtinshop',
-        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@capnhat2thongtinshop',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/suathongtinshop', [
+    Route::post('/suathongtinshop', [
         'as' => 'suathongtinshop',
         'uses' => 'App\Http\Controllers\admin\shop\firstpageController@suathongtinshop',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/sua2thongtinshop', [
-        'as' => 'sua2thongtinshop',
-        'uses' => 'App\Http\Controllers\admin\shop\firstpageController@sua2thongtinshop',
         'middleware' => (['auth', 'verified'])
     ]);
 });
