@@ -58,4 +58,38 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY SHOP
+// QUAN LY LINH VUC
+Route::prefix('/')->group(function () {
+    Route::get('/quanlylinhvuc', [
+        'as' => 'quanlylinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@quanlylinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/addlinhvuc', [
+        'as' => 'addlinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@addlinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/editlinhvuc', [
+        'as' => 'editlinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@editlinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/hiddenlinhvuc/{idlinhvuc}', [
+        'as' => 'hiddenlinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@hiddenlinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/showlinhvuc/{idlinhvuc}', [
+        'as' => 'showlinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@showlinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/deletelinhvuc/{idlinhvuc}', [
+        'as' => 'deletelinhvuc',
+        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@deletelinhvuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY LINH VUC
 require __DIR__ . '/auth.php';

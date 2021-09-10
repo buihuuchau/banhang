@@ -23,14 +23,6 @@ class firstpageController extends Controller
             ->first();
         return view('admin.shop.firstpage', compact('thongtinshop'));
     }
-    // public function capnhatthongtinshop()
-    // {
-    //     $id = Auth::user()->id;
-    //     $thongtinshop = DB::table('thongtinshop')
-    //         ->where('idusers', $id)
-    //         ->first();
-    //     return view('admin.shop.capnhatthongtinshop', compact('thongtinshop'));
-    // }
     public function capnhatthongtinshop(Request $request)
     {
         $id = Auth::user()->id;
