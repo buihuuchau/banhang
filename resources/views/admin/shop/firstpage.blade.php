@@ -107,9 +107,9 @@
                     <div class="card-body">
                         <form action="{{ route('suathongtinshop')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <!-- @if($errors->any())
+                            @if($errors->any())
                             <h3 style="color:red">{{$errors->first()}}</h3>
-                            @endif -->
+                            @endif
                             <div class="form-group">
                                 <label>TÊN SHOP:</label>
                                 <input required="true" type="text" class="form-control" name="tenshop" value="{{ $thongtinshop->tenshop }}">

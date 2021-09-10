@@ -58,7 +58,7 @@ class firstpageController extends Controller
         $thongtinshop['websiteshop'] = $request->websiteshop;
         $thongtinshop['vitrishop'] = $request->vitrishop;
         DB::table('thongtinshop')->insert($thongtinshop);
-        return redirect('firstpage')->withErrors('Không thể thực hiện được');
+        return back();
     }
     public function suathongtinshop(Request $request)
     {
@@ -88,6 +88,6 @@ class firstpageController extends Controller
         DB::table('thongtinshop')
             ->where('id', $id)
             ->update($thongtinshop);
-        return redirect('firstpage')->withErrors('Không thể thực hiện được');
+        return back();
     }
 }
