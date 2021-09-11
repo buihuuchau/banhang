@@ -33,19 +33,19 @@
 
  				<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
  				<li class="nav-item">
- 					<a href="{{route('quanlylinhvuc')}}" class="nav-link">
+ 					<a href="{{route('quanlydanhmuc')}}" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
- 							Quản lý lĩnh vực
+ 							Quản lý danh mục
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="#" class="nav-link">
+ 					<a href="{{route('quanlylinhvuc')}}" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
- 							Chức năng 2
+ 							Quản lý lĩnh vực
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>

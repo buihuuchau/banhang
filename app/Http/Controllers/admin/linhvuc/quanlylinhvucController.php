@@ -33,11 +33,11 @@ class quanlylinhvucController extends Controller
     public function addlinhvuc(Request $request)
     {
         $id = Auth::user()->id;
-        $linhvuc = DB::table('linhvuc')
+        $check = DB::table('linhvuc')
             ->where('idusers', $id)
             ->where('tenlinhvuc', $request->tenlinhvuc)
             ->first();
-        if ($linhvuc) return back()->withErrors('Tên lĩnh vực bị trùng');
+        if ($check) return back()->withErrors('Tên lĩnh vực bị trùng');
         else {
             $linhvuc['idusers'] = $id;
             $linhvuc['tenlinhvuc'] = $request->tenlinhvuc;
@@ -48,11 +48,11 @@ class quanlylinhvucController extends Controller
     public function editlinhvuc(Request $request)
     {
         $id = Auth::user()->id;
-        $linhvuc = DB::table('linhvuc')
+        $check = DB::table('linhvuc')
             ->where('idusers', $id)
             ->where('tenlinhvuc', $request->tenlinhvuc)
             ->first();
-        if ($linhvuc) return back()->withErrors('Tên lĩnh vực bị trùng');
+        if ($check) return back()->withErrors('Tên lĩnh vực bị trùng');
         else {
             $linhvuc['tenlinhvuc'] = $request->tenlinhvuc;
             DB::table('linhvuc')

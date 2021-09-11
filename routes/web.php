@@ -58,6 +58,7 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY SHOP
+
 // QUAN LY LINH VUC
 Route::prefix('/')->group(function () {
     Route::get('/quanlylinhvuc', [
@@ -92,4 +93,19 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY LINH VUC
+
+// QUAN LY DANH MUC
+Route::prefix('/')->group(function () {
+    Route::get('/quanlydanhmuc', [
+        'as' => 'quanlydanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@quanlydanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/adddanhmuc', [
+        'as' => 'adddanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@adddanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY DANH MUC
 require __DIR__ . '/auth.php';
