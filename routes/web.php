@@ -106,6 +106,26 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@adddanhmuc',
         'middleware' => (['auth', 'verified'])
     ]);
+    Route::post('/editdanhmuc', [
+        'as' => 'editdanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@editdanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/hiddendanhmuc', [
+        'as' => 'hiddendanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@hiddendanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/showdanhmuc', [
+        'as' => 'showdanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@showdanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/deletedanhmuc', [
+        'as' => 'deletedanhmuc',
+        'uses' => 'App\Http\Controllers\admin\danhmuc\quanlydanhmucController@deletedanhmuc',
+        'middleware' => (['auth', 'verified'])
+    ]);
 });
 // QUAN LY DANH MUC
 require __DIR__ . '/auth.php';

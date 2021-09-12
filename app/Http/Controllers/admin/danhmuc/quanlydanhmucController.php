@@ -47,13 +47,14 @@ class quanlydanhmucController extends Controller
             ->first();
         $sudung = null;
         $danhmuc = DB::table('danhmuc')
+            // ->orderBy('danhmucha');
             ->where('idusers', $id)
             ->get();
         $sanpham = DB::table('sanpham')
             ->where('idusers', $id)
             ->get();
         // $htmlOption = $this->xemdanhmuc(0);
-        $callfunction = new myfunction($danhmuc, $thongtinshop);
+        $callfunction = new myfunction($danhmuc);
         $htmlOption = $callfunction->xemdanhmuc();
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
     }
@@ -73,5 +74,52 @@ class quanlydanhmucController extends Controller
             DB::table('danhmuc')->insert($danhmuc);
             return back();
         }
+    }
+    public function editdanhmuc(Request $request)
+    {
+        $id = Auth::user()->id;
+        $check = DB::table('danhmuc')
+            ->where('idusers', $id)
+            ->where('danhmuccha', $request->danhmuccha)
+            ->where('tendanhmuc', $request->tendanhmuc)
+            ->first();
+        if ($check) return back()->withErrors('Tên danh mục bị trùng');
+        else {
+            $danhmuc['tendanhmuc'] = $request->tendanhmuc;
+            $danhmuc['danhmuccha'] = $request->danhmuccha;
+            DB::table('danhmuc')
+                ->where('id', $request->id)
+                ->update($danhmuc);
+            return back();
+        }
+    }
+    public function hiddendanhmuc(Request $request)
+    {
+        $id = Auth::user()->id;
+        $iddanhmuc = $request->iddanhmuc;
+        $danhmuc['hidden'] = 1;
+        DB::table('danhmuc')
+            ->where('id', $iddanhmuc)
+            ->update($danhmuc);
+        return back();
+    }
+    public function showdanhmuc(Request $request)
+    {
+        $id = Auth::user()->id;
+        $iddanhmuc = $request->iddanhmuc;
+        $danhmuc['hidden'] = 0;
+        DB::table('danhmuc')
+            ->where('id', $iddanhmuc)
+            ->update($danhmuc);
+        return back();
+    }
+    public function deletedanhmuc(Request $request)
+    {
+        $id = Auth::user()->id;
+        $iddanhmuc = $request->iddanhmuc;
+        DB::table('danhmuc')
+            ->where('id', $iddanhmuc)
+            ->delete();
+        return back();
     }
 }
