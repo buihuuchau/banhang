@@ -99,6 +99,7 @@
                                 <thead>
                                     <tr role="row">
                                         {{-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending">No.</th> --}}
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">DANH MỤC CHA</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TÊN DANH MỤC</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ẨN / HIỆN</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
@@ -109,7 +110,14 @@
                                     <tr class="odd">
                                         {{-- <td class="dtr-control sorting_1" tabindex="0">{{$key+1}}</td> --}}
 
-
+                                        @foreach($danhmuc as $rowdanhmuc2)
+                                        @if($rowdanhmuc->danhmuccha == $rowdanhmuc2->id)
+                                        <td>{{ $rowdanhmuc2->tendanhmuc }}</td>
+                                        @endif
+                                        @endforeach
+                                        @if($rowdanhmuc->danhmuccha == 0)
+                                        <td></td>
+                                        @endif
 
                                         <td>{{ $rowdanhmuc->tendanhmuc }}</td>
 
