@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 12, 2021 lúc 05:02 AM
+-- Thời gian đã tạo: Th9 13, 2021 lúc 10:36 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -72,6 +72,27 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `hinhanh`
+--
+
+CREATE TABLE `hinhanh` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `idsanpham` bigint(20) NOT NULL,
+  `dulieuhinhanh` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `hinhanh`
+--
+
+INSERT INTO `hinhanh` (`id`, `idusers`, `idsanpham`, `dulieuhinhanh`) VALUES
+(27, 1, 32, 'storage/admin/1/oOLXcNHoMBnmJH4GKlpc2S2n2DkC7pltj8wanKkX.jpg'),
+(28, 1, 32, 'storage/admin/1/6OR9KpLYIGce8Tm57suvaBPTA2Gwf88TQaDD2UIy.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `linhvuc`
 --
 
@@ -87,7 +108,7 @@ CREATE TABLE `linhvuc` (
 --
 
 INSERT INTO `linhvuc` (`id`, `idusers`, `tenlinhvuc`, `hidden`) VALUES
-(1, 1, 'Thức ăn', 1),
+(1, 1, 'Thức ăn', 0),
 (2, 1, 'Cây cảnh', 0);
 
 -- --------------------------------------------------------
@@ -152,8 +173,20 @@ CREATE TABLE `sanpham` (
   `id` bigint(20) NOT NULL,
   `idusers` bigint(20) NOT NULL,
   `iddanhmuc` bigint(20) NOT NULL,
-  `tensanpham` varchar(255) NOT NULL
+  `tensanpham` varchar(255) NOT NULL,
+  `thongtinsanpham` varchar(255) NOT NULL,
+  `xuatxusanpham` varchar(255) NOT NULL,
+  `dongiasanpham` bigint(20) NOT NULL,
+  `donvitinhsanpham` varchar(255) NOT NULL,
+  `tonkhosanpham` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
+
+INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `tonkhosanpham`) VALUES
+(32, 1, 0, 'a', 'b', 'c', 1, 'd', 0);
 
 -- --------------------------------------------------------
 
@@ -177,8 +210,8 @@ CREATE TABLE `thongtinshop` (
 --
 
 INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `vitrishop`) VALUES
-(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/A5pgcCCKZAiFU3fjEn4Hgcb1QBIWUtzfnhqZvqbS.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', '10.071948, 105.758935'),
-(2, 'SHOP CÁ CẢNH PHÚ QUỐCc', 'storage/admin/2/yD1hG1vBNu24P4mJnEUxbY8Jp5RVegQgtYmqOQkJ.jpg', 'PHÚC QUỐC, KIÊN GIANGg', '0123456789', 'chaub1706789@student.ctu.edu.vn', 'https://abc.com', '10.071948, 105.758935');
+(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/lIw9RLfvN3pZYDtszYL6uyyqtoqMSDdaQzeXsIaS.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', '10.071948, 105.758935'),
+(2, 'SHOP CÁ CẢNH PHÚ QUỐCc', 'storage/admin/2/scNTMDP5RGGnorquKmUfDEI93OdW9c4uqnHvPlwY.jpg', 'PHÚC QUỐC, KIÊN GIANGg', '0123456789', 'chaub1706789@student.ctu.edu.vn', 'https://abc.com', '10.071948, 105.758935');
 
 -- --------------------------------------------------------
 
@@ -205,6 +238,26 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (1, 'Bùi Hữu Châu', 'buihuuchau99@gmail.com', '2021-09-08 04:59:08', '$2y$10$SkCSSHqaTHVxtpqJbnSVOeAY9RXH6BNjlI5HSTJgAP5VOHLmIDhsC', NULL, '2021-09-08 04:58:09', '2021-09-08 04:59:08'),
 (2, 'Bùi Hữu Châu', 'chaub1706789@student.ctu.edu.vn', '2021-09-10 06:00:08', '$2y$10$viZg21tqqhGTw8WWmqKx7eRYFBRBKB3AGEiy7Ztk.FBeOsUk5bk4O', NULL, '2021-09-10 05:59:58', '2021-09-10 06:00:08');
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `video`
+--
+
+CREATE TABLE `video` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `idsanpham` bigint(20) NOT NULL,
+  `dulieuvideo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `video`
+--
+
+INSERT INTO `video` (`id`, `idusers`, `idsanpham`, `dulieuvideo`) VALUES
+(5, 1, 32, 'storage/admin/1/SSjbJ3npYVYaa2BPTdP0DcfNehJ0ScwH81lbWUXP.mp4');
+
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -221,6 +274,12 @@ ALTER TABLE `danhmuc`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Chỉ mục cho bảng `hinhanh`
+--
+ALTER TABLE `hinhanh`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `linhvuc`
@@ -268,6 +327,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Chỉ mục cho bảng `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -282,6 +347,12 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `hinhanh`
+--
+ALTER TABLE `hinhanh`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `linhvuc`
@@ -305,7 +376,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinshop`
@@ -318,6 +389,12 @@ ALTER TABLE `thongtinshop`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
