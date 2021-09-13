@@ -26,11 +26,8 @@ class firstpageController extends Controller
     public function capnhatthongtinshop(Request $request)
     {
         $id = Auth::user()->id;
-        if ($request->hasFile('logoshop')) {
-            $logoshop = $request->file('logoshop')->store('public/admin/' . $id);
-            $linklogoshop = 'storage' . substr($logoshop, 6);
-        }
 
+        $logoshop = $request->logoshop;
         request()->validate(
             [
                 'logoshop' => 'image|mimes:jpeg,png,jpg|max:4096',
@@ -40,6 +37,10 @@ class firstpageController extends Controller
                 'logoshop.max' => 'Hình ảnh phải có độ phân giải dưới 4 mb',
             ]
         );
+        if ($logoshop != null) {
+            $logoshop = $logoshop->store('public/admin/' . $id);
+            $linklogoshop = 'storage' . substr($logoshop, 6);
+        }
 
         $thongtinshop['id'] = $id;
         $thongtinshop['tenshop'] = $request->tenshop;
@@ -55,21 +56,22 @@ class firstpageController extends Controller
     public function suathongtinshop(Request $request)
     {
         $id = Auth::user()->id;
-        if ($request->hasFile('logoshop')) {
-            $logoshop = $request->file('logoshop')->store('public/admin/' . $id);
-            $linklogoshop = 'storage' . substr($logoshop, 6);
-            $thongtinshop['logoshop'] = $linklogoshop;
-        }
 
+        $logoshop = $request->logoshop;
         request()->validate(
             [
-                'logoshop' => 'image|mimes:jpeg,png,jpg|max:4096',
+                'logoshop' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
             ],
             [
                 'logoshop.image' => 'Hình ảnh phải có dạng jpg,jpeg,png',
-                'logoshop.max' => 'Hình ảnh phải có độ phân giải dưới 4 mb',
+                'logoshop.max' => 'Hình ảnh phải có độ phân giải dưới 5 mb',
             ]
         );
+        if ($logoshop != null) {
+            $logoshop = $logoshop->store('public/admin/' . $id);
+            $linklogoshop = 'storage' . substr($logoshop, 6);
+            $thongtinshop['logoshop'] = $linklogoshop;
+        }
 
         $thongtinshop['tenshop'] = $request->tenshop;
         $thongtinshop['diachishop'] = $request->diachishop;

@@ -72,7 +72,7 @@
                                                 <input type="text" class="form-control" name="tendanhmuc" required><br>
                                             </div>
                                             <div class="form-group">
-                                                <label>Chọn khu vực</label>
+                                                <label>Chọn danh mục cha</label>
                                                 <select class="form-control" name="danhmuccha">
                                                     <option value="0" style="color:blueviolet">Danh mục cha</option>
                                                     {!!$htmlOption!!}

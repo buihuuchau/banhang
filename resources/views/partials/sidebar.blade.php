@@ -31,12 +31,22 @@
  		<nav class="mt-2">
  			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+ 				@if($thongtinshop !== null)
  				<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
  				<li class="nav-item">
  					<a href="{{route('quanlydanhmuc')}}" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
  							Quản lý danh mục
+ 							<!-- <span class="right badge badge-danger">New</span> -->
+ 						</p>
+ 					</a>
+ 				</li>
+ 				<li class="nav-item">
+ 					<a href="{{route('quanlysanpham')}}" class="nav-link">
+ 						<i class="nav-icon fas fa-user"></i>
+ 						<p>
+ 							Quản lý sản phẩm
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>
@@ -50,6 +60,7 @@
  						</p>
  					</a>
  				</li>
+ 				@endif
  				<li class="nav-item">
  					<form method="POST" action="{{ route('logout') }}">
  						@csrf

@@ -128,4 +128,19 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY DANH MUC
+
+//QUAN LY SAN PHAM
+Route::prefix('/')->group(function () {
+    Route::get('/quanlysanpham', [
+        'as' => 'quanlysanpham',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@quanlysanpham',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/addsanpham', [
+        'as' => 'addsanpham',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@addsanpham',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+//QUAN LY SAN PHAM
 require __DIR__ . '/auth.php';
