@@ -59,41 +59,6 @@ Route::prefix('/')->group(function () {
 });
 // QUAN LY SHOP
 
-// QUAN LY LINH VUC
-Route::prefix('/')->group(function () {
-    Route::get('/quanlylinhvuc', [
-        'as' => 'quanlylinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@quanlylinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::post('/addlinhvuc', [
-        'as' => 'addlinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@addlinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::post('/editlinhvuc', [
-        'as' => 'editlinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@editlinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/hiddenlinhvuc/{idlinhvuc}', [
-        'as' => 'hiddenlinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@hiddenlinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/showlinhvuc/{idlinhvuc}', [
-        'as' => 'showlinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@showlinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/deletelinhvuc/{idlinhvuc}', [
-        'as' => 'deletelinhvuc',
-        'uses' => 'App\Http\Controllers\admin\linhvuc\quanlylinhvucController@deletelinhvuc',
-        'middleware' => (['auth', 'verified'])
-    ]);
-});
-// QUAN LY LINH VUC
-
 // QUAN LY DANH MUC
 Route::prefix('/')->group(function () {
     Route::get('/quanlydanhmuc', [
@@ -141,6 +106,66 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@addsanpham',
         'middleware' => (['auth', 'verified'])
     ]);
+    Route::get('/editsanpham', [
+        'as' => 'editsanpham',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@editsanpham',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/deletedulieuvideo/{idvideo}', [
+        'as' => 'deletedulieuvideo',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@deletedulieuvideo',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/deletedulieuhinhanh/{idhinhanh}', [
+        'as' => 'deletedulieuhinhanh',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@deletedulieuhinhanh',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/doeditsanpham', [
+        'as' => 'doeditsanpham',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@doeditsanpham',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/deletesanpham', [
+        'as' => 'deletesanpham',
+        'uses' => 'App\Http\Controllers\admin\sanpham\quanlysanphamController@deletesanpham',
+        'middleware' => (['auth', 'verified'])
+    ]);
 });
 //QUAN LY SAN PHAM
+
+// QUAN LY LINH VUC
+Route::prefix('/')->group(function () {
+    Route::get('/quanlykhohang', [
+        'as' => 'quanlykhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@quanlykhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/addkhohang', [
+        'as' => 'addkhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@addkhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/editkhohang', [
+        'as' => 'editkhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@editkhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/hiddenkhohang/{idkhohang}', [
+        'as' => 'hiddenkhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@hiddenkhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/showkhohang/{idkhohang}', [
+        'as' => 'showkhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@showkhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/deletekhohang/{idkhohang}', [
+        'as' => 'deletekhohang',
+        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@deletekhohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY LINH VUC
 require __DIR__ . '/auth.php';

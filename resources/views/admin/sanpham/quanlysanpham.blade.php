@@ -80,6 +80,10 @@
                                                 <input type="text" class="form-control" name="tensanpham" required><br>
                                             </div>
                                             <div class="form-group">
+                                                <label>Ảnh đại diện sản phẩm</label>
+                                                <input type="file" class="form-control" name="anhsanpham"><br>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Thông tin sản phẩm</label>
                                                 <input type="text" class="form-control" name="thongtinsanpham" required><br>
                                             </div>
@@ -119,7 +123,64 @@
                     <h3 style="color:red">{{$errors->first()}}</h3>
                     @endif
 
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        {{-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending">No.</th> --}}
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TÊN DANH MỤC</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TÊN SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ẢNH SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN GIÁ SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TỒN KHO SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($sanpham as $rowsanpham)
+                                    <tr class="odd">
+                                        @foreach($danhmuc as $rowdanhmuc)
+                                        @if($rowsanpham->iddanhmuc == $rowdanhmuc->id)
+                                        <td>{{ $rowdanhmuc->tendanhmuc }}</td>
+                                        @endif
+                                        @endforeach
+                                        @if($rowsanpham->iddanhmuc == 0)
+                                        <td>Danh mục cha</td>
+                                        @endif
+                                        <td>{{ $rowsanpham->tensanpham }}</td>
+                                        <td><img src="{{$rowsanpham->anhsanpham}}" width="100px" height="100px"></td>
+                                        <td>{{number_format("$rowsanpham->dongiasanpham",0,",",".")}}</td>
+                                        <td>{{number_format("$rowsanpham->tonkhosanpham",0,",",".")}}</td>
 
+                                        @foreach ($giohang as $rowgiohang)
+                                        <?php if ($rowgiohang->idsanpham == $rowsanpham->id) {
+                                            $sudung = $rowsanpham->id;
+                                        } ?>
+                                        @endforeach
+
+                                        <td class="row">
+                                            <form action="{{route('editsanpham')}}" method="get">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="idsanpham" value="{{$rowsanpham->id}}">
+                                                <button type="submit" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
+                                            </form>
+                                            @if($sudung != $rowsanpham->id)
+                                            <form action="{{route('deletesanpham')}}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="idsanpham" value="{{$rowsanpham->id}}">
+                                                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa')" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                 </div>
 

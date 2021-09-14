@@ -26,23 +26,44 @@ class quanlysanphamController extends Controller
         $danhmuc = DB::table('danhmuc')
             ->where('idusers', $id)
             ->get();
+        $danhmuc2 = DB::table('danhmuc')
+            ->where('idusers', $id)
+            ->where('hidden', 0)
+            ->get();
         $sanpham = DB::table('sanpham')
             ->where('idusers', $id)
             ->get();
-        $callfunction = new myfunction($danhmuc);
+        $giohang = DB::table('giohang')
+            ->where('idusers', $id)
+            ->get();
+        $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
-        return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
+        return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'giohang', 'htmlOption'));
     }
     public function addsanpham(Request $request)
     {
         $id = Auth::user()->id;
         $check = DB::table('sanpham')
-            ->where('idusers', $id)
             ->where('iddanhmuc', $request->iddanhmuc)
             ->where('tensanpham', $request->tensanpham)
             ->first();
         if ($check) return back()->withErrors('Tên sản phẩm bị trùng');
         else {
+            request()->validate(
+                [
+                    'anhsanpham' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
+                ],
+                [
+                    'anhsanpham.image' => 'Hình ảnh phải có dạng jpg,jpeg,png',
+                    'anhsanpham.max' => 'Hình ảnh phải có độ phân giải dưới 5 mb',
+                ]
+            );
+            $anhsanpham = $request->anhsanpham;
+            if ($anhsanpham != null) {
+                $anhsanpham = $anhsanpham->store('public/admin/' . $id);
+                $linkanhsanpham = 'storage' . substr($anhsanpham, 6);
+                $sanpham['anhsanpham'] = $linkanhsanpham;
+            }
             $sanpham['idusers'] = $id;
             $sanpham['iddanhmuc'] = $request->iddanhmuc;
             $sanpham['tensanpham'] = $request->tensanpham;
@@ -50,7 +71,6 @@ class quanlysanphamController extends Controller
             $sanpham['xuatxusanpham'] = $request->xuatxusanpham;
             $sanpham['dongiasanpham'] = $request->dongiasanpham;
             $sanpham['donvitinhsanpham'] = $request->donvitinhsanpham;
-            // $idsanpham = DB::table('sanpham')->insertgetID($sanpham);
         }
 
         request()->validate(
@@ -96,50 +116,148 @@ class quanlysanphamController extends Controller
         }
         return back();
     }
-    public function editdanhmuc(Request $request)
+    public function editsanpham(Request $request)
     {
         $id = Auth::user()->id;
-        $check = DB::table('danhmuc')
-            ->where('idusers', $id)
-            ->where('danhmuccha', $request->danhmuccha)
-            ->where('tendanhmuc', $request->tendanhmuc)
+        $idsanpham = $request->idsanpham;
+        $thongtinshop = DB::table('thongtinshop')
+            ->where('id', $id)
             ->first();
-        if ($check) return back()->withErrors('Tên danh mục bị trùng');
-        else {
-            $danhmuc['tendanhmuc'] = $request->tendanhmuc;
-            $danhmuc['danhmuccha'] = $request->danhmuccha;
-            DB::table('danhmuc')
-                ->where('id', $request->id)
-                ->update($danhmuc);
+        $danhmuc = DB::table('danhmuc')
+            ->where('idusers', $id)
+            ->get();
+        $danhmuc2 = DB::table('danhmuc')
+            ->where('idusers', $id)
+            ->where('hidden', 0)
+            ->get();
+        $sanpham = DB::table('sanpham')
+            ->where('id', $idsanpham)
+            ->first();
+        $video = DB::table('video')
+            ->where('idsanpham', $idsanpham)
+            ->first();
+        $hinhanh = DB::table('hinhanh')
+            ->where('idsanpham', $idsanpham)
+            ->get();
+        $callfunction = new myfunction($danhmuc2);
+        $htmlOption = $callfunction->xemdanhmuc();
+        return view('admin.sanpham.editsanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'video', 'hinhanh', 'htmlOption'));
+    }
+    public function deletedulieuvideo($idvideo)
+    {
+        DB::table('video')
+            ->where('id', $idvideo)
+            ->delete();
+        return back();
+    }
+    public function deletedulieuhinhanh($idhinhanh)
+    {
+        DB::table('hinhanh')
+            ->where('id', $idhinhanh)
+            ->delete();
+        return back();
+    }
+    public function doeditsanpham(Request $request)
+    {
+        $id = Auth::user()->id;
+        request()->validate(
+            [
+                'anhsanpham' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
+            ],
+            [
+                'anhsanpham.image' => 'Hình ảnh phải có dạng jpg,jpeg,png',
+                'anhsanpham.max' => 'Hình ảnh phải có độ phân giải dưới 5 mb',
+            ]
+        );
+        $anhsanpham = $request->anhsanpham;
+        if ($anhsanpham != null) {
+            $anhsanpham = $anhsanpham->store('public/admin/' . $id);
+            $linkanhsanpham = 'storage' . substr($anhsanpham, 6);
+            $sanpham['anhsanpham'] = $linkanhsanpham;
+        }
+        $sanpham = null;
+        if ($request->thongtinsanpham != null) $sanpham['thongtinsanpham'] = $request->thongtinsanpham;
+        if ($request->xuatxusanpham != null) $sanpham['xuatxusanpham'] = $request->xuatxusanpham;
+        if ($request->dongiasanpham != null) $sanpham['dongiasanpham'] = $request->dongiasanpham;
+        if ($request->donvitinhsanpham != null) $sanpham['donvitinhsanpham'] = $request->donvitinhsanpham;
+        if ($sanpham != null) {
+            DB::table('sanpham')
+                ->where('id', $request->idsanpham)
+                ->update($sanpham);
+        }
+
+        request()->validate(
+            [
+                'dulieuvideo' => 'mimes:flv,mp4,avi,ts,mov|max:51200',
+            ],
+            [
+                'dulieuvideo.mimes' => 'Video phải có dạng mp4,avi,ts,mov',
+                'dulieuvideo.max' => 'Video phải có dung lượng dưới 50 mb',
+            ]
+        );
+        request()->validate(
+            [
+                'dulieuhinhanh.*' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
+            ],
+            [
+                'dulieuhinhanh.*.image' => 'Hình ảnh phải có dạng jpg,jpeg,png',
+                'dulieuhinhanh.*.max' => 'Hình ảnh phải có độ phân giải dưới 5 mb',
+            ]
+        );
+
+        $dulieuvideo = $request->dulieuvideo;
+        $dulieuhinhanh = $request->dulieuhinhanh;
+        if ($dulieuvideo != null) {
+            $dulieuvideo = $dulieuvideo->store('public/admin/' . $id);
+            $linkdulieuvideo = 'storage' . substr($dulieuvideo, 6);
+            $video['idusers'] = $id;
+            $video['idsanpham'] = $request->idsanpham;
+            $video['dulieuvideo'] = $linkdulieuvideo;
+            DB::table('video')
+                ->where('idsanpham', $request->idsanpham)
+                ->delete();
+            DB::table('video')
+                ->where('idsanpham', $request->idsanpham)
+                ->insert($video);
+        }
+        if ($dulieuhinhanh != null) {
+            foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
+                $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
+                $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
+                $hinhanh['idusers'] = $id;
+                $hinhanh['idsanpham'] = $request->idsanpham;
+                $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
+                DB::table('hinhanh')->insert($hinhanh);
+            }
+        }
+
+        $check = DB::table('sanpham')
+            ->where('iddanhmuc', $request->iddanhmuc)
+            ->where('tensanpham', $request->tensanpham)
+            ->first();
+        if ($check) {
+            return back();
+        } else {
+            $sanpham['iddanhmuc'] = $request->iddanhmuc;
+            $sanpham['tensanpham'] = $request->tensanpham;
+            DB::table('sanpham')
+                ->where('id', $request->idsanpham)
+                ->update($sanpham);
             return back();
         }
     }
-    public function hiddendanhmuc(Request $request)
+    public function deletesanpham(Request $request)
     {
         $id = Auth::user()->id;
-        $iddanhmuc = $request->iddanhmuc;
-        $danhmuc['hidden'] = 1;
-        DB::table('danhmuc')
-            ->where('id', $iddanhmuc)
-            ->update($danhmuc);
-        return back();
-    }
-    public function showdanhmuc(Request $request)
-    {
-        $id = Auth::user()->id;
-        $iddanhmuc = $request->iddanhmuc;
-        $danhmuc['hidden'] = 0;
-        DB::table('danhmuc')
-            ->where('id', $iddanhmuc)
-            ->update($danhmuc);
-        return back();
-    }
-    public function deletedanhmuc(Request $request)
-    {
-        $id = Auth::user()->id;
-        $iddanhmuc = $request->iddanhmuc;
-        DB::table('danhmuc')
-            ->where('id', $iddanhmuc)
+        $idsanpham = $request->idsanpham;
+        DB::table('video')
+            ->where('idsanpham', $idsanpham)
+            ->delete();
+        DB::table('hinhanh')
+            ->where('idsanpham', $idsanpham)
+            ->delete();
+        DB::table('sanpham')
+            ->where('id', $idsanpham)
             ->delete();
         return back();
     }

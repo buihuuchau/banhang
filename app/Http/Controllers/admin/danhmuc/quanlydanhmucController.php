@@ -47,14 +47,17 @@ class quanlydanhmucController extends Controller
             ->first();
         $sudung = null;
         $danhmuc = DB::table('danhmuc')
-            // ->orderBy('danhmucha');
             ->where('idusers', $id)
+            ->get();
+        $danhmuc2 = DB::table('danhmuc')
+            ->where('idusers', $id)
+            ->where('hidden', 0)
             ->get();
         $sanpham = DB::table('sanpham')
             ->where('idusers', $id)
             ->get();
         // $htmlOption = $this->xemdanhmuc(0);
-        $callfunction = new myfunction($danhmuc);
+        $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
     }

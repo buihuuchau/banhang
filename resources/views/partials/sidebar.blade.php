@@ -52,10 +52,10 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="{{route('quanlylinhvuc')}}" class="nav-link">
+ 					<a href="{{route('quanlykhohang')}}" class="nav-link">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
- 							Quản lý lĩnh vực
+ 							Quản lý kho hàng
  							<!-- <span class="right badge badge-danger">New</span> -->
  						</p>
  					</a>

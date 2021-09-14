@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Chọn danh mục cha</label>
-                                                <select class="form-control" name="danhmuccha">
+                                                <select class="form-control" name="danhmuccha" data-live-search="true">
                                                     <option value="0" style="color:blueviolet">Danh mục cha</option>
                                                     {!!$htmlOption!!}
                                                 </select>
@@ -160,7 +160,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Chọn danh mục cha</label>
-                                                                    <select class="form-control" name="danhmuccha">
+                                                                    <select class="form-control" name="danhmuccha" data-live-search="true">
                                                                         <option value="0" style="color:blueviolet">Danh mục cha</option>
                                                                         {!!$htmlOption!!}
                                                                         @foreach ($danhmuc as $key2 => $rowdanhmuc2)
@@ -183,18 +183,12 @@
                                             </div>
 
                                             @if ($rowdanhmuc->hidden == 0)
-                                            <!-- <button class="btn btn-secondary">
-                                                <a href="{{ route('hiddendanhmuc', ['iddanhmuc' => $rowdanhmuc->id]) }}" style="color: white"><i class="fa fa-times"></i></a>
-                                            </button> -->
                                             <form action="{{route('hiddendanhmuc')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddanhmuc" value="{{$rowdanhmuc->id}}">
                                                 <button type="submit" class="btn btn-secondary"><i class="fa fa-times"></i></button>
                                             </form>
                                             @else
-                                            <!-- <button class="btn btn-success">
-                                                <a href="{{ route('showdanhmuc', ['id' => $rowdanhmuc->id]) }}" style="color: white"><i class="fas fa-check"></i></a>
-                                            </button> -->
                                             <form action="{{route('showdanhmuc')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddanhmuc" value="{{$rowdanhmuc->id}}">
@@ -203,10 +197,6 @@
                                             @endif
 
                                             @if ($sudung != $rowdanhmuc->id)
-                                            <!-- <button class="btn btn-danger">
-                                                <a href="{{ route('deletedanhmuc', ['id' => $rowdanhmuc->id]) }}" style="color: black" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
-                                                    <i class="fas fa-trash"></i></a>
-                                            </button> -->
                                             <form action="{{route('deletedanhmuc')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddanhmuc" value="{{$rowdanhmuc->id}}">
