@@ -43,50 +43,16 @@ class quanlykhohangController extends Controller
         $khohang['thanhtiennhap'] = $request->dongianhap * $request->soluongnhap;
         $khohang['ngaynhap'] = date('y-m-d');
         $khohang['nguongocnhap'] = $request->nguongocnhap;
+        $khohang['hangconlai'] = $request->soluongnhap;
         $khohang = DB::table('khohang')->insert($khohang);
         return back();
     }
-    public function editkhohang(Request $request)
-    {
-        $id = Auth::user()->id;
-        $check = DB::table('khohang')
-            ->where('idusers', $id)
-            ->where('tenkhohang', $request->tenkhohang)
-            ->first();
-        if ($check) return back()->withErrors('Tên lĩnh vực bị trùng');
-        else {
-            $khohang['tenkhohang'] = $request->tenkhohang;
-            DB::table('khohang')
-                ->where('id', $id)
-                ->update($khohang);
-        }
-        return back();
-    }
-    public function hiddenkhohang($idkhohang)
-    {
-        $id = Auth::user()->id;
-        $khohang['hidden'] = 1;
-        DB::table('khohang')
-            ->where('id', $idkhohang)
-            ->where('idusers', $id)
-            ->update($khohang);
-        return back();
-    }
-    public function showkhohang($idkhohang)
-    {
-        $id = Auth::user()->id;
-        $khohang['hidden'] = 0;
-        DB::table('khohang')
-            ->where('id', $idkhohang)
-            ->where('idusers', $id)
-            ->update($khohang);
-        return back();
-    }
-    public function deletekhohang($idkhohang)
+
+    public function deletekhohang(Request $request)
     {
         $id = Auth::user()->id;
         DB::table('khohang')
-            ->where('id', $idkhohang)
+            ->where('id', $request->idkhohang)
             ->where('idusers', $id)
             ->delete();
         return back();

@@ -134,7 +134,7 @@ Route::prefix('/')->group(function () {
 });
 //QUAN LY SAN PHAM
 
-// QUAN LY LINH VUC
+// QUAN LY KHO HANG
 Route::prefix('/')->group(function () {
     Route::get('/quanlykhohang', [
         'as' => 'quanlykhohang',
@@ -146,26 +146,11 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@addkhohang',
         'middleware' => (['auth', 'verified'])
     ]);
-    Route::post('/editkhohang', [
-        'as' => 'editkhohang',
-        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@editkhohang',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/hiddenkhohang/{idkhohang}', [
-        'as' => 'hiddenkhohang',
-        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@hiddenkhohang',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/showkhohang/{idkhohang}', [
-        'as' => 'showkhohang',
-        'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@showkhohang',
-        'middleware' => (['auth', 'verified'])
-    ]);
-    Route::get('/deletekhohang/{idkhohang}', [
+    Route::post('/deletekhohang', [
         'as' => 'deletekhohang',
         'uses' => 'App\Http\Controllers\admin\khohang\quanlykhohangController@deletekhohang',
         'middleware' => (['auth', 'verified'])
     ]);
 });
-// QUAN LY LINH VUC
+// QUAN LY KHO HANG
 require __DIR__ . '/auth.php';

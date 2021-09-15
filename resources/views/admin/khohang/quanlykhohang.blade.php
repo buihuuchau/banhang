@@ -114,7 +114,10 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">GIÁ NHẬP</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">SỐ LƯỢNG</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THÀNH TIỀN</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">HÀNG ĐÃ BÁN</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">HÀNG CÒN LẠI</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NGUỒN HÀNG</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -125,7 +128,20 @@
                                         <td>{{number_format("$rowkhohang->dongianhap",0,",",".")}}</td>
                                         <td>{{number_format("$rowkhohang->soluongnhap",0,",",".")}}</td>
                                         <td>{{number_format("$rowkhohang->thanhtiennhap",0,",",".")}}</td>
+                                        <td>{{number_format("$rowkhohang->hangdaban",0,",",".")}}</td>
+                                        <td>{{number_format("$rowkhohang->hangconlai",0,",",".")}}</td>
                                         <td>{{ $rowkhohang->nguongocnhap }}</td>
+                                        <td>
+                                            @if($rowkhohang->hangdaban == 0)
+                                            <form action="{{route('deletekhohang')}}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="idkhohang" value="{{$rowkhohang->id}}">
+                                                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa')" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

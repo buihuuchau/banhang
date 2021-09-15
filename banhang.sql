@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 14, 2021 lúc 03:30 PM
+-- Thời gian đã tạo: Th9 15, 2021 lúc 02:27 PM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -85,13 +85,6 @@ CREATE TABLE `giohang` (
   `thanhtien` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `giohang`
---
-
-INSERT INTO `giohang` (`id`, `idusers`, `idkhachhang`, `idsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtien`) VALUES
-(1, 1, 1, 39, 25000, 3, 75000);
-
 -- --------------------------------------------------------
 
 --
@@ -146,6 +139,8 @@ CREATE TABLE `khohang` (
   `dongianhap` bigint(20) NOT NULL,
   `soluongnhap` bigint(20) NOT NULL,
   `thanhtiennhap` bigint(20) NOT NULL,
+  `hangdaban` bigint(20) NOT NULL DEFAULT '0',
+  `hangconlai` bigint(20) NOT NULL,
   `ngaynhap` date NOT NULL,
   `nguongocnhap` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -154,8 +149,9 @@ CREATE TABLE `khohang` (
 -- Đang đổ dữ liệu cho bảng `khohang`
 --
 
-INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
-(2, 1, 41, 'cá koi nhật', 30000000, 2, 60000000, '2021-09-14', 'Nhật Bản');
+INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `hangdaban`, `hangconlai`, `ngaynhap`, `nguongocnhap`) VALUES
+(8, 1, 41, 'cá koi nhật', 25000000, 4, 100000000, 0, 4, '2021-09-15', 'Nhật Bản'),
+(9, 1, 40, 'Hồ kính 20*20', 530000, 20, 10600000, 0, 20, '2021-09-15', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -246,17 +242,18 @@ CREATE TABLE `sanpham` (
   `xuatxusanpham` varchar(255) NOT NULL,
   `dongiasanpham` bigint(20) NOT NULL,
   `donvitinhsanpham` varchar(255) NOT NULL,
-  `tonkhosanpham` bigint(20) NOT NULL DEFAULT '0'
+  `hidden` bigint(20) NOT NULL DEFAULT '0',
+  `sanphamnoibat` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `tonkhosanpham`) VALUES
-(39, 1, 11, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 'b', 'c', 10000, 'd', 0),
-(40, 1, 9, 'Hồ kính 20*20', 'storage/admin/1/lwkeUvuuS7k7YH3tKppV7LeYGlNW7S3gdVYsIZ6N.jpg', 'bb', 'c', 200000, 'd', 0),
-(41, 1, 12, 'cá koi nhật', 'storage/admin/1/htwHpj1Xr2ClMm7jidnJ09K5rQd3XPDVWAUfOAtZ.jpg', 'bb', 'c', 50000000, 'con', 0);
+INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
+(39, 1, 11, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 'b', 'c', 10000, 'd', 0, 1),
+(40, 1, 9, 'Hồ kính 20*20', 'storage/admin/1/lwkeUvuuS7k7YH3tKppV7LeYGlNW7S3gdVYsIZ6N.jpg', 'bb', 'c', 200000, 'd', 0, 0),
+(41, 1, 12, 'cá koi nhật', 'storage/admin/1/htwHpj1Xr2ClMm7jidnJ09K5rQd3XPDVWAUfOAtZ.jpg', 'thông tin', 'c', 50000000, 'con', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -458,7 +455,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `linhvuc`
@@ -482,7 +479,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinshop`

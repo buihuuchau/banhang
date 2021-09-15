@@ -107,6 +107,21 @@
                                                 <label>Hình ảnh sản phẩm</label>
                                                 <input type="file" class="form-control" name="dulieuhinhanh[]" multiple><br>
                                             </div>
+                                            <div class="form-group">
+                                                <label>Tính nổi bật</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat1" value="0" checked>
+                                                    <label class="form-check-label" for="sanphamnoibat1">
+                                                        Không nổi bật
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat2" value="1">
+                                                    <label class="form-check-label" for="sanphamnoibat2">
+                                                        Nổi bật
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -133,7 +148,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TÊN SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ẢNH SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN GIÁ SẢN PHẨM</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TỒN KHO SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TRẠNG THÁI</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
                                     </tr>
                                 </thead>
@@ -151,13 +166,18 @@
                                         <td>{{ $rowsanpham->tensanpham }}</td>
                                         <td><img src="{{$rowsanpham->anhsanpham}}" width="100px" height="100px"></td>
                                         <td>{{number_format("$rowsanpham->dongiasanpham",0,",",".")}}</td>
-                                        <td>{{number_format("$rowsanpham->tonkhosanpham",0,",",".")}}</td>
-
-                                        @foreach ($giohang as $rowgiohang)
-                                        <?php if ($rowgiohang->idsanpham == $rowsanpham->id) {
-                                            $sudung = $rowsanpham->id;
-                                        } ?>
-                                        @endforeach
+                                        @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 0)
+                                        <td>Hiện---Bình thường</td>
+                                        @endif
+                                        @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 1)
+                                        <td>Hiện---Nổi bật</td>
+                                        @endif
+                                        @if($rowsanpham->hidden == 1 && $rowsanpham->sanphamnoibat == 0)
+                                        <td>Ẩn---Bình thường</td>
+                                        @endif
+                                        @if($rowsanpham->hidden == 1 && $rowsanpham->sanphamnoibat == 1)
+                                        <td>Ẩn---Nổi bật</td>
+                                        @endif
 
                                         <td class="row">
                                             <form action="{{route('editsanpham')}}" method="get">
@@ -165,7 +185,6 @@
                                                 <input type="hidden" name="idsanpham" value="{{$rowsanpham->id}}">
                                                 <button type="submit" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
                                             </form>
-                                            @if($sudung != $rowsanpham->id)
                                             <form action="{{route('deletesanpham')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="idsanpham" value="{{$rowsanpham->id}}">
@@ -173,7 +192,6 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

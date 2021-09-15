@@ -22,7 +22,6 @@ class quanlysanphamController extends Controller
         $thongtinshop = DB::table('thongtinshop')
             ->where('id', $id)
             ->first();
-        $sudung = null;
         $danhmuc = DB::table('danhmuc')
             ->where('idusers', $id)
             ->get();
@@ -33,12 +32,9 @@ class quanlysanphamController extends Controller
         $sanpham = DB::table('sanpham')
             ->where('idusers', $id)
             ->get();
-        $giohang = DB::table('giohang')
-            ->where('idusers', $id)
-            ->get();
         $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
-        return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'giohang', 'htmlOption'));
+        return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'htmlOption'));
     }
     public function addsanpham(Request $request)
     {
@@ -71,6 +67,7 @@ class quanlysanphamController extends Controller
             $sanpham['xuatxusanpham'] = $request->xuatxusanpham;
             $sanpham['dongiasanpham'] = $request->dongiasanpham;
             $sanpham['donvitinhsanpham'] = $request->donvitinhsanpham;
+            $sanpham['sanphamnoibat'] = $request->sanphamnoibat;
         }
 
         request()->validate(
@@ -175,16 +172,15 @@ class quanlysanphamController extends Controller
             $linkanhsanpham = 'storage' . substr($anhsanpham, 6);
             $sanpham['anhsanpham'] = $linkanhsanpham;
         }
-        $sanpham = null;
         if ($request->thongtinsanpham != null) $sanpham['thongtinsanpham'] = $request->thongtinsanpham;
         if ($request->xuatxusanpham != null) $sanpham['xuatxusanpham'] = $request->xuatxusanpham;
         if ($request->dongiasanpham != null) $sanpham['dongiasanpham'] = $request->dongiasanpham;
         if ($request->donvitinhsanpham != null) $sanpham['donvitinhsanpham'] = $request->donvitinhsanpham;
-        if ($sanpham != null) {
-            DB::table('sanpham')
-                ->where('id', $request->idsanpham)
-                ->update($sanpham);
-        }
+        $sanpham['hidden'] = $request->hidden;
+        $sanpham['sanphamnoibat'] = $request->sanphamnoibat;
+        DB::table('sanpham')
+            ->where('id', $request->idsanpham)
+            ->update($sanpham);
 
         request()->validate(
             [
@@ -250,6 +246,9 @@ class quanlysanphamController extends Controller
     {
         $id = Auth::user()->id;
         $idsanpham = $request->idsanpham;
+        DB::table('giohang')
+            ->where('idsanpham', $idsanpham)
+            ->delete();
         DB::table('video')
             ->where('idsanpham', $idsanpham)
             ->delete();
