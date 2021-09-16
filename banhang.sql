@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 15, 2021 lúc 02:27 PM
+-- Thời gian đã tạo: Th9 16, 2021 lúc 09:26 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -136,22 +136,17 @@ CREATE TABLE `khohang` (
   `idusers` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
-  `dongianhap` bigint(20) NOT NULL,
-  `soluongnhap` bigint(20) NOT NULL,
-  `thanhtiennhap` bigint(20) NOT NULL,
-  `hangdaban` bigint(20) NOT NULL DEFAULT '0',
-  `hangconlai` bigint(20) NOT NULL,
-  `ngaynhap` date NOT NULL,
-  `nguongocnhap` varchar(255) NOT NULL
+  `soluonghang` bigint(20) NOT NULL DEFAULT '0',
+  `soluongban` bigint(20) NOT NULL DEFAULT '0',
+  `soluongconlai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khohang`
 --
 
-INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `hangdaban`, `hangconlai`, `ngaynhap`, `nguongocnhap`) VALUES
-(8, 1, 41, 'cá koi nhật', 25000000, 4, 100000000, 0, 4, '2021-09-15', 'Nhật Bản'),
-(9, 1, 40, 'Hồ kính 20*20', 530000, 20, 10600000, 0, 20, '2021-09-15', 'Nhôm kính Thịnh Phát, sdt 0712455678');
+INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
+(17, 1, 42, 'cá koi nhật', 25, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -195,6 +190,32 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `nhaphang`
+--
+
+CREATE TABLE `nhaphang` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `idsanpham` bigint(20) NOT NULL,
+  `tensanpham` varchar(255) NOT NULL,
+  `dongianhap` bigint(20) NOT NULL,
+  `soluongnhap` bigint(20) NOT NULL,
+  `thanhtiennhap` bigint(20) NOT NULL,
+  `ngaynhap` date NOT NULL,
+  `nguongocnhap` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhaphang`
+--
+
+INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
+(14, 1, 42, 'cá koi nhật', 1, 4, 4, '2021-09-16', 'Nhật Bản'),
+(15, 1, 42, 'cá koi nhật', 21, 21, 441, '2021-09-16', 'Nhật Bản');
 
 -- --------------------------------------------------------
 
@@ -253,7 +274,7 @@ CREATE TABLE `sanpham` (
 INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
 (39, 1, 11, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 'b', 'c', 10000, 'd', 0, 1),
 (40, 1, 9, 'Hồ kính 20*20', 'storage/admin/1/lwkeUvuuS7k7YH3tKppV7LeYGlNW7S3gdVYsIZ6N.jpg', 'bb', 'c', 200000, 'd', 0, 0),
-(41, 1, 12, 'cá koi nhật', 'storage/admin/1/htwHpj1Xr2ClMm7jidnJ09K5rQd3XPDVWAUfOAtZ.jpg', 'thông tin', 'c', 50000000, 'con', 0, 1);
+(42, 1, 12, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 'thông tin', 'c', 50000000, 'con', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -379,6 +400,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `nhaphang`
+--
+ALTER TABLE `nhaphang`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -437,7 +464,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
@@ -455,7 +482,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `linhvuc`
@@ -468,6 +495,12 @@ ALTER TABLE `linhvuc`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `nhaphang`
+--
+ALTER TABLE `nhaphang`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

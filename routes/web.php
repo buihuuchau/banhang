@@ -134,6 +134,26 @@ Route::prefix('/')->group(function () {
 });
 //QUAN LY SAN PHAM
 
+// QUAN LY NHAP HANG
+Route::prefix('/')->group(function () {
+    Route::get('/quanlynhaphang', [
+        'as' => 'quanlynhaphang',
+        'uses' => 'App\Http\Controllers\admin\nhaphang\quanlynhaphangController@quanlynhaphang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/addhang', [
+        'as' => 'addhang',
+        'uses' => 'App\Http\Controllers\admin\nhaphang\quanlynhaphangController@addhang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/deletehang', [
+        'as' => 'deletehang',
+        'uses' => 'App\Http\Controllers\admin\nhaphang\quanlynhaphangController@deletehang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY NHAPHANG
+
 // QUAN LY KHO HANG
 Route::prefix('/')->group(function () {
     Route::get('/quanlykhohang', [
