@@ -173,4 +173,34 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY KHO HANG
+
+// QUAN LY DON HANG
+Route::prefix('/')->group(function () {
+    Route::get('/quanlydonhang', [
+        'as' => 'quanlydonhang',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@quanlydonhang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/checkdonggoi', [
+        'as' => 'checkdonggoi',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkdonggoi',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/checkgiaohang', [
+        'as' => 'checkgiaohang',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkgiaohang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/checkhoanthanh', [
+        'as' => 'checkhoanthanh',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkhoanthanh',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::post('/checkhuydon', [
+        'as' => 'checkhuydon',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkhuydon',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY DON HANG
 require __DIR__ . '/auth.php';

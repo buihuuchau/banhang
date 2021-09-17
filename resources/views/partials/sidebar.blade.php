@@ -69,6 +69,15 @@
  						</p>
  					</a>
  				</li>
+ 				<li class="nav-item">
+ 					<a href="{{route('quanlydonhang')}}" class="nav-link">
+ 						<i class="nav-icon fas fa-user"></i>
+ 						<p>
+ 							Quản lý đơn hàng
+ 							<!-- <span class="right badge badge-danger">New</span> -->
+ 						</p>
+ 					</a>
+ 				</li>
  				@endif
  				<li class="nav-item">
  					<form method="POST" action="{{ route('logout') }}">

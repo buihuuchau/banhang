@@ -246,7 +246,7 @@ class quanlysanphamController extends Controller
     {
         $id = Auth::user()->id;
         $idsanpham = $request->idsanpham;
-        DB::table('giohang')
+        DB::table('chitietgiohanggiohang')
             ->where('idsanpham', $idsanpham)
             ->delete();
         DB::table('video')
