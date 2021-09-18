@@ -90,6 +90,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>STK/CHI NHÁNH NGÂN HÀNG:</label>
+                                <input required="true" type="text" class="form-control" name="stkshop" value="{{ old('stkshop') }}">
+                            </div>
+
+                            <div class="form-group">
                                 <label>VỊ TRÍ SHOP:</label>
                                 <input type="text" class="form-control" name="vitrishop" value="{{ old('vitrishop') }}">
                             </div>
@@ -138,6 +143,11 @@
                             <div class="form-group">
                                 <label>WEBSITE SHOP:</label>
                                 <input type="url" class="form-control" name="websiteshop" pattern="https?://.+" placeholder="http:// or https://" value="{{ $thongtinshop->websiteshop }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>STK/CHI NHÁNH NGÂN HÀNG:</label>
+                                <input required="true" type="text" class="form-control" name="stkshop" value="{{ $thongtinshop->stkshop }}">
                             </div>
 
                             <div class="form-group">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 16, 2021 lúc 09:26 AM
+-- Thời gian đã tạo: Th9 18, 2021 lúc 02:07 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -20,6 +20,54 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `banhang`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdonhang`
+--
+
+CREATE TABLE `chitietdonhang` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `iddonhang` bigint(20) NOT NULL,
+  `idsanpham` bigint(20) NOT NULL,
+  `tensanpham` varchar(255) NOT NULL,
+  `anhsanpham` varchar(255) NOT NULL,
+  `dongiasanpham` bigint(20) NOT NULL,
+  `soluongsanpham` bigint(20) NOT NULL,
+  `thanhtiensanpham` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
+INSERT INTO `chitietdonhang` (`id`, `idusers`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
+(1, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
+(2, 1, 1, 40, 'sadqdq', 'https://www.dungplus.com/wp-content/uploads/2019/10/anh-avatar-dep-nhat.jpg', 25000, 2, 50000),
+(3, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
+(4, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
+(5, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
+(6, 1, 7, 42, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 50000000, 5, 0),
+(7, 1, 8, 42, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 50000000, 10, 0),
+(8, 1, 9, 39, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 10000, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietgiohang`
+--
+
+CREATE TABLE `chitietgiohang` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `idkhachhang` bigint(20) NOT NULL,
+  `idsanpham` bigint(20) NOT NULL,
+  `dongiasanpham` bigint(20) NOT NULL,
+  `soluongsanpham` bigint(20) NOT NULL,
+  `thanhtiensanpham` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -56,6 +104,35 @@ INSERT INTO `danhmuc` (`id`, `idusers`, `tendanhmuc`, `danhmuccha`, `hidden`) VA
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `donhang`
+--
+
+CREATE TABLE `donhang` (
+  `id` bigint(20) NOT NULL,
+  `idusers` bigint(20) NOT NULL,
+  `idkhachhang` bigint(20) NOT NULL,
+  `ngaydathang` date NOT NULL,
+  `diachigiaohang` varchar(255) NOT NULL,
+  `thanhtiendonhang` bigint(20) NOT NULL,
+  `trangthaidonhang` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`id`, `idusers`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
+(1, 1, 1, '2021-09-05', 'cantho', 120000, 3),
+(2, 1, 1, '2021-09-01', 'a', 120000, 3),
+(3, 1, 1, '2021-09-02', 'a', 120000, 3),
+(4, 1, 1, '2021-09-03', 'a', 120000, 3),
+(5, 1, 1, '2021-09-04', 'a', 120000, 4),
+(8, 1, 0, '2021-09-18', 'null', 0, 3),
+(9, 1, 0, '2021-09-18', 'null', 0, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `failed_jobs`
 --
 
@@ -67,22 +144,6 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `giohang`
---
-
-CREATE TABLE `giohang` (
-  `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
-  `idkhachhang` bigint(20) NOT NULL,
-  `idsanpham` bigint(20) NOT NULL,
-  `dongiasanpham` bigint(20) NOT NULL,
-  `soluongsanpham` bigint(20) NOT NULL,
-  `thanhtien` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,8 +183,17 @@ CREATE TABLE `khachhang` (
   `diachikhachhang` varchar(255) NOT NULL,
   `ngaysinhkhachhang` date NOT NULL,
   `gioitinhkhachhang` bigint(20) NOT NULL,
-  `uytinkhachhang` bigint(20) NOT NULL
+  `diachigiaohang` varchar(255) NOT NULL,
+  `uytinkhachhang` bigint(20) NOT NULL,
+  `thanhtiengiohang` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `khachhang`
+--
+
+INSERT INTO `khachhang` (`id`, `idusers`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachhang`, `diachikhachhang`, `ngaysinhkhachhang`, `gioitinhkhachhang`, `diachigiaohang`, `uytinkhachhang`, `thanhtiengiohang`) VALUES
+(1, 1, 763232505, '1', 'buihuuchau', 'cantho', '2021-09-13', 1, 'cantho', 10, 0);
 
 -- --------------------------------------------------------
 
@@ -146,7 +216,8 @@ CREATE TABLE `khohang` (
 --
 
 INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
-(17, 1, 42, 'cá koi nhật', 25, 0, 25);
+(17, 1, 42, 'cá koi nhật', 25, 15, 10),
+(18, 1, 39, 'ao kính 20*25', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +286,8 @@ CREATE TABLE `nhaphang` (
 
 INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
 (14, 1, 42, 'cá koi nhật', 1, 4, 4, '2021-09-16', 'Nhật Bản'),
-(15, 1, 42, 'cá koi nhật', 21, 21, 441, '2021-09-16', 'Nhật Bản');
+(15, 1, 42, 'cá koi nhật', 21, 21, 441, '2021-09-16', 'Nhật Bản'),
+(16, 1, 39, 'ao kính 20*25', 12000, 2, 24000, '2021-09-18', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -290,6 +362,7 @@ CREATE TABLE `thongtinshop` (
   `dienthoaishop` varchar(255) NOT NULL,
   `emailshop` varchar(255) DEFAULT NULL,
   `websiteshop` varchar(255) DEFAULT NULL,
+  `stkshop` bigint(20) NOT NULL,
   `vitrishop` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -297,9 +370,9 @@ CREATE TABLE `thongtinshop` (
 -- Đang đổ dữ liệu cho bảng `thongtinshop`
 --
 
-INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `vitrishop`) VALUES
-(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/lIw9RLfvN3pZYDtszYL6uyyqtoqMSDdaQzeXsIaS.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', '10.071948, 105.758935'),
-(2, 'SHOP CÁ CẢNH PHÚ QUỐCc', 'storage/admin/2/scNTMDP5RGGnorquKmUfDEI93OdW9c4uqnHvPlwY.jpg', 'PHÚC QUỐC, KIÊN GIANGg', '0123456789', 'chaub1706789@student.ctu.edu.vn', 'https://abc.com', '10.071948, 105.758935');
+INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `stkshop`, `vitrishop`) VALUES
+(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/lIw9RLfvN3pZYDtszYL6uyyqtoqMSDdaQzeXsIaS.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', 12345678901234, '10.071948, 105.758935'),
+(2, 'SHOP CÁ CẢNH PHÚ QUỐCc', 'storage/admin/2/AiJ7WpztC9leMhV30iNY8tQYRZDTdF1TplytAob2.jpg', 'PHÚC QUỐC, KIÊN GIANGg', '0123456789', 'chaub1706789@student.ctu.edu.vn', 'https://abc.com', 1234567891234, '10.071948, 105.758935');
 
 -- --------------------------------------------------------
 
@@ -351,9 +424,27 @@ INSERT INTO `video` (`id`, `idusers`, `idsanpham`, `dulieuvideo`) VALUES
 --
 
 --
+-- Chỉ mục cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `donhang`
+--
+ALTER TABLE `donhang`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -362,12 +453,6 @@ ALTER TABLE `danhmuc`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Chỉ mục cho bảng `giohang`
---
-ALTER TABLE `giohang`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `hinhanh`
@@ -449,22 +534,34 @@ ALTER TABLE `video`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `giohang`
---
-ALTER TABLE `giohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
@@ -476,13 +573,13 @@ ALTER TABLE `hinhanh`
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `linhvuc`
@@ -500,7 +597,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `nhaphang`
 --
 ALTER TABLE `nhaphang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

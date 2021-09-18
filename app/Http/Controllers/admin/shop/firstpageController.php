@@ -49,6 +49,7 @@ class firstpageController extends Controller
         $thongtinshop['dienthoaishop'] = $request->dienthoaishop;
         $thongtinshop['emailshop'] = $request->emailshop;
         $thongtinshop['websiteshop'] = $request->websiteshop;
+        $thongtinshop['stkshop'] = $request->stkshop;
         $thongtinshop['vitrishop'] = $request->vitrishop;
         DB::table('thongtinshop')->insert($thongtinshop);
         return back();
@@ -78,6 +79,7 @@ class firstpageController extends Controller
         $thongtinshop['dienthoaishop'] = $request->dienthoaishop;
         $thongtinshop['emailshop'] = $request->emailshop;
         $thongtinshop['websiteshop'] = $request->websiteshop;
+        $thongtinshop['stkshop'] = $request->stkshop;
         $thongtinshop['vitrishop'] = $request->vitrishop;
         DB::table('thongtinshop')
             ->where('id', $id)

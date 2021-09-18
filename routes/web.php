@@ -15,9 +15,8 @@ use Illuminate\Http\Request;
 |
 */
 
+// ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//
 // Xac Thuc Email
-
-
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -201,6 +200,21 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkhuydon',
         'middleware' => (['auth', 'verified'])
     ]);
+    Route::post('/donhangloi', [
+        'as' => 'donhangloi',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@donhangloi',
+        'middleware' => (['auth', 'verified'])
+    ]);
 });
 // QUAN LY DON HANG
+// ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//
+
+
+
+
+// FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
+
+
+
+// FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';
