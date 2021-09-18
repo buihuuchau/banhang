@@ -34,7 +34,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 // Xac Thuc Email
 
-Route::get('/', [
+Route::get('/login', [
     'as' => 'login',
     'uses' => 'App\Http\Controllers\Auth\AuthenticatedSessionController@create',
 ]);
@@ -211,10 +211,14 @@ Route::prefix('/')->group(function () {
 
 
 
-
+Route::get('/', [
+    'as' => 'index',
+    'uses' => 'App\Http\Controllers\frontend\indexController@index',
+]);
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
-
-
-
+Route::prefix('/')->group(
+    function () {
+    }
+);
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';
