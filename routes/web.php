@@ -216,9 +216,11 @@ Route::get('/', [
     'uses' => 'App\Http\Controllers\frontend\indexController@index',
 ]);
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
-Route::prefix('/')->group(
-    function () {
-    }
-);
+Route::prefix('/')->group(function () {
+    Route::get('/', [
+        'as' => 'index',
+        'uses' => 'App\Http\Controllers\frontend\indexController@index',
+    ]);
+});
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';

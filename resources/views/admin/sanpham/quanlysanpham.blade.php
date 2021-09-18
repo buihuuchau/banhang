@@ -148,6 +148,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TÊN SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ẢNH SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN GIÁ SẢN PHẨM</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN VỊ TÍNH</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TRẠNG THÁI</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
                                     </tr>
@@ -166,17 +167,18 @@
                                         <td>{{ $rowsanpham->tensanpham }}</td>
                                         <td><img src="{{$rowsanpham->anhsanpham}}" width="100px" height="100px"></td>
                                         <td>{{number_format("$rowsanpham->dongiasanpham",0,",",".")}}</td>
+                                        <td>{{ $rowsanpham->donvitinhsanpham }}</td>
                                         @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 0)
-                                        <td>Hiện---Bình thường</td>
+                                        <td style="background-color: lightgreen;">Hiện---Bình thường</td>
                                         @endif
                                         @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 1)
-                                        <td>Hiện---Nổi bật</td>
+                                        <td style="background-color: pink;">Hiện---Nổi bật</td>
                                         @endif
                                         @if($rowsanpham->hidden == 1 && $rowsanpham->sanphamnoibat == 0)
-                                        <td>Ẩn---Bình thường</td>
+                                        <td style="background-color: Olive;">Ẩn---Bình thường</td>
                                         @endif
                                         @if($rowsanpham->hidden == 1 && $rowsanpham->sanphamnoibat == 1)
-                                        <td>Ẩn---Nổi bật</td>
+                                        <td style="background-color: Olive; color: white;">Ẩn---Nổi bật</td>
                                         @endif
 
                                         <td class="row">

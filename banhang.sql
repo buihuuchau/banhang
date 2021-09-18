@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 18, 2021 lúc 02:07 AM
+-- Thời gian đã tạo: Th9 18, 2021 lúc 04:21 PM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -38,20 +38,6 @@ CREATE TABLE `chitietdonhang` (
   `soluongsanpham` bigint(20) NOT NULL,
   `thanhtiensanpham` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `chitietdonhang`
---
-
-INSERT INTO `chitietdonhang` (`id`, `idusers`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
-(1, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
-(2, 1, 1, 40, 'sadqdq', 'https://www.dungplus.com/wp-content/uploads/2019/10/anh-avatar-dep-nhat.jpg', 25000, 2, 50000),
-(3, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
-(4, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
-(5, 1, 1, 39, '“Pictures, abstract symbols, materials, and colors are among the ingredients with which a designer or engineer works. To design is to discover relationships and to make arrangements and rearrangements among these ingredients.”', 'https://scr.vn/wp-content/uploads/2020/07/T%E1%BA%A3i-h%C3%ACnh-n%E1%BB%81n-%C4%91%E1%BA%B9p-9.jpg', 1, 1, 1),
-(6, 1, 7, 42, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 50000000, 5, 0),
-(7, 1, 8, 42, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 50000000, 10, 0),
-(8, 1, 9, 39, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 10000, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -88,18 +74,41 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`id`, `idusers`, `tendanhmuc`, `danhmuccha`, `hidden`) VALUES
-(1, 1, 'Thức ăn', 0, 0),
-(2, 1, 'Thức ăn cho chim', 1, 0),
-(3, 1, 'Thức ăn cho cá', 1, 0),
-(4, 1, 'Hồ', 0, 0),
-(5, 1, 'Hồ kính', 4, 0),
-(6, 1, 'Hồ nhựa', 4, 0),
-(7, 1, 'Hồ nhựa meca mỏng', 6, 0),
-(8, 1, 'Hồ nhựa meca dày', 6, 0),
-(9, 1, 'Hồ kính cường lực', 5, 0),
-(10, 1, 'Hồ kính chống đạn', 5, 1),
-(11, 1, 'Thức ăn cho chim bé', 2, 0),
-(12, 1, 'Cá', 0, 0);
+(18, 1, 'Cá', 0, 0),
+(19, 1, 'Thức ăn', 0, 0),
+(20, 1, 'Cây', 0, 0),
+(21, 1, 'Hồ', 0, 0),
+(22, 1, 'Chế phẩm', 0, 0),
+(23, 1, 'Vật liệu', 0, 0),
+(24, 1, 'Phụ kiện', 0, 0),
+(25, 1, 'Khác', 0, 0),
+(26, 1, 'Guppy', 18, 0),
+(27, 1, 'Endler', 18, 0),
+(28, 1, 'Cá săn mồi', 18, 0),
+(29, 1, 'Cá koi', 18, 0),
+(30, 1, 'Tươi sống', 19, 0),
+(31, 1, 'Đông lạnh', 19, 0),
+(32, 1, 'Sấy khô', 19, 0),
+(33, 1, 'Đóng hộp', 19, 0),
+(34, 1, 'Rong', 20, 0),
+(35, 1, 'Rêu', 20, 0),
+(36, 1, 'Cỏ', 20, 0),
+(37, 1, 'Hạt giống', 20, 0),
+(38, 1, 'Xốp', 21, 0),
+(39, 1, 'Kính', 21, 0),
+(40, 1, 'Xi măng', 21, 0),
+(41, 1, 'Nhựa', 21, 0),
+(42, 1, 'Trị bệnh', 22, 0),
+(43, 1, 'Xử lý nước', 22, 0),
+(44, 1, 'Dinh dưỡng', 22, 0),
+(45, 1, 'Vi sinh', 22, 0),
+(46, 1, 'Lọc', 23, 0),
+(47, 1, 'Đá', 23, 0),
+(48, 1, 'Nền', 23, 0),
+(49, 1, 'Trang trí', 23, 0),
+(50, 1, 'Đèn', 24, 0),
+(51, 1, 'Máy móc', 24, 0),
+(52, 1, 'Công cụ', 24, 0);
 
 -- --------------------------------------------------------
 
@@ -116,19 +125,6 @@ CREATE TABLE `donhang` (
   `thanhtiendonhang` bigint(20) NOT NULL,
   `trangthaidonhang` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `donhang`
---
-
-INSERT INTO `donhang` (`id`, `idusers`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
-(1, 1, 1, '2021-09-05', 'cantho', 120000, 3),
-(2, 1, 1, '2021-09-01', 'a', 120000, 3),
-(3, 1, 1, '2021-09-02', 'a', 120000, 3),
-(4, 1, 1, '2021-09-03', 'a', 120000, 3),
-(5, 1, 1, '2021-09-04', 'a', 120000, 4),
-(8, 1, 0, '2021-09-18', 'null', 0, 3),
-(9, 1, 0, '2021-09-18', 'null', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -159,15 +155,6 @@ CREATE TABLE `hinhanh` (
   `dulieuhinhanh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `hinhanh`
---
-
-INSERT INTO `hinhanh` (`id`, `idusers`, `idsanpham`, `dulieuhinhanh`) VALUES
-(63, 1, 40, 'storage/admin/1/wytGBbT9SkeRPuaBKFchSmYCvlMRCxC7nBtJjtx8.jpg'),
-(64, 1, 40, 'storage/admin/1/rFGWEOcfZnlI1qqvHxTtIZgYJIyxQUb1yRg8g33O.jpg'),
-(65, 1, 40, 'storage/admin/1/r1RbnzORQyCFKrXfydkmGoAaolZ8fKB2Gasc3MZp.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -188,13 +175,6 @@ CREATE TABLE `khachhang` (
   `thanhtiengiohang` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `khachhang`
---
-
-INSERT INTO `khachhang` (`id`, `idusers`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachhang`, `diachikhachhang`, `ngaysinhkhachhang`, `gioitinhkhachhang`, `diachigiaohang`, `uytinkhachhang`, `thanhtiengiohang`) VALUES
-(1, 1, 763232505, '1', 'buihuuchau', 'cantho', '2021-09-13', 1, 'cantho', 10, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -210,35 +190,6 @@ CREATE TABLE `khohang` (
   `soluongban` bigint(20) NOT NULL DEFAULT '0',
   `soluongconlai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `khohang`
---
-
-INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
-(17, 1, 42, 'cá koi nhật', 25, 15, 10),
-(18, 1, 39, 'ao kính 20*25', 2, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `linhvuc`
---
-
-CREATE TABLE `linhvuc` (
-  `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
-  `tenlinhvuc` varchar(255) NOT NULL,
-  `hidden` bigint(20) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `linhvuc`
---
-
-INSERT INTO `linhvuc` (`id`, `idusers`, `tenlinhvuc`, `hidden`) VALUES
-(1, 1, 'Thức ăn', 0),
-(2, 1, 'Cây cảnh', 0);
 
 -- --------------------------------------------------------
 
@@ -279,15 +230,6 @@ CREATE TABLE `nhaphang` (
   `ngaynhap` date NOT NULL,
   `nguongocnhap` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `nhaphang`
---
-
-INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
-(14, 1, 42, 'cá koi nhật', 1, 4, 4, '2021-09-16', 'Nhật Bản'),
-(15, 1, 42, 'cá koi nhật', 21, 21, 441, '2021-09-16', 'Nhật Bản'),
-(16, 1, 39, 'ao kính 20*25', 12000, 2, 24000, '2021-09-18', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -331,7 +273,7 @@ CREATE TABLE `sanpham` (
   `iddanhmuc` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
   `anhsanpham` varchar(255) NOT NULL,
-  `thongtinsanpham` varchar(255) NOT NULL,
+  `thongtinsanpham` longtext NOT NULL,
   `xuatxusanpham` varchar(255) NOT NULL,
   `dongiasanpham` bigint(20) NOT NULL,
   `donvitinhsanpham` varchar(255) NOT NULL,
@@ -344,9 +286,22 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
-(39, 1, 11, 'ao kính 20*25', 'storage/admin/1/6wgCAq22aocFRd27LKByVDkX8QXIA6PWn6Fc59Id.jpg', 'b', 'c', 10000, 'd', 0, 1),
-(40, 1, 9, 'Hồ kính 20*20', 'storage/admin/1/lwkeUvuuS7k7YH3tKppV7LeYGlNW7S3gdVYsIZ6N.jpg', 'bb', 'c', 200000, 'd', 0, 0),
-(42, 1, 12, 'cá koi nhật', 'storage/admin/1/MfpsFcMZE8l7D260XQh7Zd313ARRz9tGfLBmcdjy.jpg', 'thông tin', 'c', 50000000, 'con', 0, 1);
+(43, 1, 26, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 'Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds', 'Việt Nam', 100000, 'cặp', 0, 0),
+(44, 1, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
+(45, 1, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
+(46, 1, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
+(47, 1, 29, 'Koi Chép Việt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 1),
+(48, 1, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 1),
+(49, 1, 28, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
+(50, 1, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 1),
+(51, 1, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
+(52, 1, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
+(53, 1, 33, 'Thức ăn Cho Rùa Taiyo', 'storage/admin/1/gS0l5qLqVtyfbbwUUZmR6oSHNVrhiv5lhAjCqXbs.jpg', 'Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo', 'Việt Nam', 25000, 'hủ', 0, 1),
+(54, 1, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
+(55, 1, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
+(56, 1, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
+(57, 1, 42, 'Thuốc Diệt Rêu Nuphar Remove BBA 75ml', 'storage/admin/1/RQu9AIsRvPQQjUew61r9xVcEYEokAJj0QTNzdy1V.png', 'Thuốc diệt rêu Nuphar diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh Công dụng : -Diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh', 'Việt Nam', 55000, 'chai-75ml', 0, 1),
+(60, 1, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -371,8 +326,7 @@ CREATE TABLE `thongtinshop` (
 --
 
 INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `stkshop`, `vitrishop`) VALUES
-(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/lIw9RLfvN3pZYDtszYL6uyyqtoqMSDdaQzeXsIaS.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', 12345678901234, '10.071948, 105.758935'),
-(2, 'SHOP CÁ CẢNH PHÚ QUỐCc', 'storage/admin/2/AiJ7WpztC9leMhV30iNY8tQYRZDTdF1TplytAob2.jpg', 'PHÚC QUỐC, KIÊN GIANGg', '0123456789', 'chaub1706789@student.ctu.edu.vn', 'https://abc.com', 1234567891234, '10.071948, 105.758935');
+(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/6fCeF7MuKn5n3N61PsJukAQMB1B4CUpoZrIcMAcK.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', 12345678901234, '10.071948, 105.758935');
 
 -- --------------------------------------------------------
 
@@ -396,8 +350,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Bùi Hữu Châu', 'buihuuchau99@gmail.com', '2021-09-08 04:59:08', '$2y$10$SkCSSHqaTHVxtpqJbnSVOeAY9RXH6BNjlI5HSTJgAP5VOHLmIDhsC', NULL, '2021-09-08 04:58:09', '2021-09-08 04:59:08'),
-(2, 'Bùi Hữu Châu', 'chaub1706789@student.ctu.edu.vn', '2021-09-10 06:00:08', '$2y$10$viZg21tqqhGTw8WWmqKx7eRYFBRBKB3AGEiy7Ztk.FBeOsUk5bk4O', NULL, '2021-09-10 05:59:58', '2021-09-10 06:00:08');
+(1, 'Bùi Hữu Châu', 'buihuuchau99@gmail.com', '2021-09-08 04:59:08', '$2y$10$SkCSSHqaTHVxtpqJbnSVOeAY9RXH6BNjlI5HSTJgAP5VOHLmIDhsC', NULL, '2021-09-08 04:58:09', '2021-09-08 04:59:08');
 
 -- --------------------------------------------------------
 
@@ -411,13 +364,6 @@ CREATE TABLE `video` (
   `idsanpham` bigint(20) NOT NULL,
   `dulieuvideo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `video`
---
-
-INSERT INTO `video` (`id`, `idusers`, `idsanpham`, `dulieuvideo`) VALUES
-(26, 1, 40, 'storage/admin/1/dohyTrMxZlLRcWwhI7TPLlFL05CwEGBwk68GOXvK.mp4');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -470,12 +416,6 @@ ALTER TABLE `khachhang`
 -- Chỉ mục cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `linhvuc`
---
-ALTER TABLE `linhvuc`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -549,7 +489,7 @@ ALTER TABLE `chitietgiohang`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
@@ -582,12 +522,6 @@ ALTER TABLE `khohang`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT cho bảng `linhvuc`
---
-ALTER TABLE `linhvuc`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
@@ -609,25 +543,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinshop`
 --
 ALTER TABLE `thongtinshop`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `video`
 --
 ALTER TABLE `video`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

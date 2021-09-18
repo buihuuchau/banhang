@@ -39,4 +39,21 @@ class myfunction
         }
         return $this->htmlSelect;
     }
+    function xemdanhmuc2($danhmuccha = 0, $text = '')
+    {
+        foreach ($this->danhmuc as $rowdanhmuc) {
+            if ($rowdanhmuc->danhmuccha == $danhmuccha && $danhmuccha == 0) {
+                // echo "<option>" . $text . $rowdanhmuc->tendanhmuc . "<option>";
+                $this->htmlSelect .= "<option value='$rowdanhmuc->id' style='color:red'>" . $text . $rowdanhmuc->tendanhmuc . "</option>";
+                $this->xemdanhmuc2($rowdanhmuc->id, $text . '&nbsp&nbsp&nbsp&nbsp&nbsp');
+                // $this->xemdanhmuc($abc = $rowdanhmuc->id, $text . '__');
+            } elseif ($rowdanhmuc->danhmuccha == $danhmuccha && $danhmuccha != 0) {
+                // echo "<option>" . $text . $rowdanhmuc->tendanhmuc . "<option>";
+                $this->htmlSelect .= "<option value='$rowdanhmuc->id' disabled>" . $text . $rowdanhmuc->tendanhmuc . "</option>";
+                // $this->xemdanhmuc2($rowdanhmuc->id, $text . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp');
+                // $this->xemdanhmuc($abc = $rowdanhmuc->id, $text . '__');
+            }
+        }
+        return $this->htmlSelect;
+    }
 }

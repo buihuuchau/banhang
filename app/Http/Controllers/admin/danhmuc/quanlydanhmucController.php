@@ -58,7 +58,7 @@ class quanlydanhmucController extends Controller
             ->get();
         // $htmlOption = $this->xemdanhmuc(0);
         $callfunction = new myfunction($danhmuc2);
-        $htmlOption = $callfunction->xemdanhmuc();
+        $htmlOption = $callfunction->xemdanhmuc2();
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
     }
     public function adddanhmuc(Request $request)

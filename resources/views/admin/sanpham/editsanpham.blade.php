@@ -109,19 +109,19 @@
                             @endif
                             <div class="form-group col-md-12">
                                 <label>Thông tin sản phẩm</label>
-                                <input type="text" class="form-control" name="thongtinsanpham" placeholder="{{$sanpham->thongtinsanpham}}"><br>
+                                <input type="text" class="form-control" name="thongtinsanpham" value="{{$sanpham->thongtinsanpham}}"><br>
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Xuất xứ sản phẩm</label>
-                                <input type="text" class="form-control" name="xuatxusanpham" placeholder="{{$sanpham->xuatxusanpham}}"><br>
+                                <input type="text" class="form-control" name="xuatxusanpham" value="{{$sanpham->xuatxusanpham}}"><br>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Đơn giá sản phẩm</label>
-                                <input type="number" class="form-control" name="dongiasanpham" placeholder="{{$sanpham->dongiasanpham}}" min="0"><br>
+                                <input type="number" class="form-control" name="dongiasanpham" value="{{$sanpham->dongiasanpham}}" min="0"><br>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Đơn vị tính</label>
-                                <input type="text" class="form-control" name="donvitinhsanpham" placeholder="{{$sanpham->donvitinhsanpham}}"><br>
+                                <input type="text" class="form-control" name="donvitinhsanpham" value="{{$sanpham->donvitinhsanpham}}"><br>
                             </div>
                             <div class="form-group col-md-2">
                                 <label>Ẩn/ Hiện sản phẩm</label>

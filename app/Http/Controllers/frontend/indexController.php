@@ -18,6 +18,21 @@ class indexController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        // $id = Auth::user()->id;
+        $thongtinshop = DB::table('thongtinshop')
+            ->first();
+        // $sudung = null;
+        $danhmuc = DB::table('danhmuc')
+            ->where('hidden', 0)
+            ->get();
+        $sanpham = DB::table('sanpham')
+            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+            ->orderBy('sanpham.id', 'desc')
+            ->where('sanpham.hidden', 0)
+            ->where('sanpham.sanphamnoibat', 1)
+            ->select('sanpham.*', 'danhmuc.tendanhmuc')
+            ->limit(13)
+            ->get();
+        return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham'));
     }
 }
