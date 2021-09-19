@@ -26,6 +26,7 @@ class quanlynhaphangController extends Controller
             ->where('idusers', $id)
             ->get();
         $sanpham = DB::table('sanpham')
+            ->orderBy('tensanpham', 'asc')
             ->where('idusers', $id)
             ->get();
         return view('admin.nhaphang.quanlynhaphang', compact('thongtinshop', 'nhaphang', 'sanpham'));

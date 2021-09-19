@@ -24,7 +24,7 @@
                     <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
                         <a class="nav-link dropdown-toggle" href="{{$rowdanhmuc->id}}" id="{{$rowdanhmuc->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$rowdanhmuc->tendanhmuc}}</a>
 
-                        <ul class="dropdown-menu" aria-labelledby="{{$rowdanhmuc->id}}">
+                        <ul class="dropdown-menu megamenu" aria-labelledby="{{$rowdanhmuc->id}}">
                             <li>
                                 <!-- <div class="container"> -->
                                 <div class="mega-menu-content clearfix">

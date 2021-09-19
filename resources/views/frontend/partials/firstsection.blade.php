@@ -18,8 +18,8 @@
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{$rowsanpham->tendanhmuc}}</a></span>
-                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 100) }}</a></h4>
+                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{ Str::limit($rowsanpham->tendanhmuc, 50) }}</a></span>
+                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 90) }}</a></h4>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
@@ -34,8 +34,8 @@
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{$rowsanpham->tendanhmuc}}</a></span>
-                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 100) }}</a></h4>
+                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{ Str::limit($rowsanpham->tendanhmuc, 25) }}</a></span>
+                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 50) }}</a></h4>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
@@ -50,8 +50,8 @@
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{$rowsanpham->tendanhmuc}}</a></span>
-                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 100) }}</a></h4>
+                                <span class="bg-orange"><a href="tech-category-01.html" title="">{{ Str::limit($rowsanpham->tendanhmuc, 25) }}</a></span>
+                                <h4><a href="tech-single.html" title="">{{ Str::limit($rowsanpham->tensanpham, 50) }}</a></h4>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
