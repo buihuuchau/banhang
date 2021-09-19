@@ -217,9 +217,9 @@ Route::get('/', [
 ]);
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 Route::prefix('/')->group(function () {
-    Route::get('/', [
-        'as' => 'index',
-        'uses' => 'App\Http\Controllers\frontend\indexController@index',
+    Route::get('/sanphamdanhmuc/{iddanhmuc}', [
+        'as' => 'sanphamdanhmuc',
+        'uses' => 'App\Http\Controllers\frontend\indexController@sanphamdanhmuc',
     ]);
 });
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//

@@ -29,7 +29,30 @@ class indexController extends Controller
             ->where('sanpham.hidden', 0)
             ->where('sanpham.sanphamnoibat', 1)
             ->select('sanpham.*', 'danhmuc.tendanhmuc')
-            ->simplePaginate(15);
+            ->simplePaginate(12);
         return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham'));
+    }
+    public function sanphamdanhmuc($iddanhmuc)
+    {
+        $thongtinshop = DB::table('thongtinshop')
+            ->first();
+        $danhmuc = DB::table('danhmuc')
+            ->where('hidden', 0)
+            ->get();
+
+        $danhmuc2 = DB::table('danhmuc')
+            ->where('id', $iddanhmuc)
+            ->first();
+        $tendanhmuc = $danhmuc2->tendanhmuc;
+
+        $sanpham = DB::table('sanpham')
+            ->where('iddanhmuc', $iddanhmuc)
+            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+            ->orderBy('sanpham.id', 'desc')
+            ->where('sanpham.hidden', 0)
+            ->select('sanpham.*', 'danhmuc.tendanhmuc')
+            ->simplePaginate(12);
+
+        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanpham'));
     }
 }

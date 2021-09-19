@@ -1,6 +1,6 @@
 @extends('frontend.layouts.admin')
 @section('title')
-<title>Trang chủ</title>
+<title>{{$tendanhmuc}}</title>
 @endsection
 @section('section')
 <section class="section">
@@ -15,7 +15,7 @@
                                 <div class="blog-box">
                                     <div class="post-media">
                                         <a href="tech-single.html" title="">
-                                            <img src="{{$rowsanpham->anhsanpham}}" height="212px">
+                                            <img src="{{asset($rowsanpham->anhsanpham)}}" height="212px">
                                             <div class="hovereffect">
                                                 <span></span>
                                             </div><!-- end hover -->
