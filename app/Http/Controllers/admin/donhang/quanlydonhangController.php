@@ -38,10 +38,11 @@ class quanlydonhangController extends Controller
         $chitietdonhang = DB::table('chitietdonhang')
             ->where('idusers', $id)
             ->get();
-        $sanpham = DB::table('sanpham')
+        $khohang = DB::table('khohang')
             ->where('idusers', $id)
+            ->where('soluongconlai', '>', 0)
             ->get();
-        return view('admin.donhang.quanlydonhang', compact('thongtinshop', 'donhang', 'donhang2', 'chitietdonhang', 'sanpham'));
+        return view('admin.donhang.quanlydonhang', compact('thongtinshop', 'donhang', 'donhang2', 'chitietdonhang', 'khohang'));
     }
     public function checkdonggoi(Request $request)
     {
@@ -78,6 +79,16 @@ class quanlydonhangController extends Controller
     public function donhangloi(Request $request)
     {
         $id = Auth::user()->id;
+        $khohang = DB::table('khohang')
+            ->where('idsanpham', $request->idsanpham)
+            ->first();
+        if ($khohang == null || $khohang->soluongconlai < $request->soluongsanpham) return back();
+        else {
+            $khohang2['soluongban'] = $khohang->soluongban + $request->soluongsanpham;
+            $khohang2['soluongconlai'] = $khohang->soluongconlai - $request->soluongsanpham;
+            DB::table('khohang')->where('idsanpham', $request->idsanpham)->update($khohang2);
+        }
+
         $donhang['idusers'] = $id;
         $donhang['idkhachhang'] = 0;
         $donhang['ngaydathang'] = date('y-m-d');
@@ -85,20 +96,28 @@ class quanlydonhangController extends Controller
         $donhang['thanhtiendonhang'] = 0;
         $donhang['trangthaidonhang'] = 3;
         $iddonhang = DB::table('donhang')->insertgetID($donhang);
+
         $chitietdonhang['idusers'] = $id;
+        $chitietdonhang['idkhachhang'] = 0;
         $chitietdonhang['iddonhang'] = $iddonhang;
         $chitietdonhang['idsanpham'] = $request->idsanpham;
         $sanpham = DB::table('sanpham')->where('id', $request->idsanpham)->first();
-        $chitietdonhang['tensanpham'] = $sanpham->tensanpham;
-        $chitietdonhang['anhsanpham'] = $sanpham->anhsanpham;
-        $chitietdonhang['dongiasanpham'] = $sanpham->dongiasanpham;
-        $chitietdonhang['soluongsanpham'] = $request->soluongsanpham;
-        $chitietdonhang['thanhtiensanpham'] = 0;
-        DB::table('chitietdonhang')->insert($chitietdonhang);
-        $khohang = DB::table('khohang')->where('idsanpham', $request->idsanpham)->first();
-        $khohang2['soluongban'] = $khohang->soluongban + $request->soluongsanpham;
-        $khohang2['soluongconlai'] = $khohang->soluongconlai - $request->soluongsanpham;
-        DB::table('khohang')->where('idsanpham', $request->idsanpham)->update($khohang2);
-        return back();
+        if ($sanpham != null) {
+            $chitietdonhang['tensanpham'] = $sanpham->tensanpham;
+            $chitietdonhang['anhsanpham'] = $sanpham->anhsanpham;
+            $chitietdonhang['dongiasanpham'] = $sanpham->dongiasanpham;
+            $chitietdonhang['soluongsanpham'] = $request->soluongsanpham;
+            $chitietdonhang['thanhtiensanpham'] = 0;
+            DB::table('chitietdonhang')->insert($chitietdonhang);
+            return back();
+        } else {
+            $chitietdonhang['tensanpham'] = $khohang->tensanpham;
+            $chitietdonhang['anhsanpham'] = 'storage/admin/AnhNull.jpg';
+            $chitietdonhang['dongiasanpham'] = 0;
+            $chitietdonhang['soluongsanpham'] = $request->soluongsanpham;
+            $chitietdonhang['thanhtiensanpham'] = 0;
+            DB::table('chitietdonhang')->insert($chitietdonhang);
+            return back();
+        }
     }
 }

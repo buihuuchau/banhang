@@ -51,6 +51,9 @@
                             <b style="font-size: 13px;">Đăng xuất</b>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('giohang')}}" style="font-size: 20px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    </li>
                     @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('loginkhachhang')}}">
@@ -61,10 +64,6 @@
                         </a>
                     </li>
                     @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="font-size: 20px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                    </li>
-
                 </ul>
             </div>
         </nav>

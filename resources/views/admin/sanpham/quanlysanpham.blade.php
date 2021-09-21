@@ -93,7 +93,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Đơn giá sản phẩm</label>
-                                                <input type="number" class="form-control" name="dongiasanpham" min="0" required><br>
+                                                <input type="number" class="form-control" name="dongiasanpham" min="1" required><br>
                                             </div>
                                             <div class="form-group">
                                                 <label>Đơn vị tính</label>

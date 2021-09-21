@@ -254,6 +254,23 @@ Route::prefix('/')->group(function () {
         'as' => 'chitietsanpham',
         'uses' => 'App\Http\Controllers\frontend\indexController@chitietsanpham',
     ]);
+    ///////////////////////////////////////////////////////////////////////////////////
+    Route::get('/giohang', [
+        'as' => 'giohang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@giohang',
+    ]);
+    Route::post('/capnhatgiohang', [
+        'as' => 'capnhatgiohang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@capnhatgiohang',
+    ]);
+    Route::post('/deletegiohang', [
+        'as' => 'deletegiohang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@deletegiohang',
+    ]);
+    Route::post('/thanhtoan', [
+        'as' => 'thanhtoan',
+        'uses' => 'App\Http\Controllers\frontend\indexController@thanhtoan',
+    ]);
 });
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';

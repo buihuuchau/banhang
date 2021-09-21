@@ -117,7 +117,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Đơn giá sản phẩm</label>
-                                <input type="number" class="form-control" name="dongiasanpham" value="{{$sanpham->dongiasanpham}}" min="0"><br>
+                                <input type="number" class="form-control" name="dongiasanpham" value="{{$sanpham->dongiasanpham}}" min="1"><br>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Đơn vị tính</label>

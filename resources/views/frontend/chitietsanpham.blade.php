@@ -38,18 +38,20 @@
                             <h2 style="color: blue">
                                 {{$sanpham->xuatxusanpham}}
                             </h2>
-                            @if($khohang!=null)
-                            <h5>
-                                {{$khohang->soluongconlai}}
-                            </h5>
-                            @endif
+                            @if($khohang!=null && $khohang->soluongconlai >=1 && $khohang->soluongconlai <= 10) <b style="font-size: 20px;">Chỉ còn lại:</b>
+                                <h5>{{$khohang->soluongconlai}} sản phẩm</h5>
+                                @endif
+                                @if($khohang!=null && $khohang->soluongconlai <= 0) <h5 style="color: red;">Tạm hết hàng</h5>
+                                    @endif
                         </div>
-                        <div class="post-sharing col-md-2">
+                        @if($khohang!=null && $khohang->soluongconlai > 0)<div class="post-sharing col-md-2">
                             <ul class="list-inline">
                                 <li><a href="#" class="btn">Thêm vào giỏ hàng</span></a></li>
                                 <li><a href="#" class="btn">Mua ngay</span></a></li>
                             </ul>
                         </div><!-- end post-sharing -->
+                        @endif
+
                     </div>
                     <div class="row container-fluid mt-4">
                         <div class="row flex-row flex-nowrap">
@@ -86,14 +88,14 @@
                                 <div class="blog-box">
                                     <div class="post-media">
                                         <a href="{{route('chitietsanpham', ['idsanpham'=>$rowsanphamlienquan->id])}}" title="">
-                                            <img src="{{asset($rowsanphamlienquan->anhsanpham)}}" alt="" class="img-fluid" height="100px">
+                                            <img src="{{asset($rowsanphamlienquan->anhsanpham)}}" height="100px">
                                             <div class="hovereffect">
                                                 <span class=""></span>
                                             </div><!-- end hover -->
                                         </a>
                                     </div><!-- end media -->
                                     <div class="blog-meta">
-                                        <h4><a href="{{route('chitietsanpham', ['idsanpham'=>$rowsanphamlienquan->id])}}" title="">{{ Str::limit($rowsanphamlienquan->tensanpham, 26) }}</a></h4>
+                                        <h4><a href="{{route('chitietsanpham', ['idsanpham'=>$rowsanphamlienquan->id])}}" title="">{{ Str::limit($rowsanphamlienquan->tensanpham, 32) }}</a></h4>
                                         <b style="color:blue">{{number_format("$rowsanphamlienquan->dongiasanpham",0,",",".")}} VNĐ/{{$rowsanphamlienquan->donvitinhsanpham}}</b>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->

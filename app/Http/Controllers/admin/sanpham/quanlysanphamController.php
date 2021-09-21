@@ -245,6 +245,10 @@ class quanlysanphamController extends Controller
             DB::table('sanpham')
                 ->where('id', $request->idsanpham)
                 ->update($sanpham);
+            $khohang['tensanpham'] = $request->tensanpham;
+            DB::table('khohang')
+                ->where('idsanpham', $request->idsanpham)
+                ->update($khohang);
             return back();
         }
     }

@@ -70,14 +70,14 @@
                                         <div class="form-group">
                                             <label>Chọn sản phẩm</label>
                                             <select class="form-control" name="idsanpham" data-live-search="true">
-                                                @foreach($sanpham as $rowsanpham)
-                                                <option value="{{$rowsanpham->id}}">{{$rowsanpham->tensanpham}}</option>
+                                                @foreach($khohang as $rowkhohang)
+                                                <option value="{{$rowkhohang->idsanpham}}">{{$rowkhohang->tensanpham}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Số lượng</label>
-                                            <input type="number" class="form-control" name="soluongsanpham" min="0" required>
+                                            <input type="number" class="form-control" name="soluongsanpham" min="1" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

@@ -78,11 +78,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Giá nhập vào</label>
-                                                <input type="number" class="form-control" name="dongianhap" min="0" required>
+                                                <input type="number" class="form-control" name="dongianhap" min="1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Số lượng</label>
-                                                <input type="number" class="form-control" name="soluongnhap" min="0" required>
+                                                <input type="number" class="form-control" name="soluongnhap" min="1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Nguồn gốc</label>
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Thêm</button>
+                                            <button type="submit" class="btn btn-primary" onclick="return confirm('Không thể sửa khi xác nhận, cân nhắc...')">Thêm</button>
                                         </div>
                                     </form>
                                 </div>
@@ -115,7 +115,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">SỐ LƯỢNG</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THÀNH TIỀN</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NGUỒN HÀNG</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
+                                        <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -127,7 +127,7 @@
                                         <td>{{number_format("$rownhaphang->soluongnhap",0,",",".")}}</td>
                                         <td>{{number_format("$rownhaphang->thanhtiennhap",0,",",".")}}</td>
                                         <td>{{ $rownhaphang->nguongocnhap }}</td>
-                                        <td>
+                                        <!-- <td>
                                             <form action="{{route('deletehang')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="idnhaphang" value="{{$rownhaphang->id}}">
@@ -137,7 +137,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     @endforeach
                                 </tbody>

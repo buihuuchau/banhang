@@ -58,7 +58,6 @@ class quanlynhaphangController extends Controller
             $khohang['soluongconlai'] = $request->soluongnhap;
             DB::table('khohang')->insert($khohang);
         } else {
-            $khohang['tensanpham'] = $sanpham->tensanpham;
             $khohang['soluonghang'] = $check->soluonghang + $request->soluongnhap;
             $khohang['soluongconlai'] = $check->soluongconlai + $request->soluongnhap;
             DB::table('khohang')
@@ -68,25 +67,25 @@ class quanlynhaphangController extends Controller
         return back();
     }
 
-    public function deletehang(Request $request)
-    {
-        $id = Auth::user()->id;
-        DB::table('nhaphang')
-            ->where('id', $request->idnhaphang)
-            ->delete();
-        $check = DB::table('khohang')
-            ->where('idsanpham', $request->idsanpham)
-            ->first();
-        if ($check->soluonghang - $request->soluongnhap <= 0) {
-            DB::table('khohang')
-                ->where('idsanpham', $request->idsanpham)
-                ->delete();
-        } else {
-            $khohang['soluonghang'] = $check->soluonghang - $request->soluongnhap;
-            DB::table('khohang')
-                ->where('idsanpham', $request->idsanpham)
-                ->update($khohang);
-        }
-        return back();
-    }
+    // public function deletehang(Request $request)
+    // {
+    //     $id = Auth::user()->id;
+    //     DB::table('nhaphang')
+    //         ->where('id', $request->idnhaphang)
+    //         ->delete();
+    //     $check = DB::table('khohang')
+    //         ->where('idsanpham', $request->idsanpham)
+    //         ->first();
+    //     if ($check->soluonghang - $request->soluongnhap <= 0) {
+    //         DB::table('khohang')
+    //             ->where('idsanpham', $request->idsanpham)
+    //             ->delete();
+    //     } else {
+    //         $khohang['soluonghang'] = $check->soluonghang - $request->soluongnhap;
+    //         DB::table('khohang')
+    //             ->where('idsanpham', $request->idsanpham)
+    //             ->update($khohang);
+    //     }
+    //     return back();
+    // }
 }
