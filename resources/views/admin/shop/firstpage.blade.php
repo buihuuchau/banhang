@@ -91,12 +91,17 @@
 
                             <div class="form-group">
                                 <label>STK/CHI NHÁNH NGÂN HÀNG:</label>
-                                <input required="true" type="text" class="form-control" name="stkshop" value="{{ old('stkshop') }}">
+                                <input required="true" type="text" class="form-control" name="stkshop" value="{{ old('stkshop') }}" placeholder="9 tới 14 số">
                             </div>
 
                             <div class="form-group">
                                 <label>VỊ TRÍ SHOP:</label>
-                                <input type="text" class="form-control" name="vitrishop" value="{{ old('vitrishop') }}">
+                                <input type="text" class="form-control" name="vitrishop" value="{{ old('vitrishop') }}" placeholder="Tọa độ trên bản đồ">
+                            </div>
+
+                            <div class="form-group">
+                                <label>THỜI GIAN HOẠT ĐỘNG:</label>
+                                <input required="true" type="text" class="form-control" name="thoigianhoatdong" value="{{ old('thoigianhoatdong') }}" placeholder="Từ _h đến _h">
                             </div>
 
                             <div class="col text-center">
@@ -153,6 +158,11 @@
                             <div class="form-group">
                                 <label>VỊ TRÍ SHOP:</label>
                                 <input type="text" class="form-control" name="vitrishop" value="{{ $thongtinshop->vitrishop }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>THỜI GIAN HOẠT ĐỘNG:</label>
+                                <input required="true" type="text" class="form-control" name="thoigianhoatdong" value="{{ $thongtinshop->thoigianhoatdong }}">
                             </div>
 
                             <div class="col text-center">

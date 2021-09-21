@@ -102,13 +102,16 @@ class quanlysanphamController extends Controller
             DB::table('video')->insert($video);
         }
         if ($dulieuhinhanh != null) {
-            foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
-                $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
-                $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
-                $hinhanh['idusers'] = $id;
-                $hinhanh['idsanpham'] = $idsanpham;
-                $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
-                DB::table('hinhanh')->insert($hinhanh);
+            if (count($dulieuhinhanh) >= 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
+            else {
+                foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
+                    $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
+                    $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
+                    $hinhanh['idusers'] = $id;
+                    $hinhanh['idsanpham'] = $idsanpham;
+                    $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
+                    DB::table('hinhanh')->insert($hinhanh);
+                }
             }
         }
         return back();
@@ -217,13 +220,16 @@ class quanlysanphamController extends Controller
                 ->insert($video);
         }
         if ($dulieuhinhanh != null) {
-            foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
-                $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
-                $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
-                $hinhanh['idusers'] = $id;
-                $hinhanh['idsanpham'] = $request->idsanpham;
-                $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
-                DB::table('hinhanh')->insert($hinhanh);
+            if (count($dulieuhinhanh) >= 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
+            else {
+                foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
+                    $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
+                    $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
+                    $hinhanh['idusers'] = $id;
+                    $hinhanh['idsanpham'] = $request->idsanpham;
+                    $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
+                    DB::table('hinhanh')->insert($hinhanh);
+                }
             }
         }
 

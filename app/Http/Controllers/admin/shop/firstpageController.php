@@ -51,6 +51,7 @@ class firstpageController extends Controller
         $thongtinshop['websiteshop'] = $request->websiteshop;
         $thongtinshop['stkshop'] = $request->stkshop;
         $thongtinshop['vitrishop'] = $request->vitrishop;
+        $thongtinshop['thoigianhoatdong'] = $request->thoigianhoatdong;
         DB::table('thongtinshop')->insert($thongtinshop);
         return back();
     }
@@ -81,6 +82,7 @@ class firstpageController extends Controller
         $thongtinshop['websiteshop'] = $request->websiteshop;
         $thongtinshop['stkshop'] = $request->stkshop;
         $thongtinshop['vitrishop'] = $request->vitrishop;
+        $thongtinshop['thoigianhoatdong'] = $request->thoigianhoatdong;
         DB::table('thongtinshop')
             ->where('id', $id)
             ->update($thongtinshop);

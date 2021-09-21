@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 19, 2021 lúc 04:16 AM
+-- Thời gian đã tạo: Th9 21, 2021 lúc 08:02 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -169,6 +169,20 @@ CREATE TABLE `hinhanh` (
   `dulieuhinhanh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `hinhanh`
+--
+
+INSERT INTO `hinhanh` (`id`, `idusers`, `idsanpham`, `dulieuhinhanh`) VALUES
+(1, 1, 65, 'storage/admin/1/RDeSIzxJzUczOVlEUwGTdZyPI3uzPY5ACCGBcvcy.jpg'),
+(2, 1, 65, 'storage/admin/1/Q2BxlUbajPpsWGYEdetdoO68eKSEhxrF5dkKXTPi.jpg'),
+(3, 1, 65, 'storage/admin/1/NgS3iCHhmuHbu45Ds1KrAodEw779KZbZXQalPxGH.jpg'),
+(4, 1, 65, 'storage/admin/1/JDmA3yelJeRbrzEOaNbAq76Ty6I3NbYfGGldzsb9.jpg'),
+(5, 1, 65, 'storage/admin/1/gXHKP8cVXPPUgfCDmXD68M1Ud0m3b0VMZOhyABY3.jpg'),
+(11, 1, 47, 'storage/admin/1/KODJ59S021NSAQIG1xv0TCvX3eFlltogpT1UvdXy.jpg'),
+(12, 1, 47, 'storage/admin/1/R1tC4xQEeDMH4akR2eEoEKSV7YTFXtPY2QGlbscx.jpg'),
+(13, 1, 47, 'storage/admin/1/s4dKY6tJASXaiDPViXVcAmtbVJLK2znFUjZ0mMib.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -177,17 +191,21 @@ CREATE TABLE `hinhanh` (
 
 CREATE TABLE `khachhang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `sdtkhachhang` bigint(20) NOT NULL,
   `matkhaukhachhang` varchar(255) NOT NULL,
   `hotenkhachhang` varchar(255) NOT NULL,
   `diachikhachhang` varchar(255) NOT NULL,
-  `ngaysinhkhachhang` date NOT NULL,
-  `gioitinhkhachhang` bigint(20) NOT NULL,
   `diachigiaohang` varchar(255) NOT NULL,
-  `uytinkhachhang` bigint(20) NOT NULL,
+  `uytinkhachhang` bigint(20) NOT NULL DEFAULT '0',
   `thanhtiengiohang` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `khachhang`
+--
+
+INSERT INTO `khachhang` (`id`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachhang`, `diachikhachhang`, `diachigiaohang`, `uytinkhachhang`, `thanhtiengiohang`) VALUES
+(2, 763232505, 'd8d12015bb905077cce3ca1c32d47c9e', 'Bùi Hữu Châu', 'Cần Thơ', 'Cần Thơ', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -204,13 +222,6 @@ CREATE TABLE `khohang` (
   `soluongban` bigint(20) NOT NULL DEFAULT '0',
   `soluongconlai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `khohang`
---
-
-INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
-(1, 1, 43, 'Blue Grass Bds', 100, 5, 95);
 
 -- --------------------------------------------------------
 
@@ -251,13 +262,6 @@ CREATE TABLE `nhaphang` (
   `ngaynhap` date NOT NULL,
   `nguongocnhap` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `nhaphang`
---
-
-INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
-(1, 1, 43, 'Blue Grass Bds', 10000, 100, 1000000, '2021-09-19', 'Nhật Bản');
 
 -- --------------------------------------------------------
 
@@ -320,7 +324,7 @@ INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`,
 (46, 1, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
 (47, 1, 29, 'Koi Chép Việt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 1),
 (48, 1, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 1),
-(49, 1, 28, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
+(49, 1, 28, 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
 (50, 1, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 1),
 (51, 1, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
 (52, 1, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
@@ -362,15 +366,16 @@ CREATE TABLE `thongtinshop` (
   `emailshop` varchar(255) DEFAULT NULL,
   `websiteshop` varchar(255) DEFAULT NULL,
   `stkshop` bigint(20) NOT NULL,
-  `vitrishop` varchar(255) DEFAULT NULL
+  `vitrishop` varchar(255) DEFAULT NULL,
+  `thoigianhoatdong` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinshop`
 --
 
-INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `stkshop`, `vitrishop`) VALUES
-(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/6fCeF7MuKn5n3N61PsJukAQMB1B4CUpoZrIcMAcK.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', 12345678901234, '10.071948, 105.758935');
+INSERT INTO `thongtinshop` (`id`, `tenshop`, `logoshop`, `diachishop`, `dienthoaishop`, `emailshop`, `websiteshop`, `stkshop`, `vitrishop`, `thoigianhoatdong`) VALUES
+(1, 'SHOP CÁ CẢNH PHÚ QUỐC', 'storage/admin/1/6fCeF7MuKn5n3N61PsJukAQMB1B4CUpoZrIcMAcK.jpg', 'PHÚC QUỐC, KIÊN GIANG', '0123456789', 'buihuuchau99@gmail.com', 'http://abc.com', 12345678901234, '10.071948, 105.758935', 'Từ 7h đến 21h');
 
 -- --------------------------------------------------------
 
@@ -408,6 +413,13 @@ CREATE TABLE `video` (
   `idsanpham` bigint(20) NOT NULL,
   `dulieuvideo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `video`
+--
+
+INSERT INTO `video` (`id`, `idusers`, `idsanpham`, `dulieuvideo`) VALUES
+(1, 1, 65, 'storage/admin/1/4HWbyEKV1XJvyte8OqbnNAPRThkp7owQkJPlgofR.mp4');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -533,7 +545,7 @@ ALTER TABLE `chitietgiohang`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
@@ -551,13 +563,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `khohang`
@@ -587,7 +599,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinshop`
@@ -605,7 +617,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `video`
 --
 ALTER TABLE `video`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

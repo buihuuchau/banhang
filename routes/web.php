@@ -217,9 +217,42 @@ Route::get('/', [
 ]);
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 Route::prefix('/')->group(function () {
+    Route::get('/loginkhachhang', [
+        'as' => 'loginkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@loginkhachhang',
+    ]);
+    Route::get('/registerkhachhang', [
+        'as' => 'registerkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@registerkhachhang',
+    ]);
+    Route::get('/editkhachhang/{idkhachhang}', [
+        'as' => 'editkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@editkhachhang',
+    ]);
+    Route::get('/dangxuatkhachhang', [
+        'as' => 'dangxuatkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@dangxuatkhachhang',
+    ]);
+    Route::post('/dologinkhachhang', [
+        'as' => 'dologinkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@dologinkhachhang',
+    ]);
+    Route::post('/doregisterkhachhang', [
+        'as' => 'doregisterkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@doregisterkhachhang',
+    ]);
+    Route::post('/doeditkhachhang', [
+        'as' => 'doeditkhachhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@doeditkhachhang',
+    ]);
+    //////////////////////////////////////////////////////////////////////////////////
     Route::get('/sanphamdanhmuc/{iddanhmuc}', [
         'as' => 'sanphamdanhmuc',
         'uses' => 'App\Http\Controllers\frontend\indexController@sanphamdanhmuc',
+    ]);
+    Route::get('/chitietsanpham/{idsanpham}', [
+        'as' => 'chitietsanpham',
+        'uses' => 'App\Http\Controllers\frontend\indexController@chitietsanpham',
     ]);
 });
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//

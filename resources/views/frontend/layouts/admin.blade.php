@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Site Metas -->
-@yield('title');
+@yield('title')
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -19,7 +19,8 @@
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
 <!-- Design fonts -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css?family=Times%20New%20Roman:300,400,500,600,700" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="{{asset('TechBlog/css/bootstrap.css')}}" rel="stylesheet">
@@ -50,6 +51,7 @@
 
     <div id="wrapper">
         @include('frontend.partials.header')
+        <br><br><br><br><br><br>
 
         @include('frontend.partials.firstsection')
 
