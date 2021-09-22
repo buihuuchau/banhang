@@ -210,7 +210,7 @@ class indexController extends Controller
         $donhang = DB::table('donhang')
             ->orderBy('ngaydathang', 'desc')
             ->where('idkhachhang', $ssidkhachhang)
-            ->get();
+            ->simplepaginate(10);
         $chitietdonhang = DB::table('chitietdonhang')
             ->where('idkhachhang', $ssidkhachhang)
             ->get();
@@ -220,72 +220,32 @@ class indexController extends Controller
     {
         $ssidkhachhang = Session::get('ssidkhachhang');
         if ($ssidkhachhang == null) return redirect()->route('index');
-        $thongtinshop = DB::table('thongtinshop')
-            ->first();
-        $danhmuc = DB::table('danhmuc')
-            ->where('hidden', 0)
-            ->get();
-        $sanphamlienquan = DB::table('sanpham')
-            ->where('sanpham.hidden', 0)
-            ->inRandomOrder()
-            ->limit(6)
-            ->get();
-        $khachhang = DB::table('khachhang')
-            ->where('id', $ssidkhachhang)
-            ->first();
         $chitietgiohang['soluongsanpham'] = $request->soluongsanpham;
         DB::table('chitietgiohang')
             ->where('id', $request->idsanpham)
             ->update($chitietgiohang);
-        $chitietgiohang = DB::table('chitietgiohang')
-            ->where('idkhachhang', $ssidkhachhang)
-            ->join('sanpham', 'chitietgiohang.idsanpham', '=', 'sanpham.id')
-            ->select('chitietgiohang.*', 'sanpham.tensanpham', 'sanpham.anhsanpham', 'sanpham.dongiasanpham')
-            ->get();
-        $thanhtien = 0;
-        $donhang = DB::table('donhang')
-            ->orderBy('ngaydathang', 'desc')
-            ->where('idkhachhang', $ssidkhachhang)
-            ->get();
-        $chitietdonhang = DB::table('chitietdonhang')
-        ->where('idkhachhang', $ssidkhachhang)
-            ->get();
-        return view('frontend.giohang', compact('thongtinshop', 'danhmuc', 'sanphamlienquan', 'khachhang', 'chitietgiohang', 'thanhtien', 'donhang', 'chitietdonhang'));
+        return back();
     }
     public function deletegiohang(Request $request)
     {
         $ssidkhachhang = Session::get('ssidkhachhang');
         if ($ssidkhachhang == null) return redirect()->route('index');
-        $thongtinshop = DB::table('thongtinshop')
-            ->first();
-        $danhmuc = DB::table('danhmuc')
-            ->where('hidden', 0)
-            ->get();
-        $sanphamlienquan = DB::table('sanpham')
-            ->where('sanpham.hidden', 0)
-            ->inRandomOrder()
-            ->limit(6)
-            ->get();
-        $khachhang = DB::table('khachhang')
-            ->where('id', $ssidkhachhang)
-            ->first();
         DB::table('chitietgiohang')
             ->where('id', $request->idsanpham)
             ->where('idkhachhang', $ssidkhachhang)
             ->delete();
-        $chitietgiohang = DB::table('chitietgiohang')
+        return back();
+    }
+
+    public function huydonhang(Request $request)
+    {
+        $ssidkhachhang = Session::get('ssidkhachhang');
+        if ($ssidkhachhang == null) return redirect()->route('index');
+        $donhang['trangthaidonhang'] = 4;
+        DB::table('donhang')
             ->where('idkhachhang', $ssidkhachhang)
-            ->join('sanpham', 'chitietgiohang.idsanpham', '=', 'sanpham.id')
-            ->select('chitietgiohang.*', 'sanpham.tensanpham', 'sanpham.anhsanpham', 'sanpham.dongiasanpham')
-            ->get();
-        $thanhtien = 0;
-        $donhang = DB::table('donhang')
-            ->orderBy('ngaydathang', 'desc')
-            ->where('idkhachhang', $ssidkhachhang)
-            ->get();
-        $chitietdonhang = DB::table('chitietdonhang')
-        ->where('idkhachhang', $ssidkhachhang)
-            ->get();
-        return view('frontend.giohang', compact('thongtinshop', 'danhmuc', 'sanphamlienquan', 'khachhang', 'chitietgiohang', 'thanhtien', 'donhang', 'chitietdonhang'));
+            ->where('id', $request->iddonhang)
+            ->update($donhang);
+        return back();
     }
 }

@@ -73,54 +73,66 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Ảnh sản phẩm</th>
-                                <th scope="col">Đơn giá sản phẩm</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Cập nhật</th>
+                                <th scope="col">IDĐH</th>
+                                <th scope="col">Ngày đặt</th>
+                                <th scope="col">Địa chỉ giao hàng</th>
+                                <th scope="col">Giá trị đơn hàng</th>
+                                <th scope="col">Trạng thái đơn hàng</th>
+                                <th scope="col">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($chitietgiohang as $rowchitietgiohang)
+                            @foreach($donhang as $rowdonhang)
                             <tr>
-                                <th scope="row">{{$rowchitietgiohang->tensanpham}}</th>
-                                <td><img src="{{asset($rowchitietgiohang->anhsanpham)}}" height="60px"></td>
-                                <td>{{number_format("$rowchitietgiohang->dongiasanpham",0,",",".")}} VNĐ</td>
-                                <td>{{number_format("$rowchitietgiohang->soluongsanpham",0,",",".")}}</td>
+                                <td scope="row">{{$rowdonhang->id}}</td>
+                                <td scope="row">{{$rowdonhang->ngaydathang}}</td>
+                                <td scope="row">{{$rowdonhang->diachigiaohang}}</td>
+                                <td style="font-weight: bold; color: red;">{{number_format("$rowdonhang->thanhtiendonhang",0,",",".")}}</td>
+                                @if($rowdonhang->trangthaidonhang == 0)
+                                <td scope="row">Đã tiếp nhận</td>
                                 <td class="row">
-                                    <form action="{{route('capnhatgiohang')}}" method="post">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="idsanpham" value="{{$rowchitietgiohang->id}}">
-                                        <input type="hidden" name="dongiasanpham" value="{{$rowchitietgiohang->dongiasanpham}}">
-                                        <div class="buttons_added">
-                                            <!-- <input class="minus is-form" type="button" value="-"> -->
-                                            <input aria-label="quantity" class="input-qty" max="10" min="1" name="soluongsanpham" type="number" value="{{$rowchitietgiohang->soluongsanpham}}">
-                                            <!-- <input class="plus is-form" type="button" value="+"> -->
-                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
-                                        </div>
-                                    </form>
-                                    <form action="{{route('deletegiohang')}}" method="post">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="idsanpham" value="{{$rowchitietgiohang->id}}">
-                                        <div class="buttons_added">
-                                            <button type="submit" class="btn btn-primary">Xóa</button>
-                                        </div>
+                                    <form action="{{route('huydonhang')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
+                                        <button type="submit" class="btn btn-primary">Hủy</button>
                                     </form>
                                 </td>
+                                @elseif($rowdonhang->trangthaidonhang == 1)
+                                <td scope="row">Đã đóng gói</td>
+                                <td class="row">
+                                    <form action="{{route('huydonhang')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
+                                        <button type="submit" class="btn btn-primary">Hủy</button>
+                                    </form>
+                                </td>
+                                @elseif($rowdonhang->trangthaidonhang == 2)
+                                <td scope="row">Đang giao hàng</td>
+                                <td></td>
+                                @elseif($rowdonhang->trangthaidonhang == 3)
+                                <td style="color: green;">Đã hoàn thành</td>
+                                <td></td>
+                                @elseif($rowdonhang->trangthaidonhang == 4)
+                                <td style="color: red;">Đã hủy</td>
+                                <td></td>
+                                @endif
+
                             </tr>
-                            <?php $thanhtien = $thanhtien + $rowchitietgiohang->dongiasanpham * $rowchitietgiohang->soluongsanpham ?>
+                            @foreach($chitietdonhang as $rowchitietdonhang)
+                            @if($rowdonhang->id == $rowchitietdonhang->iddonhang)
+                            <tr>
+                                <td></td>
+                                <td>{{$rowchitietdonhang->tensanpham}}</td>
+                                <td><img src="{{asset($rowchitietdonhang->anhsanpham)}}" height="30px"></td>
+                                <td style="font-weight: bold; color: purple;">{{number_format("$rowchitietdonhang->dongiasanpham",0,",",".")}}</td>
+                                <td style="font-weight: bold; color: purple;">{{number_format("$rowchitietdonhang->soluongsanpham",0,",",".")}}</td>
+                                <td style="font-weight: bold; color: purple;">{{number_format("$rowchitietdonhang->thanhtiensanpham",0,",",".")}}</td>
+                            </tr>
+                            @endif
+                            @endforeach
                             @endforeach
                             <tr>
-                                <td style="color: black; font-size: 30px">Thành tiền: <?php echo number_format("$thanhtien", 0, ",", ".");
-                                                                                        echo " VNĐ" ?></td>
-                                <td>
-                                    <form action="" method="post">
-                                        {{ csrf_field() }}
-                                        <div class="buttons_added">
-                                            <button type="submit" class="btn btn-primary">Thanh toán</button>
-                                        </div>
-                                    </form>
-                                </td>
+                                <td>{{$donhang->links()}}</td>
                             </tr>
                         </tbody>
                     </table>

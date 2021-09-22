@@ -98,6 +98,7 @@
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NO.</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">IDĐH</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NGÀY ĐẶT HÀNG</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐỊA CHỈ GIAO HÀNG</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">GIÁ TRỊ ĐƠN HÀNG</th>
@@ -111,6 +112,7 @@
                                     @foreach ($donhang as $key => $rowdonhang)
                                     <tr class="odd">
                                         <td>{{ $key+1 }}</td>
+                                        <td>{{ $rowdonhang->id }}</td>
                                         <td>{{ $rowdonhang->ngaydathang }}</td>
                                         <td>{{ $rowdonhang->diachigiaohang }}</td>
                                         <td>{{number_format("$rowdonhang->thanhtiendonhang",0,",",".")}}</td>

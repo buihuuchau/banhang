@@ -271,6 +271,10 @@ Route::prefix('/')->group(function () {
         'as' => 'thanhtoan',
         'uses' => 'App\Http\Controllers\frontend\indexController@thanhtoan',
     ]);
+    Route::post('/huydonhang', [
+        'as' => 'huydonhang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@huydonhang',
+    ]);
 });
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';
