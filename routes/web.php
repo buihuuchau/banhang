@@ -259,6 +259,14 @@ Route::prefix('/')->group(function () {
         'as' => 'giohang',
         'uses' => 'App\Http\Controllers\frontend\indexController@giohang',
     ]);
+    Route::post('/themvaogiohang', [
+        'as' => 'themvaogiohang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@themvaogiohang',
+    ]);
+    Route::post('/muangay', [
+        'as' => 'muangay',
+        'uses' => 'App\Http\Controllers\frontend\indexController@muangay',
+    ]);
     Route::post('/capnhatgiohang', [
         'as' => 'capnhatgiohang',
         'uses' => 'App\Http\Controllers\frontend\indexController@capnhatgiohang',

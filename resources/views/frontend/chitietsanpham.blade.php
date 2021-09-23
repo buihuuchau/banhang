@@ -46,8 +46,21 @@
                         </div>
                         @if($khohang!=null && $khohang->soluongconlai > 0)<div class="post-sharing col-md-2">
                             <ul class="list-inline">
-                                <li><a href="#" class="btn">Thêm vào giỏ hàng</span></a></li>
-                                <li><a href="#" class="btn">Mua ngay</span></a></li>
+                                <li>
+                                    <form action="{{route('themvaogiohang')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="idsanpham" value="{{$sanpham->id}}">
+                                        <input type="submit" class="btn" value="Thêm vào giỏ hàng">
+                                    </form>
+                                    <!-- <button><a href="{{route('themvaogiohang', ['idsanpham'=>$sanpham->id])}}">Thêm vào giỏ hàng</a></button> -->
+                                </li>
+                                <li>
+                                    <form action="{{route('muangay')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="idsanpham" value="{{$sanpham->id}}">
+                                        <input type="submit" class="btn" value="Mua ngay">
+                                    </form>
+                                </li>
                             </ul>
                         </div><!-- end post-sharing -->
                         @endif

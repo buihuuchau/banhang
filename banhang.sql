@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 21, 2021 lúc 08:02 AM
+-- Thời gian đã tạo: Th9 23, 2021 lúc 09:28 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `chitietdonhang` (
   `id` bigint(20) NOT NULL,
   `idusers` bigint(20) NOT NULL,
+  `idkhachhang` bigint(20) DEFAULT NULL,
   `iddonhang` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
@@ -43,8 +44,11 @@ CREATE TABLE `chitietdonhang` (
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
 
-INSERT INTO `chitietdonhang` (`id`, `idusers`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
-(2, 1, 2, 43, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 5, 0);
+INSERT INTO `chitietdonhang` (`id`, `idusers`, `idkhachhang`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
+(1, 1, 1, 5, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 5, 0),
+(2, 1, 1, 2, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 2, 0),
+(15, 1, 0, 19, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 50, 0),
+(16, 1, 0, 20, 43, 'Blue Grass', 'storage/admin/AnhNull.jpg', 0, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -54,13 +58,19 @@ INSERT INTO `chitietdonhang` (`id`, `idusers`, `iddonhang`, `idsanpham`, `tensan
 
 CREATE TABLE `chitietgiohang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idkhachhang` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
-  `dongiasanpham` bigint(20) NOT NULL,
-  `soluongsanpham` bigint(20) NOT NULL,
-  `thanhtiensanpham` bigint(20) NOT NULL
+  `soluongsanpham` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietgiohang`
+--
+
+INSERT INTO `chitietgiohang` (`id`, `idkhachhang`, `idsanpham`, `soluongsanpham`) VALUES
+(10, 1, 48, 5),
+(11, 1, 61, 4),
+(12, 1, 50, 3);
 
 -- --------------------------------------------------------
 
@@ -138,7 +148,13 @@ CREATE TABLE `donhang` (
 --
 
 INSERT INTO `donhang` (`id`, `idusers`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
-(2, 1, 0, '2021-09-19', 'null', 0, 3);
+(1, 1, 1, '2021-09-01', 'cantho', 120000, 4),
+(2, 1, 1, '2021-09-02', 'cantho', 130000, 3),
+(3, 1, 1, '2021-09-03', 'cantho', 100000, 2),
+(4, 1, 1, '2021-09-04', 'cantho', 120000, 1),
+(5, 1, 1, '2021-09-04', 'cantho', 120000, 0),
+(19, 1, 0, '2021-09-21', 'null', 0, 3),
+(20, 1, 0, '2021-09-21', 'null', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -205,7 +221,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`id`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachhang`, `diachikhachhang`, `diachigiaohang`, `uytinkhachhang`, `thanhtiengiohang`) VALUES
-(2, 763232505, 'd8d12015bb905077cce3ca1c32d47c9e', 'Bùi Hữu Châu', 'Cần Thơ', 'Cần Thơ', 0, 0);
+(1, 763232505, 'd8d12015bb905077cce3ca1c32d47c9e', 'Bùi Hữu Châu', 'Cần Thơ', 'Cần Thơ', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -222,6 +238,16 @@ CREATE TABLE `khohang` (
   `soluongban` bigint(20) NOT NULL DEFAULT '0',
   `soluongconlai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `khohang`
+--
+
+INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
+(7, 1, 43, 'Blue Grass', 100, 55, 45),
+(8, 1, 61, 'Blue Grass Bds', 20, 0, 20),
+(9, 1, 48, 'Cá Chép Koi Mini Việt Nam', 20, 0, 20),
+(10, 1, 50, 'Cá Rồng Ngân Long', 5, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -262,6 +288,16 @@ CREATE TABLE `nhaphang` (
   `ngaynhap` date NOT NULL,
   `nguongocnhap` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhaphang`
+--
+
+INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
+(12, 1, 43, 'Blue Grass', 1, 100, 100, '2021-09-21', 'Nhật Bản'),
+(13, 1, 61, 'Blue Grass Bds', 80000, 20, 1600000, '2021-09-22', 'Nhật Bản'),
+(14, 1, 48, 'Cá Chép Koi Mini Việt Nam', 400000, 20, 8000000, '2021-09-23', 'Nhật Bản'),
+(15, 1, 50, 'Cá Rồng Ngân Long', 700000, 5, 3500000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -318,7 +354,6 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
-(43, 1, 26, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 'Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds', 'Việt Nam', 100000, 'cặp', 0, 0),
 (44, 1, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
 (45, 1, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
 (46, 1, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
@@ -332,7 +367,6 @@ INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`,
 (54, 1, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
 (55, 1, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
 (56, 1, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
-(57, 1, 42, 'Thuốc Diệt Rêu Nuphar Remove BBA 75ml', 'storage/admin/1/RQu9AIsRvPQQjUew61r9xVcEYEokAJj0QTNzdy1V.png', 'Thuốc diệt rêu Nuphar diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh Công dụng : -Diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh', 'Việt Nam', 55000, 'chai-75ml', 0, 1),
 (60, 1, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1),
 (61, 1, 26, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 'Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds', 'Việt Nam', 100000, 'cặp', 0, 1),
 (62, 1, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
@@ -348,7 +382,6 @@ INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`,
 (72, 1, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
 (73, 1, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
 (74, 1, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
-(75, 1, 42, 'Thuốc Diệt Rêu Nuphar Remove BBA 75ml', 'storage/admin/1/RQu9AIsRvPQQjUew61r9xVcEYEokAJj0QTNzdy1V.png', 'Thuốc diệt rêu Nuphar diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh Công dụng : -Diệt rêu chùm đen ( BBA ), rêu tóc, tảo nâu, tảo lam, tảo xanh bám kiếng... và hàng loạt rêu hại khác mà không ảnh hưởng đến cây thủy sinh', 'Việt Nam', 55000, 'chai-75ml', 0, 1),
 (76, 1, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1);
 
 -- --------------------------------------------------------
@@ -533,13 +566,13 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -551,7 +584,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -569,13 +602,13 @@ ALTER TABLE `hinhanh`
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -587,7 +620,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `nhaphang`
 --
 ALTER TABLE `nhaphang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -599,7 +632,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinshop`

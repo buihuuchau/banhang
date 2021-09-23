@@ -388,6 +388,9 @@
             <!-- Login Form -->
             <form action="{{route('dologinkhachhang')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                @if($idsanpham)
+                <input type="hidden" name="idsanpham" value="{{$idsanpham}}">
+                @endif
                 <input type="tel" id="login" class="fadeIn second" name="sdtkhachhang" placeholder="SỐ ĐIỆN THOẠI">
                 <input type="password" id="password" class="fadeIn third" name="matkhaukhachhang" placeholder="MẬT KHẨU">
                 <input type="submit" class="fadeIn fourth" value="Đăng nhập">

@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('giohang')}}" style="font-size: 20px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="{{route('giohang')}}" style="font-size: 20px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i>({{$soluonggiohang}})</a>
                     </li>
                     @else
                     <li class="nav-item">

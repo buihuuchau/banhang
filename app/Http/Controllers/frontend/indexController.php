@@ -16,19 +16,23 @@ use App\components\myfunction;
 
 class indexController extends Controller
 {
-    public function loginkhachhang()
+    public function loginkhachhang(Request $request)
     {
-        return view('frontend.loginkhachhang');
+        $idsanpham = $request->idsanpham;
+        return view('frontend.loginkhachhang', compact('idsanpham'));
     }
+
     public function registerkhachhang()
     {
         return view('frontend.registerkhachhang');
     }
+
     public function dangxuatkhachhang()
     {
         Session::forget('ssidkhachhang');
-        return redirect()->route('index');
+        return back();
     }
+
     public function editkhachhang($idkhachhang)
     {
         $khachhang = DB::table('khachhang')
@@ -36,6 +40,7 @@ class indexController extends Controller
             ->first();
         return view('frontend.editkhachhang', compact('khachhang'));
     }
+
     public function dologinkhachhang(Request $request)
     {
         $check = DB::table('khachhang')
@@ -45,11 +50,18 @@ class indexController extends Controller
         if ($check) {
             $ssidkhachhang = $check->id;
             Session::put('ssidkhachhang', $ssidkhachhang);
-            return redirect()->route('index');
+            if ($request->idsanpham) {
+                $idsanpham = $request->idsanpham;
+                return redirect()->route('chitietsanpham', ['idsanpham' => $idsanpham]);
+                // return redirect()->route('chitietsanpham', compact('idsanpham'));
+            } else {
+                return redirect()->route('index');
+            }
         } else {
             return back()->withErrors('Tài khoản hoặc mật khẩu không chính xác');
         }
     }
+
     public function doregisterkhachhang(Request $request)
     {
         $check = DB::table('khachhang')
@@ -67,6 +79,7 @@ class indexController extends Controller
             return redirect('loginkhachhang');
         }
     }
+
     public function doeditkhachhang(Request $request)
     {
         if ($request->matkhaucukhachhang) {
@@ -114,8 +127,8 @@ class indexController extends Controller
             ->where('hidden', 0)
             ->get();
         $sanpham = DB::table('sanpham')
-            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
             ->orderBy('sanpham.id', 'desc')
+            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
             ->where('sanpham.hidden', 0)
             ->where('sanpham.sanphamnoibat', 1)
             ->select('sanpham.*', 'danhmuc.tendanhmuc')
@@ -125,8 +138,16 @@ class indexController extends Controller
         $khachhang = DB::table('khachhang')
             ->where('id', $ssidkhachhang)
             ->first();
-        return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham', 'khachhang'));
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
+
     public function sanphamdanhmuc($iddanhmuc)
     {
         $thongtinshop = DB::table('thongtinshop')
@@ -149,8 +170,16 @@ class indexController extends Controller
         $khachhang = DB::table('khachhang')
             ->where('id', $ssidkhachhang)
             ->first();
-        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanpham', 'khachhang'));
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
+
     public function chitietsanpham($idsanpham)
     {
         $thongtinshop = DB::table('thongtinshop')
@@ -182,8 +211,16 @@ class indexController extends Controller
         $khachhang = DB::table('khachhang')
             ->where('id', $ssidkhachhang)
             ->first();
-        return view('frontend.chitietsanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'video', 'hinhanh', 'sanphamlienquan', 'khachhang', 'khohang'));
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        return view('frontend.chitietsanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'video', 'hinhanh', 'sanphamlienquan', 'khachhang', 'khohang', 'soluonggiohang'));
     }
+
     public function giohang()
     {
         $ssidkhachhang = Session::get('ssidkhachhang');
@@ -214,7 +251,43 @@ class indexController extends Controller
         $chitietdonhang = DB::table('chitietdonhang')
             ->where('idkhachhang', $ssidkhachhang)
             ->get();
-        return view('frontend.giohang', compact('thongtinshop', 'danhmuc', 'sanphamlienquan', 'khachhang', 'chitietgiohang', 'thanhtien', 'donhang', 'chitietdonhang'));
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        return view('frontend.giohang', compact('thongtinshop', 'danhmuc', 'sanphamlienquan', 'khachhang', 'chitietgiohang', 'thanhtien', 'donhang', 'chitietdonhang', 'soluonggiohang'));
+    }
+
+    public function themvaogiohang(Request $request)
+    {
+        $ssidkhachhang = Session::get('ssidkhachhang');
+        $idsanpham = $request->idsanpham;
+        if ($ssidkhachhang == null) return redirect()->route('loginkhachhang', compact('idsanpham'));
+        $chitietgiohang['idkhachhang'] = $ssidkhachhang;
+        $chitietgiohang['idsanpham'] = $request->idsanpham;
+        $chitietgiohang['soluongsanpham'] = 1;
+        $check = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->where('idsanpham', $request->idsanpham)
+            ->first();
+        if ($check == null) {
+            DB::table('chitietgiohang')->insert($chitietgiohang);
+            return back();
+        } else {
+            $chitietgiohang['soluongsanpham'] = $check->soluongsanpham + 1;
+            DB::table('chitietgiohang')
+                ->where('id', $check->id)
+                ->update($chitietgiohang);
+            return back();
+        }
+    }
+
+    public function muangay(Request $request)
+    {
+        dd($request->idsanpham);
     }
     public function capnhatgiohang(Request $request)
     {
@@ -226,6 +299,7 @@ class indexController extends Controller
             ->update($chitietgiohang);
         return back();
     }
+
     public function deletegiohang(Request $request)
     {
         $ssidkhachhang = Session::get('ssidkhachhang');
