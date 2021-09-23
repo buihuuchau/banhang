@@ -261,6 +261,57 @@ class indexController extends Controller
         return view('frontend.giohang', compact('thongtinshop', 'danhmuc', 'sanphamlienquan', 'khachhang', 'chitietgiohang', 'thanhtien', 'donhang', 'chitietdonhang', 'soluonggiohang'));
     }
 
+    public function muangay(Request $request)
+    {
+        $ssidkhachhang = Session::get('ssidkhachhang');
+        $idsanpham = $request->idsanpham;
+        if ($ssidkhachhang == null) return redirect()->route('loginkhachhang', compact('idsanpham'));
+        $thongtinshop = DB::table('thongtinshop')
+            ->first();
+        $danhmuc = DB::table('danhmuc')
+            ->where('hidden', 0)
+            ->get();
+        $khachhang = DB::table('khachhang')
+            ->where('id', $ssidkhachhang)
+            ->first();
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+            ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        $sanpham = DB::table('sanpham')
+            ->where('id', $request->idsanpham)
+            ->first();
+        return view('frontend.muangay', compact('thongtinshop', 'danhmuc', 'khachhang',  'soluonggiohang', 'sanpham'));
+    }
+
+    public function domuangay(Request $request)
+    {
+        $ssidkhachhang = Session::get('ssidkhachhang');
+        $donhang['idkhachhang'] = $ssidkhachhang;
+        $donhang['ngaydathang'] = date('y-m-d');
+        $donhang['diachigiaohang'] = $request->diachigiaohang;
+        $donhang['thanhtiendonhang'] = $request->thanhtiendonhang;
+        $donhang['trangthaidonhang'] = 0;
+        $iddonhang = DB::table('donhang')->insertgetID($donhang);
+
+        $chitietdonhang['idkhachhang'] = $ssidkhachhang;
+        $chitietdonhang['iddonhang'] = $iddonhang;
+        $sanpham = DB::table('sanpham')
+            ->where('id', $request->idsanpham)
+            ->first();
+        $chitietdonhang['idsanpham'] = $request->idsanpham;
+        $chitietdonhang['tensanpham'] = $sanpham->tensanpham;
+        $chitietdonhang['anhsanpham'] = $sanpham->anhsanpham;
+        $chitietdonhang['dongiasanpham'] = $sanpham->dongiasanpham;
+        $chitietdonhang['soluongsanpham'] = 1;
+        $chitietdonhang['thanhtiensanpham'] = $sanpham->dongiasanpham;
+        DB::table('chitietdonhang')->insert($chitietdonhang);
+        return redirect()->route('giohang');
+    }
+
     public function themvaogiohang(Request $request)
     {
         $ssidkhachhang = Session::get('ssidkhachhang');
@@ -285,10 +336,6 @@ class indexController extends Controller
         }
     }
 
-    public function muangay(Request $request)
-    {
-        dd($request->idsanpham);
-    }
     public function capnhatgiohang(Request $request)
     {
         $ssidkhachhang = Session::get('ssidkhachhang');

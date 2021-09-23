@@ -23,11 +23,9 @@ class quanlynhaphangController extends Controller
             ->where('id', $id)
             ->first();
         $nhaphang = DB::table('nhaphang')
-            ->where('idusers', $id)
             ->get();
         $sanpham = DB::table('sanpham')
             ->orderBy('tensanpham', 'asc')
-            ->where('idusers', $id)
             ->get();
         return view('admin.nhaphang.quanlynhaphang', compact('thongtinshop', 'nhaphang', 'sanpham'));
     }
@@ -37,7 +35,6 @@ class quanlynhaphangController extends Controller
         $sanpham = DB::table('sanpham')
             ->where('id', $request->idsanpham)
             ->first();
-        $nhaphang['idusers'] =  $id;
         $nhaphang['idsanpham'] = $request->idsanpham;
         $nhaphang['tensanpham'] = $sanpham->tensanpham;
         $nhaphang['dongianhap'] = $request->dongianhap;
@@ -51,7 +48,6 @@ class quanlynhaphangController extends Controller
             ->where('idsanpham', $request->idsanpham)
             ->first();
         if ($check == null) {
-            $khohang['idusers'] = $id;
             $khohang['idsanpham'] = $request->idsanpham;
             $khohang['tensanpham'] = $sanpham->tensanpham;
             $khohang['soluonghang'] = $request->soluongnhap;

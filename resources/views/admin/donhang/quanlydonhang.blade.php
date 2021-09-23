@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Xác nhận sản phẩm bị lỗi')">Thêm</button>
                                     </div>
                                 </form>
                             </div>
@@ -206,6 +206,12 @@
                                                 <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
                                                 <button type="submit" onclick="return confirm('Hoàn thành đơn hàng...')" class="btn btn-success">
                                                     <i class="fas fa-check"></i>
+                                            </form>
+                                            <form action="{{route('checkhuydon')}}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
+                                                <button type="submit" onclick="return confirm('Bạn muốn hủy đơn hàng này?')" class="btn btn-danger">
+                                                    <i class="fas fa-times"></i>
                                             </form>
                                             @endif
                                         </td>

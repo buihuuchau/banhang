@@ -259,13 +259,17 @@ Route::prefix('/')->group(function () {
         'as' => 'giohang',
         'uses' => 'App\Http\Controllers\frontend\indexController@giohang',
     ]);
-    Route::post('/themvaogiohang', [
-        'as' => 'themvaogiohang',
-        'uses' => 'App\Http\Controllers\frontend\indexController@themvaogiohang',
-    ]);
     Route::post('/muangay', [
         'as' => 'muangay',
         'uses' => 'App\Http\Controllers\frontend\indexController@muangay',
+    ]);
+    Route::post('/domuangay', [
+        'as' => 'domuangay',
+        'uses' => 'App\Http\Controllers\frontend\indexController@domuangay',
+    ]);
+    Route::post('/themvaogiohang', [
+        'as' => 'themvaogiohang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@themvaogiohang',
     ]);
     Route::post('/capnhatgiohang', [
         'as' => 'capnhatgiohang',
@@ -275,9 +279,9 @@ Route::prefix('/')->group(function () {
         'as' => 'deletegiohang',
         'uses' => 'App\Http\Controllers\frontend\indexController@deletegiohang',
     ]);
-    Route::post('/thanhtoan', [
-        'as' => 'thanhtoan',
-        'uses' => 'App\Http\Controllers\frontend\indexController@thanhtoan',
+    Route::post('/dathang', [
+        'as' => 'dathang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@dathang',
     ]);
     Route::post('/huydonhang', [
         'as' => 'huydonhang',

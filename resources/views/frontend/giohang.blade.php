@@ -55,10 +55,10 @@
                                 <td style="color: black; font-size: 30px">Thành tiền: <?php echo number_format("$thanhtien", 0, ",", ".");
                                                                                         echo " VNĐ" ?></td>
                                 <td>
-                                    <form action="" method="post">
+                                    <form action="{{route('dathang')}}" method="post">
                                         {{ csrf_field() }}
                                         <div class="buttons_added">
-                                            <button type="submit" class="btn btn-primary">Thanh toán</button>
+                                            <button type="submit" class="btn btn-primary">Đặt hàng</button>
                                         </div>
                                     </form>
                                 </td>

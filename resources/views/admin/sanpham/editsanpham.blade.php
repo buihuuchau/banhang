@@ -88,8 +88,10 @@
                                 <video style="height:140px; margin-top: 10px" controls>
                                     <source src="{{ $video->dulieuvideo }}" type="video/mp4">
                                 </video>
-                                <button type="button" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
-                                    <a href="{{route('deletedulieuvideo',['idvideo'=>$video->id])}}" style="color: white"><i class="fas fa-trash"></i></a>
+                                <button type="button" class="btn btn-danger">
+                                    <a href="{{route('deletedulieuvideo',['idvideo'=>$video->id])}}" style="color: white" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </button>
                                 @endif
                             </div>
@@ -101,8 +103,10 @@
                             @foreach($hinhanh as $rowhinhanh)
                             <div class="form-group col-md-2">
                                 <img style="width:150px; height:150px; margin-top: 10px; object-fit: cover" src="{{ $rowhinhanh->dulieuhinhanh }}">
-                                <button type="button" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
-                                    <a href="{{route('deletedulieuhinhanh',['idhinhanh'=>$rowhinhanh->id])}}" style="color: white"><i class="fas fa-trash"></i></a>
+                                <button type="button" class="btn btn-danger">
+                                    <a href="{{route('deletedulieuhinhanh',['idhinhanh'=>$rowhinhanh->id])}}" style="color: white" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </button>
                             </div>
                             @endforeach

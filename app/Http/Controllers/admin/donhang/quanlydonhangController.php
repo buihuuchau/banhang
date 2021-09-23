@@ -24,22 +24,18 @@ class quanlydonhangController extends Controller
             ->first();
         $donhang = DB::table('donhang')
             ->orderBy('donhang.ngaydathang', 'desc')
-            ->where('donhang.idusers', $id)
             ->join('khachhang', 'donhang.idkhachhang', '=', 'khachhang.id')
             ->select('donhang.*', 'khachhang.sdtkhachhang', 'khachhang.uytinkhachhang')
             ->get();
         $donhang2 = DB::table('donhang')
             ->orderBy('donhang.ngaydathang', 'desc')
-            ->where('idusers', $id)
             ->where('idkhachhang', 0)
             ->where('diachigiaohang', 'null')
             ->where('trangthaidonhang', 3)
             ->get();
         $chitietdonhang = DB::table('chitietdonhang')
-            ->where('idusers', $id)
             ->get();
         $khohang = DB::table('khohang')
-            ->where('idusers', $id)
             ->where('soluongconlai', '>', 0)
             ->get();
         return view('admin.donhang.quanlydonhang', compact('thongtinshop', 'donhang', 'donhang2', 'chitietdonhang', 'khohang'));
@@ -66,6 +62,19 @@ class quanlydonhangController extends Controller
         DB::table('donhang')
             ->where('id', $request->iddonhang)
             ->update($donhang);
+        $chitietdonhang = DB::table('chitietdonhang')
+            ->where('iddonhang', $request->iddonhang)
+            ->get();
+        foreach ($chitietdonhang as $rowchitietdonhang) {
+            $idsanpham = $rowchitietdonhang->idsanpham;
+            $soluongsanpham = $rowchitietdonhang->soluongsanpham;
+            $check = DB::table('khohang')
+                ->where('idsanpham', $idsanpham)
+                ->first();
+            $khohang['soluongban'] = $check->soluongban + $soluongsanpham;
+            $khohang['soluongconlai'] = $check->soluongconlai - $soluongsanpham;
+            DB::table('khohang')->where('idsanpham', $idsanpham)->update($khohang);
+        }
         return back();
     }
     public function checkhuydon(Request $request)
@@ -89,7 +98,6 @@ class quanlydonhangController extends Controller
             DB::table('khohang')->where('idsanpham', $request->idsanpham)->update($khohang2);
         }
 
-        $donhang['idusers'] = $id;
         $donhang['idkhachhang'] = 0;
         $donhang['ngaydathang'] = date('y-m-d');
         $donhang['diachigiaohang'] = 'null';
@@ -97,7 +105,6 @@ class quanlydonhangController extends Controller
         $donhang['trangthaidonhang'] = 3;
         $iddonhang = DB::table('donhang')->insertgetID($donhang);
 
-        $chitietdonhang['idusers'] = $id;
         $chitietdonhang['idkhachhang'] = 0;
         $chitietdonhang['iddonhang'] = $iddonhang;
         $chitietdonhang['idsanpham'] = $request->idsanpham;

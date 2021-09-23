@@ -47,14 +47,11 @@ class quanlydanhmucController extends Controller
             ->first();
         $sudung = null;
         $danhmuc = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->get();
         $danhmuc2 = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->where('hidden', 0)
             ->get();
         $sanpham = DB::table('sanpham')
-            ->where('idusers', $id)
             ->get();
         // $htmlOption = $this->xemdanhmuc(0);
         $callfunction = new myfunction($danhmuc2);
@@ -65,13 +62,11 @@ class quanlydanhmucController extends Controller
     {
         $id = Auth::user()->id;
         $check = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->where('danhmuccha', $request->danhmuccha)
             ->where('tendanhmuc', $request->tendanhmuc)
             ->first();
         if ($check) return back()->withErrors('Tên danh mục bị trùng');
         else {
-            $danhmuc['idusers'] = $id;
             $danhmuc['tendanhmuc'] = $request->tendanhmuc;
             $danhmuc['danhmuccha'] = $request->danhmuccha;
             DB::table('danhmuc')->insert($danhmuc);
@@ -82,7 +77,6 @@ class quanlydanhmucController extends Controller
     {
         $id = Auth::user()->id;
         $check = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->where('danhmuccha', $request->danhmuccha)
             ->where('tendanhmuc', $request->tendanhmuc)
             ->first();

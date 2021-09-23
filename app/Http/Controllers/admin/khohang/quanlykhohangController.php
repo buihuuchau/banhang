@@ -22,7 +22,6 @@ class quanlykhohangController extends Controller
             ->where('id', $id)
             ->first();
         $khohang = DB::table('khohang')
-            ->where('idusers', $id)
             ->get();
         return view('admin.khohang.quanlykhohang', compact('thongtinshop', 'khohang'));
     }

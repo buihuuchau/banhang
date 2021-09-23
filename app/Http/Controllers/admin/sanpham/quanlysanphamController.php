@@ -23,14 +23,11 @@ class quanlysanphamController extends Controller
             ->where('id', $id)
             ->first();
         $danhmuc = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->get();
         $danhmuc2 = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->where('hidden', 0)
             ->get();
         $sanpham = DB::table('sanpham')
-            ->where('idusers', $id)
             ->get();
         $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
@@ -60,7 +57,6 @@ class quanlysanphamController extends Controller
                 $linkanhsanpham = 'storage' . substr($anhsanpham, 6);
                 $sanpham['anhsanpham'] = $linkanhsanpham;
             }
-            $sanpham['idusers'] = $id;
             $sanpham['iddanhmuc'] = $request->iddanhmuc;
             $sanpham['tensanpham'] = $request->tensanpham;
             $sanpham['thongtinsanpham'] = $request->thongtinsanpham;
@@ -96,18 +92,16 @@ class quanlysanphamController extends Controller
         if ($dulieuvideo != null) {
             $dulieuvideo = $dulieuvideo->store('public/admin/' . $id);
             $linkdulieuvideo = 'storage' . substr($dulieuvideo, 6);
-            $video['idusers'] = $id;
             $video['idsanpham'] = $idsanpham;
             $video['dulieuvideo'] = $linkdulieuvideo;
             DB::table('video')->insert($video);
         }
         if ($dulieuhinhanh != null) {
-            if (count($dulieuhinhanh) >= 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
+            if (count($dulieuhinhanh) > 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
             else {
                 foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
                     $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
                     $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
-                    $hinhanh['idusers'] = $id;
                     $hinhanh['idsanpham'] = $idsanpham;
                     $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
                     DB::table('hinhanh')->insert($hinhanh);
@@ -124,10 +118,8 @@ class quanlysanphamController extends Controller
             ->where('id', $id)
             ->first();
         $danhmuc = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->get();
         $danhmuc2 = DB::table('danhmuc')
-            ->where('idusers', $id)
             ->where('hidden', 0)
             ->get();
         $sanpham = DB::table('sanpham')
@@ -209,7 +201,6 @@ class quanlysanphamController extends Controller
         if ($dulieuvideo != null) {
             $dulieuvideo = $dulieuvideo->store('public/admin/' . $id);
             $linkdulieuvideo = 'storage' . substr($dulieuvideo, 6);
-            $video['idusers'] = $id;
             $video['idsanpham'] = $request->idsanpham;
             $video['dulieuvideo'] = $linkdulieuvideo;
             DB::table('video')
@@ -220,12 +211,14 @@ class quanlysanphamController extends Controller
                 ->insert($video);
         }
         if ($dulieuhinhanh != null) {
-            if (count($dulieuhinhanh) >= 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
+            $check = DB::table('hinhanh')
+                ->where('idsanpham', $request->idsanpham)
+                ->get();
+            if (count($dulieuhinhanh) > 5 || (count($dulieuhinhanh) + count($check)) > 5) return back()->withErrors("Tối đa 5 ảnh cho sản phẩm");
             else {
                 foreach ($dulieuhinhanh as $rowdulieuhinhanh) {
                     $imgsanpham = $rowdulieuhinhanh->store('public/admin/' . $id);
                     $linkimgsanpham = 'storage' . substr($imgsanpham, 6);
-                    $hinhanh['idusers'] = $id;
                     $hinhanh['idsanpham'] = $request->idsanpham;
                     $hinhanh['dulieuhinhanh'] = $linkimgsanpham;
                     DB::table('hinhanh')->insert($hinhanh);

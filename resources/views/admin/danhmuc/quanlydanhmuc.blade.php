@@ -126,6 +126,11 @@
                                             $sudung = $rowdanhmuc->id;
                                         } ?>
                                         @endforeach
+                                        @foreach ($danhmuc as $rowdanhmuc3)
+                                        <?php if ($rowdanhmuc3->danhmuccha == $rowdanhmuc->id) {
+                                            $sudung = $rowdanhmuc->id;
+                                        } ?>
+                                        @endforeach
 
                                         @if ($rowdanhmuc->hidden == 0 && $sudung != $rowdanhmuc->id)
                                         <td>Chưa được sử dụng</td>

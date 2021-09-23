@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 23, 2021 lúc 09:28 AM
+-- Thời gian đã tạo: Th9 23, 2021 lúc 04:43 PM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `chitietdonhang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idkhachhang` bigint(20) DEFAULT NULL,
   `iddonhang` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
@@ -44,11 +43,13 @@ CREATE TABLE `chitietdonhang` (
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
 
-INSERT INTO `chitietdonhang` (`id`, `idusers`, `idkhachhang`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
-(1, 1, 1, 5, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 5, 0),
-(2, 1, 1, 2, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 2, 0),
-(15, 1, 0, 19, 43, 'Blue Grass', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 50, 0),
-(16, 1, 0, 20, 43, 'Blue Grass', 'storage/admin/AnhNull.jpg', 0, 5, 0);
+INSERT INTO `chitietdonhang` (`id`, `idkhachhang`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
+(24, 0, 30, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 3000, 12, 0),
+(25, 1, 31, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 3000, 1, 3000),
+(26, 1, 32, 61, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 1, 100000),
+(27, 1, 33, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 90000, 1, 90000),
+(28, 0, 34, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/AnhNull.jpg', 0, 2, 0),
+(29, 0, 35, 61, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -63,15 +64,6 @@ CREATE TABLE `chitietgiohang` (
   `soluongsanpham` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `chitietgiohang`
---
-
-INSERT INTO `chitietgiohang` (`id`, `idkhachhang`, `idsanpham`, `soluongsanpham`) VALUES
-(10, 1, 48, 5),
-(11, 1, 61, 4),
-(12, 1, 50, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -80,7 +72,6 @@ INSERT INTO `chitietgiohang` (`id`, `idkhachhang`, `idsanpham`, `soluongsanpham`
 
 CREATE TABLE `danhmuc` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `tendanhmuc` varchar(255) NOT NULL,
   `danhmuccha` bigint(20) NOT NULL,
   `hidden` bigint(20) NOT NULL DEFAULT '0'
@@ -90,42 +81,42 @@ CREATE TABLE `danhmuc` (
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`id`, `idusers`, `tendanhmuc`, `danhmuccha`, `hidden`) VALUES
-(18, 1, 'Cá', 0, 0),
-(19, 1, 'Thức ăn', 0, 0),
-(20, 1, 'Cây', 0, 0),
-(21, 1, 'Hồ', 0, 0),
-(22, 1, 'Chế phẩm', 0, 0),
-(23, 1, 'Vật liệu', 0, 0),
-(24, 1, 'Phụ kiện', 0, 0),
-(25, 1, 'Khác', 0, 0),
-(26, 1, 'Guppy', 18, 0),
-(27, 1, 'Endler', 18, 0),
-(28, 1, 'Cá săn mồi', 18, 0),
-(29, 1, 'Cá koi', 18, 0),
-(30, 1, 'Tươi sống', 19, 0),
-(31, 1, 'Đông lạnh', 19, 0),
-(32, 1, 'Sấy khô', 19, 0),
-(33, 1, 'Đóng hộp', 19, 0),
-(34, 1, 'Rong', 20, 0),
-(35, 1, 'Rêu', 20, 0),
-(36, 1, 'Cỏ', 20, 0),
-(37, 1, 'Hạt giống', 20, 0),
-(38, 1, 'Xốp', 21, 0),
-(39, 1, 'Kính', 21, 0),
-(40, 1, 'Xi măng', 21, 0),
-(41, 1, 'Nhựa', 21, 0),
-(42, 1, 'Trị bệnh', 22, 0),
-(43, 1, 'Xử lý nước', 22, 0),
-(44, 1, 'Dinh dưỡng', 22, 0),
-(45, 1, 'Vi sinh', 22, 0),
-(46, 1, 'Lọc', 23, 0),
-(47, 1, 'Đá', 23, 0),
-(48, 1, 'Nền', 23, 0),
-(49, 1, 'Trang trí', 23, 0),
-(50, 1, 'Đèn', 24, 0),
-(51, 1, 'Máy móc', 24, 0),
-(52, 1, 'Công cụ', 24, 0);
+INSERT INTO `danhmuc` (`id`, `tendanhmuc`, `danhmuccha`, `hidden`) VALUES
+(18, 'Cá', 0, 0),
+(19, 'Thức ăn', 0, 0),
+(20, 'Cây', 0, 0),
+(21, 'Hồ', 0, 0),
+(22, 'Chế phẩm', 0, 0),
+(23, 'Vật liệu', 0, 0),
+(24, 'Phụ kiện', 0, 0),
+(25, 'Khác', 0, 0),
+(26, 'Guppy', 18, 0),
+(27, 'Endler', 18, 0),
+(28, 'Cá săn mồi', 18, 0),
+(29, 'Cá koi', 18, 0),
+(30, 'Tươi sống', 19, 0),
+(31, 'Đông lạnh', 19, 0),
+(32, 'Sấy khô', 19, 0),
+(33, 'Đóng hộp', 19, 0),
+(34, 'Rong', 20, 0),
+(35, 'Rêu', 20, 0),
+(36, 'Cỏ', 20, 0),
+(37, 'Hạt giống', 20, 0),
+(38, 'Xốp', 21, 0),
+(39, 'Kính', 21, 0),
+(40, 'Xi măng', 21, 0),
+(41, 'Nhựa', 21, 0),
+(42, 'Trị bệnh', 22, 0),
+(43, 'Xử lý nước', 22, 0),
+(44, 'Dinh dưỡng', 22, 0),
+(45, 'Vi sinh', 22, 0),
+(46, 'Lọc', 23, 0),
+(47, 'Đá', 23, 0),
+(48, 'Nền', 23, 0),
+(49, 'Trang trí', 23, 0),
+(50, 'Đèn', 24, 0),
+(51, 'Máy móc', 24, 0),
+(52, 'Công cụ', 24, 0);
 
 -- --------------------------------------------------------
 
@@ -135,7 +126,6 @@ INSERT INTO `danhmuc` (`id`, `idusers`, `tendanhmuc`, `danhmuccha`, `hidden`) VA
 
 CREATE TABLE `donhang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idkhachhang` bigint(20) NOT NULL,
   `ngaydathang` date NOT NULL,
   `diachigiaohang` varchar(255) NOT NULL,
@@ -147,14 +137,13 @@ CREATE TABLE `donhang` (
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`id`, `idusers`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
-(1, 1, 1, '2021-09-01', 'cantho', 120000, 4),
-(2, 1, 1, '2021-09-02', 'cantho', 130000, 3),
-(3, 1, 1, '2021-09-03', 'cantho', 100000, 2),
-(4, 1, 1, '2021-09-04', 'cantho', 120000, 1),
-(5, 1, 1, '2021-09-04', 'cantho', 120000, 0),
-(19, 1, 0, '2021-09-21', 'null', 0, 3),
-(20, 1, 0, '2021-09-21', 'null', 0, 3);
+INSERT INTO `donhang` (`id`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
+(30, 0, '2021-09-23', 'null', 0, 3),
+(31, 1, '2021-09-23', 'Cần Thơ', 3000, 3),
+(32, 1, '2021-09-23', 'Cần Thơ', 100000, 3),
+(33, 1, '2021-09-23', 'Vĩnh Long', 90000, 3),
+(34, 0, '2021-09-23', 'null', 0, 3),
+(35, 0, '2021-09-23', 'null', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -180,7 +169,6 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `hinhanh` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `dulieuhinhanh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -189,15 +177,17 @@ CREATE TABLE `hinhanh` (
 -- Đang đổ dữ liệu cho bảng `hinhanh`
 --
 
-INSERT INTO `hinhanh` (`id`, `idusers`, `idsanpham`, `dulieuhinhanh`) VALUES
-(1, 1, 65, 'storage/admin/1/RDeSIzxJzUczOVlEUwGTdZyPI3uzPY5ACCGBcvcy.jpg'),
-(2, 1, 65, 'storage/admin/1/Q2BxlUbajPpsWGYEdetdoO68eKSEhxrF5dkKXTPi.jpg'),
-(3, 1, 65, 'storage/admin/1/NgS3iCHhmuHbu45Ds1KrAodEw779KZbZXQalPxGH.jpg'),
-(4, 1, 65, 'storage/admin/1/JDmA3yelJeRbrzEOaNbAq76Ty6I3NbYfGGldzsb9.jpg'),
-(5, 1, 65, 'storage/admin/1/gXHKP8cVXPPUgfCDmXD68M1Ud0m3b0VMZOhyABY3.jpg'),
-(11, 1, 47, 'storage/admin/1/KODJ59S021NSAQIG1xv0TCvX3eFlltogpT1UvdXy.jpg'),
-(12, 1, 47, 'storage/admin/1/R1tC4xQEeDMH4akR2eEoEKSV7YTFXtPY2QGlbscx.jpg'),
-(13, 1, 47, 'storage/admin/1/s4dKY6tJASXaiDPViXVcAmtbVJLK2znFUjZ0mMib.jpg');
+INSERT INTO `hinhanh` (`id`, `idsanpham`, `dulieuhinhanh`) VALUES
+(1, 65, 'storage/admin/1/RDeSIzxJzUczOVlEUwGTdZyPI3uzPY5ACCGBcvcy.jpg'),
+(2, 65, 'storage/admin/1/Q2BxlUbajPpsWGYEdetdoO68eKSEhxrF5dkKXTPi.jpg'),
+(3, 65, 'storage/admin/1/NgS3iCHhmuHbu45Ds1KrAodEw779KZbZXQalPxGH.jpg'),
+(4, 65, 'storage/admin/1/JDmA3yelJeRbrzEOaNbAq76Ty6I3NbYfGGldzsb9.jpg'),
+(5, 65, 'storage/admin/1/gXHKP8cVXPPUgfCDmXD68M1Ud0m3b0VMZOhyABY3.jpg'),
+(21, 47, 'storage/admin/1/Xuvo40Z96Z5g5DjwJqfiHkR52hAYx6OiPbRzNXvq.jpg'),
+(22, 47, 'storage/admin/1/8R3Q0XWvDXknvUDDcdUdD0HLNSSPU6p87GBYbIWZ.jpg'),
+(26, 47, 'storage/admin/1/KB8QipDGJYJxDWt4WOdldnbU0paVIBS9UhEu5Uxq.jpg'),
+(27, 47, 'storage/admin/1/9j6lQZIdqPzKla0j1rtW3398KtlzrqQl2ZBPX1Ji.jpg'),
+(28, 47, 'storage/admin/1/2Aw1t2HTVQOMrJCnKzugF8mugfvIYeTJgSS226Ra.jpg');
 
 -- --------------------------------------------------------
 
@@ -231,7 +221,6 @@ INSERT INTO `khachhang` (`id`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachha
 
 CREATE TABLE `khohang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
   `soluonghang` bigint(20) NOT NULL DEFAULT '0',
@@ -243,11 +232,12 @@ CREATE TABLE `khohang` (
 -- Đang đổ dữ liệu cho bảng `khohang`
 --
 
-INSERT INTO `khohang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
-(7, 1, 43, 'Blue Grass', 100, 55, 45),
-(8, 1, 61, 'Blue Grass Bds', 20, 0, 20),
-(9, 1, 48, 'Cá Chép Koi Mini Việt Nam', 20, 0, 20),
-(10, 1, 50, 'Cá Rồng Ngân Long', 5, 0, 5);
+INSERT INTO `khohang` (`id`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
+(13, 61, 'Blue Grass Bds', 50, 2, 48),
+(14, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 20, 1, 19),
+(15, 48, 'Cá Chép Koi Mini Việt Nam', 15, 0, 15),
+(16, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 200, 13, 187),
+(17, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -279,7 +269,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `nhaphang` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
   `dongianhap` bigint(20) NOT NULL,
@@ -293,11 +282,12 @@ CREATE TABLE `nhaphang` (
 -- Đang đổ dữ liệu cho bảng `nhaphang`
 --
 
-INSERT INTO `nhaphang` (`id`, `idusers`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
-(12, 1, 43, 'Blue Grass', 1, 100, 100, '2021-09-21', 'Nhật Bản'),
-(13, 1, 61, 'Blue Grass Bds', 80000, 20, 1600000, '2021-09-22', 'Nhật Bản'),
-(14, 1, 48, 'Cá Chép Koi Mini Việt Nam', 400000, 20, 8000000, '2021-09-23', 'Nhật Bản'),
-(15, 1, 50, 'Cá Rồng Ngân Long', 700000, 5, 3500000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678');
+INSERT INTO `nhaphang` (`id`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
+(21, 61, 'Blue Grass Bds', 80000, 50, 4000000, '2021-09-23', 'Nhật Bản'),
+(22, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 65000, 20, 1300000, '2021-09-23', 'Nhật Bản'),
+(23, 48, 'Cá Chép Koi Mini Việt Nam', 400000, 15, 6000000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678'),
+(24, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 2000, 200, 400000, '2021-09-23', 'Việt Nam'),
+(25, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 100000, 2, 200000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -337,7 +327,6 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `sanpham` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `iddanhmuc` bigint(20) NOT NULL,
   `tensanpham` varchar(255) NOT NULL,
   `anhsanpham` varchar(255) NOT NULL,
@@ -353,36 +342,35 @@ CREATE TABLE `sanpham` (
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`id`, `idusers`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
-(44, 1, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
-(45, 1, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
-(46, 1, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
-(47, 1, 29, 'Koi Chép Việt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 1),
-(48, 1, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 1),
-(49, 1, 28, 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
-(50, 1, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 1),
-(51, 1, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
-(52, 1, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
-(53, 1, 33, 'Thức ăn Cho Rùa Taiyo', 'storage/admin/1/gS0l5qLqVtyfbbwUUZmR6oSHNVrhiv5lhAjCqXbs.jpg', 'Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo', 'Việt Nam', 25000, 'hủ', 0, 1),
-(54, 1, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
-(55, 1, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
-(56, 1, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
-(60, 1, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1),
-(61, 1, 26, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 'Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds', 'Việt Nam', 100000, 'cặp', 0, 1),
-(62, 1, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
-(63, 1, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
-(64, 1, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
-(65, 1, 29, 'Koi Chép Việt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 1),
-(66, 1, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 1),
-(67, 1, 28, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
-(68, 1, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 1),
-(69, 1, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
-(70, 1, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
-(71, 1, 33, 'Thức ăn Cho Rùa Taiyo', 'storage/admin/1/gS0l5qLqVtyfbbwUUZmR6oSHNVrhiv5lhAjCqXbs.jpg', 'Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo', 'Việt Nam', 25000, 'hủ', 0, 1),
-(72, 1, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
-(73, 1, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
-(74, 1, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
-(76, 1, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1);
+INSERT INTO `sanpham` (`id`, `iddanhmuc`, `tensanpham`, `anhsanpham`, `thongtinsanpham`, `xuatxusanpham`, `dongiasanpham`, `donvitinhsanpham`, `hidden`, `sanphamnoibat`) VALUES
+(44, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
+(45, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
+(46, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
+(47, 29, 'Koi Chép Việtt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 1),
+(48, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 0),
+(49, 28, 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 1),
+(50, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 1),
+(51, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
+(52, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
+(53, 33, 'Thức ăn Cho Rùa Taiyo', 'storage/admin/1/gS0l5qLqVtyfbbwUUZmR6oSHNVrhiv5lhAjCqXbs.jpg', 'Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo', 'Việt Nam', 25000, 'hủ', 0, 1),
+(54, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
+(56, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
+(60, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1),
+(61, 26, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 'Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds Blue Grass Bds', 'Việt Nam', 100000, 'cặp', 0, 1),
+(62, 26, 'Koi Đen Short Gen Ribbon', 'storage/admin/1/fj3DTGIfo7nosX2zv8FWVSOwoPzGpFknbEDZJsYp.jpg', 'Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon Koi Đen Short Gen Ribbon', 'Việt Nam', 60000, 'cặp', 0, 1),
+(63, 27, 'Huyết Kiếm', 'storage/admin/1/pHECOryG3zByihHYb84KR8SRtgOtkr9R74jQJo4Y.jpg', 'Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm Huyết Kiếm', 'Việt Nam', 500000, 'cặp', 0, 1),
+(64, 27, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 'Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm Cá Mún Hạt Lựu Thập Cẩm', 'Việt Nam', 3000, 'con', 0, 1),
+(65, 29, 'Koi Chép Việt', 'storage/admin/1/IhzQ36BzwjB7tXQ4MPA1iWVAO7kdiYr5t1wSobnr.jpg', 'Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt Koi Chép Việt', 'Việt Nam', 800000, 'kg', 0, 0),
+(66, 29, 'Cá Chép Koi Mini Việt Nam', 'storage/admin/1/fVGwh88udmGdGO702kEPZlsZJOzPz89Oh3VpEoCH.jpg', 'Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam Cá Chép Koi Mini Việt Nam', 'Việt Nam', 450000, 'kg', 0, 1),
+(67, 28, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 'Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ Cá Bạc Hổ Việt Nam Nhỏ', 'Việt Nam', 90000, 'con', 0, 0),
+(68, 28, 'Cá Rồng Ngân Long', 'storage/admin/1/L0OoDnTQ2izi6mYEeVTCr8az6QXcIutNyicY1Q1G.jpg', 'Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long Cá Rồng Ngân Long', 'Việt Nam', 250000, 'con', 0, 0),
+(69, 33, 'Thức ăn Okiko La Hán', 'storage/admin/1/t516n10TtM3lfWoG6VRS7qj6NTp4iDwwzT7yun7E.jpg', 'Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán Thức ăn Okiko La Hán', 'Việt Nam', 60000, 'bịch', 0, 1),
+(70, 33, 'Thức ăn Pro’s Choice Cá Dĩa', 'storage/admin/1/2YHG8eHUD4T8oKrrBIGP6PWLWhIW1AGWvN2xvBu8.jpg', 'Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa Thức ăn Pro’s Choice Cá Dĩa', 'Việt Nam', 50000, 'chai', 0, 1),
+(71, 33, 'Thức ăn Cho Rùa Taiyo', 'storage/admin/1/gS0l5qLqVtyfbbwUUZmR6oSHNVrhiv5lhAjCqXbs.jpg', 'Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo Thức ăn Cho Rùa Taiyo', 'Việt Nam', 25000, 'hủ', 0, 1),
+(72, 39, 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'storage/admin/1/8o9JPwYihByppKo5QcofET360XzPUIXfHcQu275Y.png', 'Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly Hồ Kính Siêu Trong 90x40x40cm Kính 8 Ly', 'Việt Nam', 1900000, 'hồ', 0, 1),
+(73, 39, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/1/iE8drnVqqaz5nCOZ4QMmLwLV0JmphZ7BOsAeGxyI.png', 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'Việt Nam', 3500000, 'hồ', 0, 1),
+(74, 41, 'Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'storage/admin/1/h49QQGyBklI5CL5PiqOsXKtZ1QJC9z5ObjgppXR2.jpg', 'Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau Khay Nhựa Tầng Nuôi Cá Trồng Rau', 'Việt Nam', 280000, 'bộ', 0, 1),
+(76, 43, 'Thuốc Diệt Rêu OF 125ml', 'storage/admin/1/J5X23KS2t1r1dVnMQO9jVhUbd9v6R1UwpP1Tx6Lp.png', 'Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml Thuốc Diệt Rêu OF 125ml', 'Việt Nam', 100000, 'chai', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -442,7 +430,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 
 CREATE TABLE `video` (
   `id` bigint(20) NOT NULL,
-  `idusers` bigint(20) NOT NULL,
   `idsanpham` bigint(20) NOT NULL,
   `dulieuvideo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -451,8 +438,9 @@ CREATE TABLE `video` (
 -- Đang đổ dữ liệu cho bảng `video`
 --
 
-INSERT INTO `video` (`id`, `idusers`, `idsanpham`, `dulieuvideo`) VALUES
-(1, 1, 65, 'storage/admin/1/4HWbyEKV1XJvyte8OqbnNAPRThkp7owQkJPlgofR.mp4');
+INSERT INTO `video` (`id`, `idsanpham`, `dulieuvideo`) VALUES
+(1, 65, 'storage/admin/1/4HWbyEKV1XJvyte8OqbnNAPRThkp7owQkJPlgofR.mp4'),
+(2, 47, 'storage/admin/1/AlcCdzCisy0OpsaKFwdDeM9qLdUEt2GuqE3AsniR.mp4');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -566,25 +554,25 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -596,7 +584,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
@@ -608,7 +596,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -620,7 +608,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `nhaphang`
 --
 ALTER TABLE `nhaphang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -650,7 +638,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `video`
 --
 ALTER TABLE `video`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
