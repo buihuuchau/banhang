@@ -200,6 +200,11 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@checkhuydon',
         'middleware' => (['auth', 'verified'])
     ]);
+    Route::post('/banle', [
+        'as' => 'banle',
+        'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@banle',
+        'middleware' => (['auth', 'verified'])
+    ]);
     Route::post('/donhangloi', [
         'as' => 'donhangloi',
         'uses' => 'App\Http\Controllers\admin\donhang\quanlydonhangController@donhangloi',

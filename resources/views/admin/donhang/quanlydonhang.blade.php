@@ -52,6 +52,51 @@
 
                 <div class="col-md-12 mb-4 text-right">
 
+
+                    <!-- Ban le -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+                        Bán lẻ
+                    </button>
+                    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Hóa đơn bán lẻ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('banle') }}" method="post">
+                                    <div class="modal-body">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <label>Chọn sản phẩm</label>
+                                            <select class="form-control" name="idsanpham" data-live-search="true">
+                                                @foreach($khohang as $rowkhohang)
+                                                <option value="{{$rowkhohang->idsanpham}}">{{$rowkhohang->tensanpham}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Giá bán</label>
+                                            <input type="number" class="form-control" name="giaban" min="1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số lượng</label>
+                                            <input type="number" class="form-control" name="soluongsanpham" min="1" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Xác nhận bán')">Thêm</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Hoa don 0Đ -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Đơn hàng 0đ
                     </button>
@@ -223,10 +268,81 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NO.</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NGÀY ĐẶT HÀNG</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐỊA CHỈ GIAO HÀNG</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">GIÁ TRỊ ĐƠN HÀNG</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TRẠNG THÁI</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($donhang3 as $key => $rowdonhang)
+                                    <tr class="odd">
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $rowdonhang->ngaydathang }}</td>
+                                        <td>{{ $rowdonhang->diachigiaohang }}</td>
+                                        <td>{{number_format("$rowdonhang->thanhtiendonhang",0,",",".")}}</td>
+                                        <td style="background-color: lightgreen;">Đã hoàn thành</td>
+                                        <td class="row">
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong{{$rowdonhang->id}}">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+                                            <div class="modal fade" id="exampleModalLong{{$rowdonhang->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Danh sách món hàng</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @foreach($chitietdonhang as $rowchitietdonhang)
+                                                            @if($rowdonhang->id == $rowchitietdonhang->iddonhang)
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <div class="row">
+                                                                        <h5 class="col-md-9" style="font-weight: bold;">{{$rowchitietdonhang->tensanpham}}</h5>
+                                                                        <img src="{{$rowchitietdonhang->anhsanpham}}" class="col-md-3">
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item">Đơn giá:&nbsp&nbsp&nbsp{{number_format("$rowchitietdonhang->dongiasanpham",0,",",".")}}</li>
+                                                                    <li class="list-group-item">Số lượng:&nbsp&nbsp&nbsp{{number_format("$rowchitietdonhang->soluongsanpham",0,",",".")}}</li>
+                                                                    <li class="list-group-item">Thành tiền:&nbsp&nbsp&nbsp{{number_format("$rowchitietdonhang->thanhtiensanpham",0,",",".")}}</li>
+                                                                </ul>
+                                                            </div>
+                                                            @endif
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NO.</th>
