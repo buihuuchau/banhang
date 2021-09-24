@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th9 23, 2021 lúc 04:43 PM
+-- Thời gian đã tạo: Th9 24, 2021 lúc 02:56 PM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.2
 
@@ -38,18 +38,6 @@ CREATE TABLE `chitietdonhang` (
   `soluongsanpham` bigint(20) NOT NULL,
   `thanhtiensanpham` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `chitietdonhang`
---
-
-INSERT INTO `chitietdonhang` (`id`, `idkhachhang`, `iddonhang`, `idsanpham`, `tensanpham`, `anhsanpham`, `dongiasanpham`, `soluongsanpham`, `thanhtiensanpham`) VALUES
-(24, 0, 30, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 3000, 12, 0),
-(25, 1, 31, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 'storage/admin/1/xJlxKe4l58XoJa3UUyLFfZjEG3BEDkFVnbVOzTFO.jpg', 3000, 1, 3000),
-(26, 1, 32, 61, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 1, 100000),
-(27, 1, 33, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 'storage/admin/1/KyjSdDRC7MDAhdAooEPFhoJ5miuL6RCY2BXsglzB.jpg', 90000, 1, 90000),
-(28, 0, 34, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 'storage/admin/AnhNull.jpg', 0, 2, 0),
-(29, 0, 35, 61, 'Blue Grass Bds', 'storage/admin/1/Ws1KYmo0qU65qLpYO1JiFu3lhVbr9pedWacRexQT.jpg', 100000, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -133,18 +121,6 @@ CREATE TABLE `donhang` (
   `trangthaidonhang` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `donhang`
---
-
-INSERT INTO `donhang` (`id`, `idkhachhang`, `ngaydathang`, `diachigiaohang`, `thanhtiendonhang`, `trangthaidonhang`) VALUES
-(30, 0, '2021-09-23', 'null', 0, 3),
-(31, 1, '2021-09-23', 'Cần Thơ', 3000, 3),
-(32, 1, '2021-09-23', 'Cần Thơ', 100000, 3),
-(33, 1, '2021-09-23', 'Vĩnh Long', 90000, 3),
-(34, 0, '2021-09-23', 'null', 0, 3),
-(35, 0, '2021-09-23', 'null', 0, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -211,7 +187,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`id`, `sdtkhachhang`, `matkhaukhachhang`, `hotenkhachhang`, `diachikhachhang`, `diachigiaohang`, `uytinkhachhang`, `thanhtiengiohang`) VALUES
-(1, 763232505, 'd8d12015bb905077cce3ca1c32d47c9e', 'Bùi Hữu Châu', 'Cần Thơ', 'Cần Thơ', 0, 0);
+(1, 763232505, 'd8d12015bb905077cce3ca1c32d47c9e', 'Bùi Hữu Châu', 'Cần Thơ', 'B1-6 KDC An Thới', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -227,17 +203,6 @@ CREATE TABLE `khohang` (
   `soluongban` bigint(20) NOT NULL DEFAULT '0',
   `soluongconlai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `khohang`
---
-
-INSERT INTO `khohang` (`id`, `idsanpham`, `tensanpham`, `soluonghang`, `soluongban`, `soluongconlai`) VALUES
-(13, 61, 'Blue Grass Bds', 50, 2, 48),
-(14, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 20, 1, 19),
-(15, 48, 'Cá Chép Koi Mini Việt Nam', 15, 0, 15),
-(16, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 200, 13, 187),
-(17, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -277,17 +242,6 @@ CREATE TABLE `nhaphang` (
   `ngaynhap` date NOT NULL,
   `nguongocnhap` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `nhaphang`
---
-
-INSERT INTO `nhaphang` (`id`, `idsanpham`, `tensanpham`, `dongianhap`, `soluongnhap`, `thanhtiennhap`, `ngaynhap`, `nguongocnhap`) VALUES
-(21, 61, 'Blue Grass Bds', 80000, 50, 4000000, '2021-09-23', 'Nhật Bản'),
-(22, 67, 'Cá Bạc Hổ Việt Nam Nhỏ', 65000, 20, 1300000, '2021-09-23', 'Nhật Bản'),
-(23, 48, 'Cá Chép Koi Mini Việt Nam', 400000, 15, 6000000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678'),
-(24, 46, 'Cá Mún Hạt Lựu Thập Cẩm', 2000, 200, 400000, '2021-09-23', 'Việt Nam'),
-(25, 55, 'Hồ Kính Siêu Trong 120x45x45cm Kính 12 Ly', 100000, 2, 200000, '2021-09-23', 'Nhôm kính Thịnh Phát, sdt 0712455678');
 
 -- --------------------------------------------------------
 
@@ -554,25 +508,25 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -596,7 +550,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `khohang`
 --
 ALTER TABLE `khohang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -608,7 +562,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `nhaphang`
 --
 ALTER TABLE `nhaphang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

@@ -96,7 +96,7 @@
                                     <form action="{{route('huydonhang')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
-                                        <button type="submit" class="btn btn-primary">Hủy</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn')">Hủy</button>
                                     </form>
                                 </td>
                                 @elseif($rowdonhang->trangthaidonhang == 1)
@@ -105,7 +105,7 @@
                                     <form action="{{route('huydonhang')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
-                                        <button type="submit" class="btn btn-primary">Hủy</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn')">Hủy</button>
                                     </form>
                                 </td>
                                 @elseif($rowdonhang->trangthaidonhang == 2)

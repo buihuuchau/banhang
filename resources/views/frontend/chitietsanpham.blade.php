@@ -11,7 +11,7 @@
                 <div class="page-wrapper">
                     <div class="blog-title-area text-center">
                         <ol class="breadcrumb hidden-xs-down text-left">
-                            <li class="breadcrumb-item"><a href="" style="font-size: 20px;">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('index')}}" style="font-size: 20px;">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('sanphamdanhmuc', ['iddanhmuc' => $sanpham->iddanhmuc]) }}" style="font-size: 20px;">{{$sanpham->tendanhmuc}}</a></li>
                             <li class="breadcrumb-item active" style="font-size: 20px;">{{$sanpham->tensanpham}}</li>
                         </ol>

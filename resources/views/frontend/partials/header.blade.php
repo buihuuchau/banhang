@@ -13,7 +13,7 @@
                     @foreach($danhmuc as $rowdanhmuc)
                     @if($rowdanhmuc->danhmuccha == 0)
                     <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
-                        <a class="nav-link dropdown-toggle" id="{{$rowdanhmuc->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$rowdanhmuc->tendanhmuc}}</a>
+                        <a class="nav-link dropdown-toggle" href="{{ route('sanphamdanhmuc', ['iddanhmuc' => $rowdanhmuc->id]) }}" id="{{$rowdanhmuc->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$rowdanhmuc->tendanhmuc}}</a>
 
                         <ul class="dropdown-menu megamenu" aria-labelledby="{{$rowdanhmuc->id}}">
                             <li>

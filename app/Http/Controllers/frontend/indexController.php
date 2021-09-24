@@ -159,13 +159,33 @@ class indexController extends Controller
             ->where('id', $iddanhmuc)
             ->first();
         $tendanhmuc = $danhmuc2->tendanhmuc;
-        $sanpham = DB::table('sanpham')
+
+
+        if($danhmuc2->danhmuccha == 0){
+            $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+            foreach($danhmuc3 as $key => $rowdanhmuc3){
+                $sanphamdanhmuc[$key] = DB::table('sanpham')// moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                ->where('iddanhmuc', $rowdanhmuc3->id)
+                ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                ->where('sanpham.hidden', 0)
+                ->inRandomOrder()
+                ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                ->get();
+            }
+            $sanpham = null;
+        }else{
+            $sanphamdanhmuc = null;
+            $sanpham = DB::table('sanpham')
             ->where('iddanhmuc', $iddanhmuc)
             ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
             ->orderBy('sanpham.id', 'desc')
             ->where('sanpham.hidden', 0)
             ->select('sanpham.*', 'danhmuc.tendanhmuc')
             ->simplePaginate(12);
+        }
+        
+        
         $ssidkhachhang = Session::get('ssidkhachhang');
         $khachhang = DB::table('khachhang')
             ->where('id', $ssidkhachhang)
@@ -177,7 +197,7 @@ class indexController extends Controller
         foreach ($giohang as $rowgiohang) {
             $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
         }
-        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
+        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanphamdanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
 
     public function chitietsanpham($idsanpham)
