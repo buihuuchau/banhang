@@ -1,6 +1,6 @@
 @extends('frontend.layouts.admin')
 @section('title')
-<title>Trang chủ</title>
+<title>{{$thongtinshop->tenshop}}</title>
 @endsection
 @section('section')
 <section class="section">

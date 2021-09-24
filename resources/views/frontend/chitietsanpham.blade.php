@@ -1,6 +1,6 @@
 @extends('frontend.layouts.admin')
 @section('title')
-<title>{{$sanpham->tendanhmuc}}</title>
+<title>{{$sanpham->tensanpham}}</title>
 @endsection
 @section('section')
 

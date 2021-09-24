@@ -117,7 +117,7 @@
                                         <td>{{ $rowdonhang->diachigiaohang }}</td>
                                         <td>{{number_format("$rowdonhang->thanhtiendonhang",0,",",".")}}</td>
                                         <td>{{ $rowdonhang->sdtkhachhang }}</td>
-                                        <td>{{number_format("$rowdonhang->uytinkhachhang",0,",",".")}}</td>
+                                        <td>{{number_format("$rowdonhang->uytinkhachhang",0,",",".")}}%</td>
                                         @if($rowdonhang->trangthaidonhang == 0)
                                         <td>Đã tiếp nhận</td>
                                         @endif
@@ -204,6 +204,7 @@
                                             <form action="{{route('checkhoanthanh')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddonhang" value="{{$rowdonhang->id}}">
+                                                <input type="hidden" name="idkhachhang" value="{{$rowdonhang->idkhachhang}}">
                                                 <button type="submit" onclick="return confirm('Hoàn thành đơn hàng...')" class="btn btn-success">
                                                     <i class="fas fa-check"></i>
                                             </form>

@@ -10,7 +10,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="page-wrapper">
 
-
+                    <h1 style="text-align: center;">Các sản phẩm trong giỏ</h1>
                     <table class="table">
                         <thead>
                             <tr>
@@ -58,6 +58,7 @@
                                     <form action="{{route('dathang')}}" method="post">
                                         {{ csrf_field() }}
                                         <div class="buttons_added">
+                                            <input type="hidden" name="thanhtiendonhang" value="{{$thanhtien}}">
                                             <button type="submit" class="btn btn-primary">Đặt hàng</button>
                                         </div>
                                     </form>
@@ -70,6 +71,7 @@
 
 
 
+                    <h1 style="text-align: center;">Các đơn hàng của bạn</h1>
                     <table class="table">
                         <thead>
                             <tr>

@@ -75,6 +75,21 @@ class quanlydonhangController extends Controller
             $khohang['soluongconlai'] = $check->soluongconlai - $soluongsanpham;
             DB::table('khohang')->where('idsanpham', $idsanpham)->update($khohang);
         }
+
+        //cap nhat uy tin khach hang
+        $tatcadonhang = DB::table('donhang')
+            ->where('idkhachhang', $request->idkhachhang)
+            ->get();
+        $donhangthanhcong = DB::table('donhang')
+            ->where('idkhachhang', $request->idkhachhang)
+            ->where('trangthaidonhang', 3)
+            ->get();
+        $uytinkhachhang = count($donhangthanhcong) / count($tatcadonhang) * 100;
+
+        $khachhang['uytinkhachhang'] = $uytinkhachhang;
+        DB::table('khachhang')
+        ->where('id', $request->idkhachhang)
+            ->update($khachhang);
         return back();
     }
     public function checkhuydon(Request $request)

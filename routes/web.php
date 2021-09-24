@@ -283,6 +283,10 @@ Route::prefix('/')->group(function () {
         'as' => 'dathang',
         'uses' => 'App\Http\Controllers\frontend\indexController@dathang',
     ]);
+    Route::post('/dodathang', [
+        'as' => 'dodathang',
+        'uses' => 'App\Http\Controllers\frontend\indexController@dodathang',
+    ]);
     Route::post('/huydonhang', [
         'as' => 'huydonhang',
         'uses' => 'App\Http\Controllers\frontend\indexController@huydonhang',
