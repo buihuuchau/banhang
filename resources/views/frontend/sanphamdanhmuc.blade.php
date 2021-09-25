@@ -18,7 +18,6 @@
                         <ol class="breadcrumb hidden-xs-down">
                             <li class="breadcrumb-item"><a href="{{route('index')}}" style="font-size: 20px;">Home</a></li>
                             <li class="breadcrumb-item active" style="font-size: 20px;">{{$tendanhmuc}}</li>
-
                         </ol>
                     </div><!-- end title -->
                     <div class="blog-grid-system">
@@ -61,8 +60,15 @@
                         <ol class="breadcrumb hidden-xs-down">
                             <li class="breadcrumb-item"><a href="{{route('index')}}" style="font-size: 20px;">Home</a></li>
                             <li class="breadcrumb-item active" style="font-size: 20px;">{{$tendanhmuc}}</li>
-
                         </ol>
+                        @if($iddanhmuc != 0)
+                        <div class="row justify-content-end">
+                            <a class="mr-4" href="{{route('sanphamdanhmuc', ['iddanhmuc'=>$iddanhmuc, 'sapxep'=>1])}}" style="color:blue">A đến Z</a>
+                            <a class="mr-4" href="{{route('sanphamdanhmuc', ['iddanhmuc'=>$iddanhmuc, 'sapxep'=>2])}}" style="color:blue">Z đến A</a>
+                            <a class="mr-4" href="{{route('sanphamdanhmuc', ['iddanhmuc'=>$iddanhmuc, 'sapxep'=>3])}}" style="color:blue">Thấp tới cao</a>
+                            <a class="mr-4" href="{{route('sanphamdanhmuc', ['iddanhmuc'=>$iddanhmuc, 'sapxep'=>4])}}" style="color:blue">Cao tới thấp</a>
+                        </div>
+                        @endif
                     </div><!-- end title -->
                     <div class="blog-grid-system">
                         <div class="row">

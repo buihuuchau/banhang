@@ -251,9 +251,13 @@ Route::prefix('/')->group(function () {
         'uses' => 'App\Http\Controllers\frontend\indexController@doeditkhachhang',
     ]);
     //////////////////////////////////////////////////////////////////////////////////
-    Route::get('/sanphamdanhmuc/{iddanhmuc}', [
+    Route::get('/sanphamdanhmuc/iddanhmuc,sapxep', [
         'as' => 'sanphamdanhmuc',
         'uses' => 'App\Http\Controllers\frontend\indexController@sanphamdanhmuc',
+    ]);
+    Route::post('/timkiemsanpham', [
+        'as' => 'timkiemsanpham',
+        'uses' => 'App\Http\Controllers\frontend\indexController@timkiemsanpham',
     ]);
     Route::get('/chitietsanpham/{idsanpham}', [
         'as' => 'chitietsanpham',

@@ -148,8 +148,10 @@ class indexController extends Controller
         return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
 
-    public function sanphamdanhmuc($iddanhmuc)
+    public function sanphamdanhmuc(Request $request)
     {
+        $iddanhmuc = $request->iddanhmuc;
+        $sapxep = $request->sapxep;
         $thongtinshop = DB::table('thongtinshop')
             ->first();
         $danhmuc = DB::table('danhmuc')
@@ -160,31 +162,143 @@ class indexController extends Controller
             ->first();
         $tendanhmuc = $danhmuc2->tendanhmuc;
 
-
-        if($danhmuc2->danhmuccha == 0){
-            $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
-            foreach($danhmuc3 as $key => $rowdanhmuc3){
-                $sanphamdanhmuc[$key] = DB::table('sanpham')// moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
-                // ->where('iddanhmuc', $danhmuc3[$key]->id)
-                ->where('iddanhmuc', $rowdanhmuc3->id)
+        // Khong sap xep
+        if($sapxep == 0){
+            if($danhmuc2->danhmuccha == 0){
+                $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+                $sanphamdanhmuc = null;
+                if($danhmuc3){
+                    foreach($danhmuc3 as $key => $rowdanhmuc3){
+                    $sanphamdanhmuc[$key] = DB::table('sanpham')// moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                    // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                    ->where('iddanhmuc', $rowdanhmuc3->id)
+                    ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                    ->where('sanpham.hidden', 0)
+                    ->inRandomOrder()
+                    ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                    ->get();
+                    }
+                }
+                $sanpham = null;
+            }else{
+                $sanphamdanhmuc = null;
+                $sanpham = DB::table('sanpham')
+                ->where('iddanhmuc', $iddanhmuc)
                 ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                ->orderBy('sanpham.id', 'desc')
                 ->where('sanpham.hidden', 0)
-                ->inRandomOrder()
                 ->select('sanpham.*', 'danhmuc.tendanhmuc')
-                ->get();
+                ->simplePaginate(12);
             }
-            $sanpham = null;
-        }else{
-            $sanphamdanhmuc = null;
-            $sanpham = DB::table('sanpham')
-            ->where('iddanhmuc', $iddanhmuc)
-            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
-            ->orderBy('sanpham.id', 'desc')
-            ->where('sanpham.hidden', 0)
-            ->select('sanpham.*', 'danhmuc.tendanhmuc')
-            ->simplePaginate(12);
         }
-        
+
+        // A den Z
+        if ($sapxep == 1) {
+            if ($danhmuc2->danhmuccha == 0) {
+                $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+                foreach ($danhmuc3 as $key => $rowdanhmuc3) {
+                    $sanphamdanhmuc[$key] = DB::table('sanpham') // moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                        // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                        ->where('iddanhmuc', $rowdanhmuc3->id)
+                        ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                        ->where('sanpham.hidden', 0)
+                        ->inRandomOrder()
+                        ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                        ->get();
+                }
+                $sanpham = null;
+            } else {
+                $sanphamdanhmuc = null;
+                $sanpham = DB::table('sanpham')
+                ->where('iddanhmuc', $iddanhmuc)
+                ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                ->orderBy('sanpham.tensanpham', 'asc')
+                ->where('sanpham.hidden', 0)
+                ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                ->simplePaginate(12);
+            }
+        }
+
+        // Z den A
+        if ($sapxep == 2) {
+            if ($danhmuc2->danhmuccha == 0) {
+                $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+                foreach ($danhmuc3 as $key => $rowdanhmuc3) {
+                    $sanphamdanhmuc[$key] = DB::table('sanpham') // moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                        // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                        ->where('iddanhmuc', $rowdanhmuc3->id)
+                        ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                        ->where('sanpham.hidden', 0)
+                        ->inRandomOrder()
+                        ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                        ->get();
+                }
+                $sanpham = null;
+            } else {
+                $sanphamdanhmuc = null;
+                $sanpham = DB::table('sanpham')
+                    ->where('iddanhmuc', $iddanhmuc)
+                    ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                    ->orderBy('sanpham.tensanpham', 'desc')
+                    ->where('sanpham.hidden', 0)
+                    ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                    ->simplePaginate(12);
+            }
+        }
+
+        // Thap den cao
+        if ($sapxep == 3) {
+            if ($danhmuc2->danhmuccha == 0) {
+                $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+                foreach ($danhmuc3 as $key => $rowdanhmuc3) {
+                    $sanphamdanhmuc[$key] = DB::table('sanpham') // moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                        // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                        ->where('iddanhmuc', $rowdanhmuc3->id)
+                        ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                        ->where('sanpham.hidden', 0)
+                        ->inRandomOrder()
+                        ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                        ->get();
+                }
+                $sanpham = null;
+            } else {
+                $sanphamdanhmuc = null;
+                $sanpham = DB::table('sanpham')
+                    ->where('iddanhmuc', $iddanhmuc)
+                    ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                    ->orderBy('sanpham.dongiasanpham', 'asc')
+                    ->where('sanpham.hidden', 0)
+                    ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                    ->simplePaginate(12);
+            }
+        }
+
+        // Cao den thap
+        if ($sapxep == 4) {
+            if ($danhmuc2->danhmuccha == 0) {
+                $danhmuc3 = DB::table('danhmuc')->where('danhmuccha', $danhmuc2->id)->get();
+                foreach ($danhmuc3 as $key => $rowdanhmuc3) {
+                    $sanphamdanhmuc[$key] = DB::table('sanpham') // moi $key la 1 iddanhmuc khac nhau (cotloi cong mang la [$key])
+                        // ->where('iddanhmuc', $danhmuc3[$key]->id)
+                        ->where('iddanhmuc', $rowdanhmuc3->id)
+                        ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                        ->where('sanpham.hidden', 0)
+                        ->inRandomOrder()
+                        ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                        ->get();
+                }
+                $sanpham = null;
+            } else {
+                $sanphamdanhmuc = null;
+                $sanpham = DB::table('sanpham')
+                    ->where('iddanhmuc', $iddanhmuc)
+                    ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+                    ->orderBy('sanpham.dongiasanpham', 'desc')
+                    ->where('sanpham.hidden', 0)
+                    ->select('sanpham.*', 'danhmuc.tendanhmuc')
+                    ->simplePaginate(12);
+            }
+        }
         
         $ssidkhachhang = Session::get('ssidkhachhang');
         $khachhang = DB::table('khachhang')
@@ -197,7 +311,40 @@ class indexController extends Controller
         foreach ($giohang as $rowgiohang) {
             $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
         }
-        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'tendanhmuc', 'sanphamdanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
+        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'iddanhmuc', 'tendanhmuc', 'sanphamdanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
+    }
+
+    public function timkiemsanpham(Request $request)
+    {
+        $tukhoa = $request->tukhoa;
+        $thongtinshop = DB::table('thongtinshop')
+        ->first();
+        $danhmuc = DB::table('danhmuc')
+        ->where('hidden', 0)
+            ->get();
+        $iddanhmuc = 0;
+        $tendanhmuc = $tukhoa;
+
+        $sanphamdanhmuc = null;
+        $sanpham = DB::table('sanpham')
+            ->join('danhmuc', 'sanpham.iddanhmuc', '=', 'danhmuc.id')
+            ->where('sanpham.hidden', 0)
+            ->where('sanpham.tensanpham', 'like', '%'.$tukhoa.'%')
+            ->select('sanpham.*', 'danhmuc.tendanhmuc')
+            ->simplePaginate(12);
+
+        $ssidkhachhang = Session::get('ssidkhachhang');
+        $khachhang = DB::table('khachhang')
+        ->where('id', $ssidkhachhang)
+            ->first();
+        $soluonggiohang = 0;
+        $giohang = DB::table('chitietgiohang')
+        ->where('idkhachhang', $ssidkhachhang)
+            ->get();
+        foreach ($giohang as $rowgiohang) {
+            $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        return view('frontend.sanphamdanhmuc', compact('thongtinshop', 'danhmuc', 'iddanhmuc', 'tendanhmuc', 'sanphamdanhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
 
     public function chitietsanpham($idsanpham)

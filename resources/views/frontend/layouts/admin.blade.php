@@ -51,7 +51,7 @@
 
     <div id="wrapper">
         @include('frontend.partials.header')
-        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
 
         @include('frontend.partials.firstsection')
 
