@@ -59,6 +59,7 @@
 			$("#example1").DataTable({
 				"paging": true, //hien thi phan trang
 				"lengthChange": true, //so dong cua 1 trang
+				"pageLength": 25, // mac dinh hien thi so dong cua 1 trang
 				"searching": true, //o tim kiem
 				"ordering": true, // sap xep dong
 				"info": true, // hien thi co tat ca bao nhieu dong
@@ -71,6 +72,7 @@
 			$('#example2').DataTable({
 				"paging": true,
 				"lengthChange": true,
+				"pageLength": 25, // mac dinh hien thi so dong cua 1 trang
 				"searching": true,
 				"ordering": true,
 				"info": true,
@@ -83,6 +85,7 @@
 			$('#example3').DataTable({
 				"paging": true,
 				"lengthChange": true,
+				"pageLength": 25, // mac dinh hien thi so dong cua 1 trang
 				"searching": true,
 				"ordering": true,
 				"info": true,
