@@ -16,6 +16,11 @@ use Illuminate\Http\Request;
 */
 
 // ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//
+
+// thong bao realtime
+
+// thong bao realtime
+
 // Xac Thuc Email
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
