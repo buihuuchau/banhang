@@ -217,6 +217,26 @@ Route::prefix('/')->group(function () {
     ]);
 });
 // QUAN LY DON HANG
+
+// QUAN LY NGAN SACH
+Route::prefix('/')->group(function () {
+    Route::get('/quanlyngansach', [
+        'as' => 'quanlyngansach',
+        'uses' => 'App\Http\Controllers\admin\ngansach\quanlyngansachController@quanlyngansach',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/thongkenhaphang', [
+        'as' => 'thongkenhaphang',
+        'uses' => 'App\Http\Controllers\admin\ngansach\quanlyngansachController@thongkenhaphang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+    Route::get('/thongkebanhang', [
+        'as' => 'thongkebanhang',
+        'uses' => 'App\Http\Controllers\admin\ngansach\quanlyngansachController@thongkebanhang',
+        'middleware' => (['auth', 'verified'])
+    ]);
+});
+// QUAN LY NGAN SACH
 // ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//
 
 
