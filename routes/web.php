@@ -328,3 +328,21 @@ Route::prefix('/')->group(function () {
 });
 // FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//FRONTEND//
 require __DIR__ . '/auth.php';
+
+
+// TEST
+Route::prefix('/')->group(function () {
+    Route::get('/test', [
+        'as' => 'test',
+        'uses' => 'App\Http\Controllers\test\testController@test',
+    ]);
+    Route::post('/testdangky', [
+        'as' => 'testdangky',
+        'uses' => 'App\Http\Controllers\test\testController@testdangky',
+    ]);
+    Route::get('/danhmuccon/{iddanhmuccha}', [
+        'as' => 'danhmuccon',
+        'uses' => 'App\Http\Controllers\test\testController@danhmuccon',
+    ]);
+});
+// TEST
