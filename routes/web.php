@@ -344,5 +344,11 @@ Route::prefix('/')->group(function () {
         'as' => 'danhmuccon',
         'uses' => 'App\Http\Controllers\test\testController@danhmuccon',
     ]);
+
+
+    Route::get('/testshowsanpham', [
+        'as' => 'testshowsanpham',
+        'uses' => 'App\Http\Controllers\test\testController@testshowsanpham',
+    ]);
 });
 // TEST

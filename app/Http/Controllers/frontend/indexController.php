@@ -119,7 +119,7 @@ class indexController extends Controller
 
 
     /////////////////////////////////////////////////////////////////////////////////
-    public function index()
+    public function index(Request $request)
     {
         $thongtinshop = DB::table('thongtinshop')
             ->first();
@@ -132,7 +132,7 @@ class indexController extends Controller
             ->where('sanpham.hidden', 0)
             ->where('sanpham.sanphamnoibat', 1)
             ->select('sanpham.*', 'danhmuc.tendanhmuc')
-            ->simplePaginate(12);
+            ->simplePaginate(6);
 
         $ssidkhachhang = Session::get('ssidkhachhang');
         $khachhang = DB::table('khachhang')
@@ -144,6 +144,34 @@ class indexController extends Controller
             ->get();
         foreach ($giohang as $rowgiohang) {
             $soluonggiohang = $soluonggiohang + $rowgiohang->soluongsanpham;
+        }
+        $artilces = '';
+        if ($request->ajax()) {
+            foreach ($sanpham as $rowsanpham) {
+                $artilces .=
+                    '
+                        <div class="col-md-3">
+                            <div class="blog-box">
+                                <div class="post-media">
+                                    <a href="
+                                        chitietsanpham/' . $rowsanpham->id . '
+                                    ">
+                                        <img src="' . $rowsanpham->anhsanpham . '" height="212px">
+                                        <div class="hovereffect">
+                                            <span></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="blog-meta big-meta">
+                                    <span class="color-orange"><a href="sanphamdanhmuc/' . $rowsanpham->iddanhmuc . '">' . $rowsanpham->tendanhmuc . '</a></span>
+                                    <h4><a href="chitietsanpham/' . $rowsanpham->id . '">' . $rowsanpham->tensanpham . '</a></h4>
+                                    <b style="color:blue">' . $rowsanpham->dongiasanpham . 'VNĐ/' . $rowsanpham->donvitinhsanpham . '</b>
+                                </div>
+                            </div>
+                        </div>
+                    ';
+            }
+            return $artilces;
         }
         return view('frontend.index', compact('thongtinshop', 'danhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
     }
