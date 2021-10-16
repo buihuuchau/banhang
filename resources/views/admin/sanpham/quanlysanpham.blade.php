@@ -194,6 +194,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            <input class="form-control" type="checkbox" id="abc" name="abc" value="{{$rowsanpham->id}}" <?php if ($rowsanpham->sanphamnoibat == 1) echo "checked"; ?>>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -211,5 +212,39 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#abc', function() {
+            // var id = $(this).data('id');
+            // var url = $(this).data('url');
+            var idsanpham = $(this).val();
+            // var that = $(this);
+            // if ($(this).val() == 1) {
+            //     var status = 1;
+            // } else {
+            //     var status = 0;
+            // }
+            $.ajax({
+                // url: url,
+                url: "quanlysanpham",
+                type: "get",
+                data: {
+                    "idsanpham": idsanpham,
+                    // "status": status
+                },
+                // success: function(data) {
+                //     Toast.fire({
+                //         icon: 'success',
+                //         title: 'Chuyển đổi thành công'
+                //     });
+
+                //     that.val(data);
+                // }
+            });
+        });
+    });
+</script>
 
 @endsection

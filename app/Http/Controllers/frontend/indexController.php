@@ -132,7 +132,7 @@ class indexController extends Controller
             ->where('sanpham.hidden', 0)
             ->where('sanpham.sanphamnoibat', 1)
             ->select('sanpham.*', 'danhmuc.tendanhmuc')
-            ->simplePaginate(6);
+            ->simplePaginate(4);
 
         $ssidkhachhang = Session::get('ssidkhachhang');
         $khachhang = DB::table('khachhang')

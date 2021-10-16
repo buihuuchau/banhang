@@ -16,7 +16,7 @@ use App\components\myfunction;
 
 class quanlysanphamController extends Controller
 {
-    public function quanlysanpham()
+    public function quanlysanpham(Request $request)
     {
         $id = Auth::user()->id;
         $thongtinshop = DB::table('thongtinshop')
@@ -31,6 +31,17 @@ class quanlysanphamController extends Controller
             ->get();
         $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
+
+        if ($request->ajax()) {
+            $check = DB::table('sanpham')->where('id', $request->idsanpham)->first();
+            if ($check->sanphamnoibat == 0) {
+                $sanpham2['sanphamnoibat'] = 1;
+            } else {
+                $sanpham2['sanphamnoibat'] = 0;
+            }
+            DB::table('sanpham')->where('id', $request->idsanpham)->update($sanpham2);
+        }
+
         return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'htmlOption'));
     }
     public function addsanpham(Request $request)
