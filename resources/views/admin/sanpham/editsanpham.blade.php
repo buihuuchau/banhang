@@ -127,66 +127,6 @@
                                 <label>Đơn vị tính</label>
                                 <input type="text" class="form-control" name="donvitinhsanpham" value="{{$sanpham->donvitinhsanpham}}"><br>
                             </div>
-                            <div class="form-group col-md-2">
-                                <label>Ẩn/ Hiện sản phẩm</label>
-                            </div>
-                            @if($sanpham->hidden == 0)
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="hidden" id="hidden1" value="0" checked>
-                                <label class="form-check-label" for="hidden1">
-                                    Hiện
-                                </label>
-                            </div>
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="hidden" id="hidden2" value="1">
-                                <label class="form-check-label" for="hidden2">
-                                    Ẩn
-                                </label>
-                            </div>
-                            @else
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="hidden" id="hidden1" value="0">
-                                <label class="form-check-label" for="hidden1">
-                                    Hiện
-                                </label>
-                            </div>
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="hidden" id="hidden2" value="1" checked>
-                                <label class="form-check-label" for="hidden2">
-                                    Ẩn
-                                </label>
-                            </div>
-                            @endif
-                            <div class="form-group col-md-2">
-                                <label>Tính nổi bật</label>
-                            </div>
-                            @if($sanpham->sanphamnoibat == 0)
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat1" value="0" checked>
-                                <label class="form-check-label" for="sanphamnoibat1">
-                                    Không nổi bật
-                                </label>
-                            </div>
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat2" value="1">
-                                <label class="form-check-label" for="sanphamnoibat2">
-                                    Nổi bật
-                                </label>
-                            </div>
-                            @else
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat1" value="0">
-                                <label class="form-check-label" for="sanphamnoibat1">
-                                    Không nổi bật
-                                </label>
-                            </div>
-                            <div class="form-check col-md-2">
-                                <input class="form-check-input" type="radio" name="sanphamnoibat" id="sanphamnoibat2" value="1" checked>
-                                <label class="form-check-label" for="sanphamnoibat2">
-                                    Nổi bật
-                                </label>
-                            </div>
-                            @endif
 
                             <div class="form-group col-md-5">
                             </div>

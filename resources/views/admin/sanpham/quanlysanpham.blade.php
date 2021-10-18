@@ -194,7 +194,10 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                            <input class="form-control" type="checkbox" id="abc" name="abc" value="{{$rowsanpham->id}}" <?php if ($rowsanpham->sanphamnoibat == 1) echo "checked"; ?>>
+                                            <label>Hiện</label>
+                                            <input class="col form-control" type="checkbox" id="anhiensanpham" name="anhiensanpham" value="{{$rowsanpham->id}}" <?php if ($rowsanpham->hidden == 0) echo "checked"; ?>>
+                                            <label>Nổi bật</label>
+                                            <input class="col form-control" type="checkbox" id="sanphamnoibat" name="sanphamnoibat" value="{{$rowsanpham->id}}" <?php if ($rowsanpham->sanphamnoibat == 1) echo "checked"; ?>>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -216,32 +219,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $(document).on('click', '#abc', function() {
-            // var id = $(this).data('id');
-            // var url = $(this).data('url');
+        $(document).on('click', '#anhiensanpham', function() {
             var idsanpham = $(this).val();
-            // var that = $(this);
-            // if ($(this).val() == 1) {
-            //     var status = 1;
-            // } else {
-            //     var status = 0;
-            // }
             $.ajax({
-                // url: url,
                 url: "quanlysanpham",
                 type: "get",
                 data: {
-                    "idsanpham": idsanpham,
-                    // "status": status
+                    "idsanphamanhien": idsanpham,
                 },
-                // success: function(data) {
-                //     Toast.fire({
-                //         icon: 'success',
-                //         title: 'Chuyển đổi thành công'
-                //     });
+                success: function(data) {
+                    window.location.reload();
 
-                //     that.val(data);
-                // }
+                },
+            });
+        });
+        $(document).on('click', '#sanphamnoibat', function() {
+            var idsanpham = $(this).val();
+            $.ajax({
+                url: "quanlysanpham",
+                type: "get",
+                data: {
+                    "idsanphamnoibat": idsanpham,
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
             });
         });
     });

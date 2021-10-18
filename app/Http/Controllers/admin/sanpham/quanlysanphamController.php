@@ -32,14 +32,27 @@ class quanlysanphamController extends Controller
         $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc();
 
-        if ($request->ajax()) {
-            $check = DB::table('sanpham')->where('id', $request->idsanpham)->first();
+
+        if ($request->ajax() && $request->idsanphamanhien) {
+            $check = DB::table('sanpham')->where('id', $request->idsanphamanhien)->first();
+            if ($check->hidden == 0) {
+                $sanpham2['hidden'] = 1;
+                DB::table('sanpham')->where('id', $request->idsanphamanhien)->update($sanpham2);
+            } else {
+                $sanpham2['hidden'] = 0;
+                DB::table('sanpham')->where('id', $request->idsanphamanhien)->update($sanpham2);
+            }
+        }
+
+        if ($request->ajax() && $request->idsanphamnoibat) {
+            $check = DB::table('sanpham')->where('id', $request->idsanphamnoibat)->first();
             if ($check->sanphamnoibat == 0) {
                 $sanpham2['sanphamnoibat'] = 1;
+                DB::table('sanpham')->where('id', $request->idsanphamnoibat)->update($sanpham2);
             } else {
                 $sanpham2['sanphamnoibat'] = 0;
+                DB::table('sanpham')->where('id', $request->idsanphamnoibat)->update($sanpham2);
             }
-            DB::table('sanpham')->where('id', $request->idsanpham)->update($sanpham2);
         }
 
         return view('admin.sanpham.quanlysanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'htmlOption'));
@@ -182,8 +195,7 @@ class quanlysanphamController extends Controller
         if ($request->xuatxusanpham != null) $sanpham['xuatxusanpham'] = $request->xuatxusanpham;
         if ($request->dongiasanpham != null) $sanpham['dongiasanpham'] = $request->dongiasanpham;
         if ($request->donvitinhsanpham != null) $sanpham['donvitinhsanpham'] = $request->donvitinhsanpham;
-        $sanpham['hidden'] = $request->hidden;
-        $sanpham['sanphamnoibat'] = $request->sanphamnoibat;
+
         DB::table('sanpham')
             ->where('id', $request->idsanpham)
             ->update($sanpham);
