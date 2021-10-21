@@ -50,7 +50,11 @@
     infinteLoadMore(page);
 
     $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        // if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        //     page++;
+        //     infinteLoadMore(page);
+        // }
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - $(window).height()) {
             page++;
             infinteLoadMore(page);
         }
