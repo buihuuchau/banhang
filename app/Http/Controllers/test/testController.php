@@ -72,7 +72,7 @@ class testController extends Controller
                             <div class="blog-box">
                                 <div class="post-media">
                                     <a href="
-                                        chitietsanpham/'.$rowsanpham->id.'
+                                        chitietsanpham/' . $rowsanpham->id . '
                                     ">
                                         <img src="' . $rowsanpham->anhsanpham . '" height="212px">
                                         <div class="hovereffect">
@@ -81,7 +81,7 @@ class testController extends Controller
                                     </a>
                                 </div>
                                 <div class="blog-meta big-meta">
-                                    <span class="color-orange"><a href="sanphamdanhmuc/'.$rowsanpham->iddanhmuc.'">' . $rowsanpham->tendanhmuc . '</a></span>
+                                    <span class="color-orange"><a href="sanphamdanhmuc/' . $rowsanpham->iddanhmuc . '">' . $rowsanpham->tendanhmuc . '</a></span>
                                     <h4><a href="chitietsanpham/' . $rowsanpham->id . '">' . $rowsanpham->tensanpham . '</a></h4>
                                     <b style="color:blue">' . $rowsanpham->dongiasanpham . 'VNĐ/' . $rowsanpham->donvitinhsanpham . '</b>
                                 </div>
@@ -92,5 +92,18 @@ class testController extends Controller
             return $artilces;
         }
         return view('test.testshowsanpham', compact('thongtinshop', 'danhmuc', 'sanpham', 'khachhang', 'soluonggiohang'));
+    }
+
+    public function testregister()
+    {
+        return view('test.testregister');
+    }
+    public function checkacc(Request $request)
+    {
+        if ($request->ajax()) {
+            $check = DB::table('users')->where('email', $request->acc)->first();
+            if ($check==null) echo "check";
+            else echo "x";
+        }
     }
 }

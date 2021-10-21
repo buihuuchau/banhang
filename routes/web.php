@@ -344,11 +344,17 @@ Route::prefix('/')->group(function () {
         'as' => 'danhmuccon',
         'uses' => 'App\Http\Controllers\test\testController@danhmuccon',
     ]);
-
-
     Route::get('/testshowsanpham', [
         'as' => 'testshowsanpham',
         'uses' => 'App\Http\Controllers\test\testController@testshowsanpham',
+    ]);
+    Route::get('/testregister', [
+        'as' => 'testregister',
+        'uses' => 'App\Http\Controllers\test\testController@testregister',
+    ]);
+    Route::get('/checkacc', [
+        'as' => 'checkacc',
+        'uses' => 'App\Http\Controllers\test\testController@checkacc',
     ]);
 });
 // TEST
