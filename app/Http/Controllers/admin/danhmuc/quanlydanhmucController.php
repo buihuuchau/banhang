@@ -39,7 +39,7 @@ class quanlydanhmucController extends Controller
     //     }
     //     return $this->htmlSelect;
     // }
-    public function quanlydanhmuc()
+    public function quanlydanhmuc(Request $request)
     {
         $id = Auth::user()->id;
         $thongtinshop = DB::table('thongtinshop')
@@ -56,6 +56,20 @@ class quanlydanhmucController extends Controller
         // $htmlOption = $this->xemdanhmuc(0);
         $callfunction = new myfunction($danhmuc2);
         $htmlOption = $callfunction->xemdanhmuc2();
+
+        if ($request->ajax() && $request->iddanhmuc) {
+            $check = DB::table('danhmuc')->where('id', $request->iddanhmuc)->first();
+            if ($check) {
+                $danhmuc3['hidden'] = !$check->hidden;
+                DB::table('danhmuc')->where('id', $request->iddanhmuc)->update($danhmuc3);
+            }
+            return "
+                <script>
+                    alert('chuyen doi thanh cong');
+                </script>
+            ";
+        }
+
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
     }
     public function adddanhmuc(Request $request)

@@ -92,6 +92,7 @@
                     @if($errors->any())
                     <h3 style="color:red">{{$errors->first()}}</h3>
                     @endif
+                    <div id="thongbao"></div>
 
                     <div class="card">
                         <div class="card-body">
@@ -188,17 +189,19 @@
                                             </div>
 
                                             @if ($rowdanhmuc->hidden == 0)
-                                            <form action="{{route('hiddendanhmuc')}}" method="post">
+                                            <!-- <form action="{{route('hiddendanhmuc')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddanhmuc" value="{{$rowdanhmuc->id}}">
                                                 <button type="submit" class="btn btn-secondary"><i class="fa fa-times"></i></button>
-                                            </form>
+                                            </form> -->
+                                            <button id="anhiendanhmuc" class="btn btn-secondary" value="{{$rowdanhmuc->id}}"><i class="fa fa-times"></i></button>
                                             @else
-                                            <form action="{{route('showdanhmuc')}}" method="post">
+                                            <!-- <form action="{{route('showdanhmuc')}}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="iddanhmuc" value="{{$rowdanhmuc->id}}">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
-                                            </form>
+                                            </form> -->
+                                            <button id="anhiendanhmuc" class="btn btn-success" value="{{$rowdanhmuc->id}}"><i class="fas fa-check"></i></button>
                                             @endif
 
                                             @if ($sudung != $rowdanhmuc->id)
@@ -224,5 +227,27 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#anhiendanhmuc', function() {
+            var iddanhmuc = $(this).val();
+            $.ajax({
+                url: "quanlydanhmuc",
+                type: "get",
+                data: {
+                    "iddanhmuc": iddanhmuc,
+                },
+                success: function(thongbao) {
+                    window.location.reload();
+                    $("#thongbao").html(thongbao);
+                }
+            });
+        });
+    });
+</script>
+<!-- script -->
 
 @endsection
