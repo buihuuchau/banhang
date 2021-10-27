@@ -63,9 +63,14 @@ class quanlydanhmucController extends Controller
                 $danhmuc3['hidden'] = !$check->hidden;
                 DB::table('danhmuc')->where('id', $request->iddanhmuc)->update($danhmuc3);
             }
+            if ($check->hidden == 0) {
+                $tt = "Ẩn thành công";
+            } else {
+                $tt = "Hiện thành công";
+            }
             return "
                 <script>
-                    alert('chuyen doi thanh cong');
+                    alert('$tt');
                 </script>
             ";
         }

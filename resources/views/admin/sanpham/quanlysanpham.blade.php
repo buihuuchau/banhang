@@ -149,7 +149,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ẢNH SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN GIÁ SẢN PHẨM</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">ĐƠN VỊ TÍNH</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TRẠNG THÁI</th>
+                                        <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">TRẠNG THÁI</th> -->
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">THAO TÁC</th>
                                     </tr>
                                 </thead>
@@ -168,7 +168,7 @@
                                         <td><img src="{{$rowsanpham->anhsanpham}}" width="100px" height="100px"></td>
                                         <td>{{number_format("$rowsanpham->dongiasanpham",0,",",".")}}</td>
                                         <td>{{ $rowsanpham->donvitinhsanpham }}</td>
-                                        @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 0)
+                                        <!-- @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 0)
                                         <td style="background-color: lightgreen;">Hiện---Bình thường</td>
                                         @endif
                                         @if($rowsanpham->hidden == 0 && $rowsanpham->sanphamnoibat == 1)
@@ -179,7 +179,7 @@
                                         @endif
                                         @if($rowsanpham->hidden == 1 && $rowsanpham->sanphamnoibat == 1)
                                         <td style="background-color: Olive; color: white;">Ẩn---Nổi bật</td>
-                                        @endif
+                                        @endif -->
 
                                         <td class="row">
                                             <form action="{{route('editsanpham')}}" method="get">
@@ -230,8 +230,7 @@
                     "idsanphamanhien": idsanpham,
                 },
                 success: function(data) {
-                    window.location.reload();
-
+                    // window.location.reload();
                 },
             });
         });
@@ -244,7 +243,7 @@
                     "idsanphamnoibat": idsanpham,
                 },
                 success: function(data) {
-                    window.location.reload();
+                    // window.location.reload();
                 },
             });
         });
