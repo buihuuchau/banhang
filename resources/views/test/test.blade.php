@@ -409,6 +409,11 @@
                 <input type="submit" class="fadeIn fourth" value="Đăng nhập">
             </form>
 
+            <h1 id="result2">btn btn-primary</h1>
+            <button onclick="changeicon()" class="btn btn-primary" id="result" value="abc">
+                Ẩn/Hiện
+            </button>
+
         </div>
     </div>
 
@@ -422,6 +427,16 @@
                 });
             });
         });
+
+        function changeicon() {
+            var str = document.getElementById("result");
+            var valuestr = str.value;
+            if (document.getElementById("result2").innerHTML == "btn btn-primary") {
+                document.getElementById("result2").innerHTML = "btn btn-danger";
+            } else {
+                document.getElementById("result2").innerHTML = "btn btn-primary";
+            }
+        }
     </script>
 
 </body>
