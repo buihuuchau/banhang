@@ -214,7 +214,7 @@
 
                                             <!-- TEST -->
                                             <!-- <input type="hidden" id="iddanhmuc" value="{{$rowdanhmuc->id}}"></input> -->
-                                            <input type="hidden" id="hiddendanhmuc" value="{{$rowdanhmuc->hidden}}"></input>
+                                            <!-- <input type="hidden" id="hiddendanhmuc" value="{{$rowdanhmuc->hidden}}"></input>
                                             <input type="hidden" id="sudungdanhmuc" value="{{$sudung}}"></input>
                                             <h3 id={{$rowdanhmuc->id}}>
                                                 <?php
@@ -226,10 +226,10 @@
                                                     echo "vohieuhoa";
                                                 }
                                                 ?>
-                                            </h3>
-                                            <button onclick="changeicon()" class="btn btn-primary" id="iddanhmuc" value="{{$rowdanhmuc->id}}">
+                                            </h3> -->
+                                            <!-- <button onclick="changeicon()" class="btn btn-primary" id="iddanhmuc" value="{{$rowdanhmuc->id}}">
                                                 Ẩn/Hiện
-                                            </button>
+                                            </button> -->
                                             <!-- TEST -->
 
                                         </td>
@@ -269,42 +269,42 @@
         });
     });
 
-    $(document).ready(function() {
-        $(document).on('click', '#iddanhmuc', function() {
-            var iddanhmuc = $(this).val();
-            $.ajax({
-                url: "quanlydanhmuc",
-                type: "get",
-                data: {
-                    "iddanhmuc": iddanhmuc,
-                },
-                success: function(thongbao) {
-                    // window.location.reload();
-                    // $("#thongbao").html(thongbao);
-                }
-            });
-        });
-    });
+    // $(document).ready(function() {
+    //     $(document).on('click', '#iddanhmuc', function() {
+    //         var iddanhmuc = $(this).val();
+    //         $.ajax({
+    //             url: "quanlydanhmuc",
+    //             type: "get",
+    //             data: {
+    //                 "iddanhmuc": iddanhmuc,
+    //             },
+    //             success: function(thongbao) {
+    //                 // window.location.reload();
+    //                 // $("#thongbao").html(thongbao);
+    //             }
+    //         });
+    //     });
+    // });
 
-    function changeicon() {
-        var iddanhmuc = document.getElementById("iddanhmuc");
-        var valueiddanhmuc = iddanhmuc.value;
-        var hiddendanhmuc = document.getElementById("hiddendanhmuc");
-        var valuehiddendanhmuc = hiddendanhmuc.value;
-        var sudungdanhmuc = document.getElementById("sudungdanhmuc");
-        var valuesudungdanhmuc = sudungdanhmuc.value;
-        var tt = document.getElementById(valueiddanhmuc).innerText;
-        var tt2 = document.getElementById(valueiddanhmuc).innerText;
-        if (tt == "chuaduocsudung" || tt == "dangduocsudung") {
-            document.getElementById(valueiddanhmuc).innerHTML = "vohieuhoa";
-        } else {
-            if (valuehiddendanhmuc == 0 && valuesudungdanhmuc != valueiddanhmuc) {
-                document.getElementById(valueiddanhmuc).innerHTML = "chuaduocsudung";
-            } else {
-                document.getElementById(valueiddanhmuc).innerHTML = "dangduocsudung";
-            }
-        }
-    }
+    // function changeicon() {
+    //     var iddanhmuc = document.getElementById("iddanhmuc");
+    //     var valueiddanhmuc = iddanhmuc.value;
+    //     var hiddendanhmuc = document.getElementById("hiddendanhmuc");
+    //     var valuehiddendanhmuc = hiddendanhmuc.value;
+    //     var sudungdanhmuc = document.getElementById("sudungdanhmuc");
+    //     var valuesudungdanhmuc = sudungdanhmuc.value;
+    //     var tt = document.getElementById(valueiddanhmuc).innerText;
+    //     var tt2 = document.getElementById(valueiddanhmuc).innerText;
+    //     if (tt == "chuaduocsudung" || tt == "dangduocsudung") {
+    //         document.getElementById(valueiddanhmuc).innerHTML = "vohieuhoa";
+    //     } else {
+    //         if (valuehiddendanhmuc == 0 && valuesudungdanhmuc != valueiddanhmuc) {
+    //             document.getElementById(valueiddanhmuc).innerHTML = "chuaduocsudung";
+    //         } else {
+    //             document.getElementById(valueiddanhmuc).innerHTML = "dangduocsudung";
+    //         }
+    //     }
+    // }
 </script>
 <!-- script -->
 
