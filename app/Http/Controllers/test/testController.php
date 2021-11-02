@@ -102,8 +102,12 @@ class testController extends Controller
     {
         if ($request->ajax()) {
             $check = DB::table('users')->where('email', $request->acc)->first();
-            if ($check==null) echo "check";
+            if ($check == null) echo "check";
             else echo "x";
         }
+    }
+    public function testtoast()
+    {
+        return view('test.testtoast');
     }
 }

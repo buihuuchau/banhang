@@ -356,5 +356,9 @@ Route::prefix('/')->group(function () {
         'as' => 'checkacc',
         'uses' => 'App\Http\Controllers\test\testController@checkacc',
     ]);
+    Route::get('/testtoast', [
+        'as' => 'testtoast',
+        'uses' => 'App\Http\Controllers\test\testController@testtoast',
+    ]);
 });
 // TEST
