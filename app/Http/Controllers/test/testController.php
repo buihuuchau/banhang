@@ -110,4 +110,8 @@ class testController extends Controller
     {
         return view('test.testtoast');
     }
+    public function testvoice()
+    {
+        return view('test.testvoice');
+    }
 }
