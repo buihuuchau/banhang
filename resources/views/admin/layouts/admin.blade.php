@@ -18,6 +18,9 @@
 	<link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.css') }}">
 	<!-- MyCSS -->
 	<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/mystyle.css')}}">
+	<!-- Toast -->
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="{{ asset('toast/dist/toast.min.css')}}">
 	@yield('css')
 </head>
 
@@ -134,7 +137,12 @@
 		function AutoRefresh( t ) {
 		setTimeout("location.reload(true);", t);
 	}
-</script>
+	</script>
+	<!-- Toast -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>--><!-- Loi khi su dung ajax -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="{{ asset('toast/dist/toast.min.js')}}"></script>
 
 
 </body>
