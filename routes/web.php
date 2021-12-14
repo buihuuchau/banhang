@@ -18,7 +18,18 @@ use Illuminate\Http\Request;
 // ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//ADMIN//
 
 // thong bao realtime
+Route::get('/show', function () {
+    return view('test.showNotification');
+});
 
+Route::get('getPusher', function () {
+    return view('test.form_pusher');
+});
+
+Route::get('/pusher', function (Illuminate\Http\Request $request) {
+    event(new App\Events\HelloPusherEvent($request));
+    return redirect('getPusher');
+});
 // thong bao realtime
 
 // Xac Thuc Email
