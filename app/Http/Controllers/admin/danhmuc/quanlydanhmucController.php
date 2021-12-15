@@ -89,6 +89,9 @@ class quanlydanhmucController extends Controller
             $danhmuc['tendanhmuc'] = $request->tendanhmuc;
             $danhmuc['danhmuccha'] = $request->danhmuccha;
             DB::table('danhmuc')->insert($danhmuc);
+            ////////////////////////////////////
+            $thongbao = $request->tendanhmuc;
+            event(new \App\Events\HelloPusherEvent($thongbao));
             return back();
         }
     }

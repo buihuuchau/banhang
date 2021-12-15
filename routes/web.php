@@ -26,11 +26,12 @@ Route::get('getPusher', function () {
     return view('test.form_pusher');
 });
 
-Route::get('/pusher', function (Illuminate\Http\Request $request) {
-    event(new App\Events\HelloPusherEvent($request));
-    return redirect('getPusher');
+Route::get('pusher', function (Illuminate\Http\Request $request) {
+    event(new App\Events\HelloPusherEventt($request));
+    return back();
 });
 // thong bao realtime
+
 
 // Xac Thuc Email
 Route::get('/email/verify', function () {
