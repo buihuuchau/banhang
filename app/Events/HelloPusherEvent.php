@@ -16,11 +16,20 @@ class HelloPusherEvent implements ShouldBroadcast
 
     public function __construct(Request $request)
     {
-        $this->message  = $request->contents;
+        $this->message  = $request->contents; // nhan contents tu form gui qua
     }
 
+    // public function broadcastOn()
+    // {
+    //     return ['development']; // thong bao voi data duoc gui qua ten development
+    // }
     public function broadcastOn()
     {
-        return ['development'];
+        return ['mychanel']; // frontend <script>var channel = pusher.subscribe('mychanel');</script>
+    }
+
+    public function broadcastAs()
+    {
+        return 'myevent'; // frontend channel.bind('myevent', function(data) {}
     }
 }
