@@ -384,6 +384,11 @@
             <h3 style="color:red">{{$errors->first()}}</h3>
             @endif
 
+            {{xinchao('Bui Huu Chau')}}<br />
+            {{tuoi('hai muoi hai')}}<br />
+            {{hello('Bui Huu Chau')}}<br />
+            {{live('22')}}<br />
+
             <form action="{{route('testdangky')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="tel" id="login" class="fadeIn second" name="sdt" placeholder="SỐ ĐIỆN THOẠI">
