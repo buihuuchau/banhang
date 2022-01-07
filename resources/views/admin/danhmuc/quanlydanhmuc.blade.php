@@ -261,16 +261,18 @@
                 data: {
                     "iddanhmuc": iddanhmuc,
                 },
-                success: function(thongbao) {
-                    window.location.reload();
-                    $("#thongbao").html(thongbao);
-                }
-                // success: function(response) {
-                //     if(response['status'] == true){
-                //         alert("ok")
-                //         $("#checked").html("&nbsp&nbsp&nbsp<i class='icon icon-check'></i>");
-                //     }
+                // success: function(thongbao) {
+                //     window.location.reload();
+                //     $("#thongbao").html(thongbao);
                 // }
+                success: function(response) {
+                    if(response['status'] == true){
+                        window.location.reload();
+                        alert(response['mes']);
+                        // alert(response['mes2']);
+                        // $("#checked").html("&nbsp&nbsp&nbsp<i class='icon icon-check'></i>");
+                    }
+                }
             });
         });
     });

@@ -68,15 +68,16 @@ class quanlydanhmucController extends Controller
             } else {
                 $tt = "Hiện thành công";
             }
-            return "
-                <script>
-                    alert('$tt');
-                </script>
-            ";
-            // return response()->json([
-            //     'status' => true,
-            //     'error' => "error",
-            // ], 200);
+            // return "
+            //     <script>
+            //         alert('$tt');
+            //     </script>
+            // ";
+            return response()->json([
+                'status' => true,
+                'mes' => $tt,
+                'mes2' => "ok roi",
+            ], 200);
         }
 
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
