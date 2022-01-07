@@ -73,6 +73,10 @@ class quanlydanhmucController extends Controller
                     alert('$tt');
                 </script>
             ";
+            // return response()->json([
+            //     'status' => true,
+            //     'error' => "error",
+            // ], 200);
         }
 
         return view('admin.danhmuc.quanlydanhmuc', compact('thongtinshop', 'sudung', 'danhmuc', 'sanpham', 'htmlOption'));
