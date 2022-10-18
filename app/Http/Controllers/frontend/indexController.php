@@ -603,7 +603,7 @@ class indexController extends Controller
             $chitietdonhang['anhsanpham'] = $rowchitietgiohang->anhsanpham;
             $chitietdonhang['dongiasanpham'] = $rowchitietgiohang->dongiasanpham;
             $chitietdonhang['soluongsanpham'] = $rowchitietgiohang->soluongsanpham;
-            $chitietdonhang['thanhtiensanpham'] = $rowchitietgiohang->dongiasanpham * $rowchitietgiohang->soluongsanpham;\
+            $chitietdonhang['thanhtiensanpham'] = $rowchitietgiohang->dongiasanpham * $rowchitietgiohang->soluongsanpham;
             DB::table('chitietdonhang')->insert($chitietdonhang);
         }
 
